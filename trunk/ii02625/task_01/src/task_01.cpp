@@ -1,4 +1,4 @@
-﻿#include<iostream>
+#include<iostream>
 #include<cmath>
 
 using namespace std;
@@ -46,6 +46,11 @@ int main(){
 		liner_model(y0);
 	}
 	cout << "нелинейная модель:" << endl;
+	for (int i = 0; i < N; i++) {
+		unliner_model(y00,y_01,first);
+	}
+	return 0;
+}
 	for (int i = 0; i < N; i++) {
 		unliner_model(y00,y_01,first);
 	}
