@@ -51,8 +51,4 @@ int main(){
 	}
 	return 0;
 }
-	for (int i = 0; i < N; i++) {
-		unliner_model(y00,y_01,first);
-	}
-	return 0;
-}
+
