@@ -5,7 +5,7 @@
 <br><br><br><br><br><br><br>
 <p align="center">Лабораторная работа №1</p>
 <p align="center">По дисциплине “Общая теория интеллектуальных систем”</p>
-<p align="center">Тема: “Моделирования температуры объекта”</p>
+<p align="center">Тема: “ПИД-регуляторы”</p>
 <br><br><br><br><br>
 <p align="right">Выполнил:</p>
 <p align="right">Студент 2 курса</p>
@@ -19,107 +19,113 @@
 <hr>
 
 # Общее задание #
-1. Написать отчет по выполненной лабораторной работе №1 в .md формате (readme.md) и с помощью запроса на внесение изменений (**pull request**) разместить его в следующем каталоге: **trunk\ii0xxyy\task_01\doc** (где **xx** - номер группы, **yy** - номер студента, например **ii02102**).
-2. Исходный код написанной программы разместить в каталоге: **trunk\ii0xxyy\task_01\src**.
-## Task 1. Modeling controlled object ##
-Let's get some object to be controlled. We want to control its temperature, which can be described by this differential equation:
+1. Написать отчет по выполненной лабораторной работе №1 в .md формате (readme.md) и с помощью запроса на внесение изменений (**pull request**) разместить его в следующем каталоге: **trunk\ii0xxyy\task_02\doc** (где **xx** - номер группы, **yy** - номер студента, например **ii02302**).
+2. Исходный код написанной программы разместить в каталоге: **trunk\ii0xxyy\task_02\src**.
 
-$$\Large\frac{dy(\tau)}{d\tau}=\frac{u(\tau)}{C}+\frac{Y_0-y(\tau)}{RC} $$ (1)
-
-where $\tau$ – time; $y(\tau)$ – input temperature; $u(\tau)$ – input warm; $Y_0$ – room temperature; $C,RC$ – some constants.
-
-After transformation, we get these linear (2) and nonlinear (3) models:
-
-$$\Large y_{\tau+1}=ay_{\tau}+bu_{\tau}$$ (2)
-$$\Large y_{\tau+1}=ay_{\tau}-by_{\tau-1}^2+cu_{\tau}+d\sin(u_{\tau-1})$$ (3)
-
-where $\tau$ – time discrete moments ($1,2,3{\dots}n$); $a,b,c,d$ – some constants.
-
-Task is to write program (**Julia**), which simulates this object temperature.
-
-<hr>
-
-# Выполнение задания #
-
-Код программы:
+# Задание #
+Задание. На C++ реализовать программу, моделирующую рассмотренный выше ПИД-регулятор. В качестве объекта управления использовать математическую модель, полученную в предыдущей работе. В отчете также привести графики для разных заданий температуры объекта, пояснить полученные результаты.
+---
+# Код программы: #
 ```C++
-#include<iostream>
-#include<cmath>
+#include <iostream>
+#include <cmath>
+#include <vector>
 
 using namespace std;
 
-double a = 1.0,
-b = 0.5,
-c = 0.1,
-d = 0.9,
-u = 1.5;
+const double k = 0.001;//коэф. передачи
+const double t = 50;//постоянная интегрирования
+const double td = 100;//постоянная дифференцирования
+const double t0 = 1;//шаг
+const double a = 0.4;
+const double b = 0.4;
+const double c = 0.4;
+const double d = 0.4;
 
-void liner_model(double& y_liner)
-{
-	y_liner = a * y_liner + b * u;
-	cout << "|" << y_liner << endl;
+void nelineyn(double znach) {
+    double q0 = k * (1 + td / t0);
+    double q1 = -k * (1 + 2 * td / t0 - t0 / t);
+    double q2 = k * td / t0;
+    vector<double> y = { 0, 0, 0 };
+    vector<double> u = { 1, 1 };
+    for (int i = 0; i < t; i++) {
+        double e0 = znach - y[y.size() - 1];
+        double e1 = znach - y[y.size() - 2];
+        double e2 = znach - y[y.size() - 3];
+        double intsum = q0 * e0 + q1 * e1 + q2 * e2;
+        u[0] = u[1] + intsum;
+        u[1] = u[0];
+        y.push_back(a * y[y.size() - 1] - b * y[y.size() - 2] * y[y.size() - 2] + c * u[0] + d * sin(u[1]));
+    }
+    for (double i : y) {
+        double res = i * znach / y[y.size() - 1];
+        cout << res << endl;
+    }
 }
-
-void unliner_model(double& y_unliner, double& pre_y_unliner, bool& first)
-{
-	if (first) {
-		pre_y_unliner = y_unliner;
-		y_unliner = a * y_unliner + c * u + d * sin(u);
-		first = false; // первая итерция закончена
-		cout << "|" << y_unliner << endl;
-	}
-	else {
-		double vr = 0; // переменная для хранения значения новой температуры 
-		vr = a * y_unliner - b * pow(pre_y_unliner, 2) + c * u + d * sin(u);
-		pre_y_unliner = y_unliner; //устанавливаем новое значение для преведущего значения у
-		y_unliner = vr;//устанавливаем новое значение для текущего значения у
-		cout << "|" << y_unliner << endl;
-	}
-}
-
 
 int main() {
-	setlocale(LC_ALL, "rus");
-	double y_liner = 0, y_unliner = 0, pre_y_unliner = 0;
-	bool first = true; //используется для определения первой итерации в функции нелинейной модели 
-	cout << "Введите начальную температуру:";
-	cin >> y_liner;
-	y_unliner = y_liner;
-	int N = 10;
-	cout << "линейная модель:" << endl;
-	for (int i = 0; i < N; i++) {
-		liner_model(y_liner);
-	}
-	cout << "нелинейная модель:" << endl;
-	for (int i = 0; i < N; i++) {
-		unliner_model(y_unliner, pre_y_unliner, first);
-	}
-	return 0;
+    setlocale(LC_ALL, "RUS");
+    double znach;
+    cout << "Желаемое начальное значение: ";
+    cin >> znach;
+    nelineyn(znach);
+    return 0;
 }
 ```     
 ```
-Введите начальную температуру:1
-линейная модель:
-|1.75
-|2.5
-|3.25
-|4
-|4.75
-|5.5
-|6.25
-|7
-|7.75
-|8.5
-нелинейная модель:
-|2.04775
-|2.59549
-|1.54661
-|-0.773936
-|-0.922185
-|-0.173927
-|0.448606
-|1.48123
-|2.42835
-|2.37908
+Желаемое начальное значение: 0.1
+0
+0
+0
+0.0921037
+0.123099
+0.112206
+0.0891094
+0.08883
+0.102193
+0.106844
+0.101074
+0.0963006
+0.0981692
+0.101519
+0.101602
+0.099696
+0.0990021
+0.0998769
+0.10057
+0.1003
+0.0998062
+0.0997951
+0.100076
+0.100176
+0.100046
+0.0999437
+0.0999829
+0.100054
+0.100055
+0.100013
+0.0999969
+0.100015
+0.100029
+0.100022
+0.100011
+0.10001
+0.100015
+0.100016
+0.100013
+0.10001
+0.10001
+0.10001
+0.100009
+0.100008
+0.100006
+0.100006
+0.100005
+0.100004
+0.100003
+0.100002
+0.100002
+0.100001
+0.1
 ```
-![График](./graphics.png)
+![График](./unliner.png)
