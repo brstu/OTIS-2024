@@ -5,7 +5,7 @@
 <br><br><br><br><br><br><br>
 <p align="center">Лабораторная работа №1</p>
 <p align="center">По дисциплине “Общая теория интеллектуальных систем”</p>
-<p align="center">Тема: “Моделирования температуры объекта”</p>
+<p align="center">Тема: “ПИД-регуляторы”</p>
 <br><br><br><br><br>
 <p align="right">Выполнил:</p>
 <p align="right">Студент 2 курса</p>
@@ -43,83 +43,105 @@ Task is to write program (**Julia**), which simulates this object temperature.
 
 Код программы:
 ```C++
-#include<iostream>
-#include<cmath>
+#include <iostream>
+#include <cmath>
+#include <vector>
 
 using namespace std;
 
-double a = 1.0,
-b = 0.5,
-c = 0.1,
-d = 0.9,
-u = 1.5;
+const double k = 0.001;//коэф. передачи
+const double t = 50;//постоянная интегрирования
+const double td = 100;//постоянная дифференцирования
+const double t0 = 1;//шаг
+const double a = 0.4;
+const double b = 0.4;
+const double c = 0.4;
+const double d = 0.4;
 
-void liner_model(double& y_liner)
-{
-	y_liner = a * y_liner + b * u;
-	cout << "|" << y_liner << endl;
+void nelineyn(double znach) {
+    double q0 = k * (1 + td / t0);
+    double q1 = -k * (1 + 2 * td / t0 - t0 / t);
+    double q2 = k * td / t0;
+    vector<double> y = { 0, 0, 0 };
+    vector<double> u = { 1, 1 };
+    for (int i = 0; i < t; i++) {
+        double e0 = znach - y[y.size() - 1];
+        double e1 = znach - y[y.size() - 2];
+        double e2 = znach - y[y.size() - 3];
+        double intsum = q0 * e0 + q1 * e1 + q2 * e2;
+        u[0] = u[1] + intsum;
+        u[1] = u[0];
+        y.push_back(a * y[y.size() - 1] - b * y[y.size() - 2] * y[y.size() - 2] + c * u[0] + d * sin(u[1]));
+    }
+    for (double i : y) {
+        double res = i * znach / y[y.size() - 1];
+        cout << res << endl;
+    }
 }
-
-void unliner_model(double& y_unliner, double& pre_y_unliner, bool& first)
-{
-	if (first) {
-		pre_y_unliner = y_unliner;
-		y_unliner = a * y_unliner + c * u + d * sin(u);
-		first = false; // первая итерция закончена
-		cout << "|" << y_unliner << endl;
-	}
-	else {
-		double vr = 0; // переменная для хранения значения новой температуры 
-		vr = a * y_unliner - b * pow(pre_y_unliner, 2) + c * u + d * sin(u);
-		pre_y_unliner = y_unliner; //устанавливаем новое значение для преведущего значения у
-		y_unliner = vr;//устанавливаем новое значение для текущего значения у
-		cout << "|" << y_unliner << endl;
-	}
-}
-
 
 int main() {
-	setlocale(LC_ALL, "rus");
-	double y_liner = 0, y_unliner = 0, pre_y_unliner = 0;
-	bool first = true; //используется для определения первой итерации в функции нелинейной модели 
-	cout << "Введите начальную температуру:";
-	cin >> y_liner;
-	y_unliner = y_liner;
-	int N = 10;
-	cout << "линейная модель:" << endl;
-	for (int i = 0; i < N; i++) {
-		liner_model(y_liner);
-	}
-	cout << "нелинейная модель:" << endl;
-	for (int i = 0; i < N; i++) {
-		unliner_model(y_unliner, pre_y_unliner, first);
-	}
-	return 0;
+    setlocale(LC_ALL, "RUS");
+    double znach;
+    cout << "Желаемое начальное значение: ";
+    cin >> znach;
+    nelineyn(znach);
+    return 0;
 }
 ```     
 ```
-Введите начальную температуру:1
-линейная модель:
-|1.75
-|2.5
-|3.25
-|4
-|4.75
-|5.5
-|6.25
-|7
-|7.75
-|8.5
-нелинейная модель:
-|2.04775
-|2.59549
-|1.54661
-|-0.773936
-|-0.922185
-|-0.173927
-|0.448606
-|1.48123
-|2.42835
-|2.37908
+Желаемое начальное значение: 1
+0
+0
+0
+0.920529
+1.23033
+1.12147
+0.890637
+0.887851
+1.02142
+1.06793
+1.01027
+0.962558
+0.981251
+1.01476
+1.0156
+0.996545
+0.989618
+0.998378
+1.00532
+1.00263
+0.997702
+0.997603
+1.00042
+1.00144
+1.00015
+0.999134
+0.999538
+1.00027
+1.00028
+0.999868
+0.999723
+0.999916
+1.00007
+1.00001
+0.999907
+0.999908
+0.999971
+0.999995
+0.99997
+0.99995
+0.999962
+0.99998
+0.999982
+0.999976
+0.999975
+0.999982
+0.999988
+0.999989
+0.999989
+0.999991
+0.999995
+0.999998
+1
 ```
-![График](./graphics.png)
+![График](./unliner.png)
