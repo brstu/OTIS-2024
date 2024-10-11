@@ -34,3 +34,5 @@
 .DS_Store
 .vs/
 out/
+.idea/
+cmake-build-debug/
