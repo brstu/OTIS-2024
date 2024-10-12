@@ -12,7 +12,7 @@
 <p align="right">Группы ИИ-26</p>
 <p align="right">Згера Е.А.</p>
 <p align="right">Проверил:</p>
-<p align="right">Иванюк Д. С.</p>
+<p align="right">Ситковец Я.С.</p>
 <br><br><br><br><br>
 <p align="center">Брест 2024</p>
 
