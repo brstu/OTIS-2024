@@ -48,51 +48,50 @@ Task is to write program (**Julia**), which simulates this object temperature.
 
 using namespace std;
 
-double a = 1.0, 
-b = 0.5, 
-c = 0.1, 
-d = 0.9, 
-u = 1.5;
+double coeff_a = 1.0, 
+coeff_b = 0.5, 
+coeff_c = 0.1, 
+coeff_d = 0.9, 
+input_u = 1.5;
 
-void liner_model(double& y_liner)
+void linear_model(double& temp_linear)
 {
-	y_liner = a * y_liner + b * u;
-	cout << "|" << y_liner  << endl;
+	temp_linear = coeff_a * temp_linear + coeff_b * input_u;
+	cout << "|" << temp_linear  << endl;
 }
 
-void unliner_model(double& y_unliner, double& pre_y_unliner,bool& first)
+void nonlinear_model(double& temp_nonlinear, double& prev_temp_nonlinear, bool& is_first_iteration)
 {
-	if (first) {
-		pre_y_unliner = y_unliner;
-		y_unliner = a * y_unliner + c * u + d * sin(u);
-		first = false; // первая итерция закончена
-		cout << "|" << y_unliner << endl;
+	if (is_first_iteration) {
+		prev_temp_nonlinear = temp_nonlinear;
+		temp_nonlinear = coeff_a * temp_nonlinear + coeff_c * input_u + coeff_d * sin(input_u);
+		is_first_iteration = false; // первая итерация закончена
+		cout << "|" << temp_nonlinear << endl;
 	}
 	else {
-		double vr = 0; // переменная для хранения значения новой температуры 
-		vr = a*y_unliner -b*pow(pre_y_unliner,2) + c * u + d * sin(u);
-		pre_y_unliner = y_unliner; //устанавливаем новое значение для преведущего значения у
-		y_unliner = vr;//устанавливаем новое значение для текущего значения у
-		cout << "|" << y_unliner << endl;
+		double temp_new = 0; // переменная для хранения значения новой температуры 
+		temp_new = coeff_a * temp_nonlinear - coeff_b * pow(prev_temp_nonlinear, 2) + coeff_c * input_u + coeff_d * sin(input_u);
+		prev_temp_nonlinear = temp_nonlinear; // устанавливаем новое значение для предыдущего значения
+		temp_nonlinear = temp_new; // устанавливаем новое значение для текущего значения
+		cout << "|" << temp_nonlinear << endl;
 	}
 }
 
-
-int main(){
+int main() {
 	setlocale(LC_ALL, "rus");
-	double y_liner = 0, y_unliner = 0, pre_y_unliner= 0; 
-	bool first = true; //используется для определения первой итерации в функции нелинейной модели 
+	double temp_linear = 0, temp_nonlinear = 0, prev_temp_nonlinear = 0; 
+	bool is_first_iteration = true; // используется для определения первой итерации в функции нелинейной модели 
 	cout << "Введите начальную температуру:";
-	cin >> y_liner;
-	y_unliner = y_liner;
-	int N = 10;
-	cout << "линейная модель:" << endl;
-	for (int i = 0; i < N; i++) {
-		liner_model(y_liner);
+	cin >> temp_linear;
+	temp_nonlinear = temp_linear;
+	int iterations = 10;
+	cout << "Линейная модель:" << endl;
+	for (int i = 0; i < iterations; i++) {
+		linear_model(temp_linear);
 	}
-	cout << "нелинейная модель:" << endl;
-	for (int i = 0; i < N; i++) {
-		unliner_model(y_unliner, pre_y_unliner,first);
+	cout << "Нелинейная модель:" << endl;
+	for (int i = 0; i < iterations; i++) {
+		nonlinear_model(temp_nonlinear, prev_temp_nonlinear, is_first_iteration);
 	}
 	return 0;
 }
