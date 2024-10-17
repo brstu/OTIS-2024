@@ -1,5 +1,5 @@
-cmake_minimum_required(VERSION 3.13 FATAL_ERROR)
 
-project(Modeling_controlled_object)
+cmake_minimum_required (VERSION 3.0.0)
 
-add_executable(task_01.cpp task_01.cpp)
+project (lab_01)
+add_executable ( ${PROJECT_NAME} Lab1.cpp)
