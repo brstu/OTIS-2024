@@ -1,0 +1,10 @@
+^C:\ЮЛЯ\JULLIQQX-OTIS-2024\TRUNK\II02508\BUILD\CMAKEFILES\7C4998C46574B89CE3EAFE8900659425\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/юля/julliqqx-OTIS-2024/trunk/ii02508 -BC:/юля/julliqqx-OTIS-2024/trunk/ii02508/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/юля/julliqqx-OTIS-2024/trunk/ii02508/build/Modeling_controlled_object.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
