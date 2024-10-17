@@ -1,3 +1,0 @@
-C:/юля/julliqqx-OTIS-2024/trunk/ii02508/build/CMakeFiles/task_01.cpp.dir
-C:/юля/julliqqx-OTIS-2024/trunk/ii02508/build/CMakeFiles/ALL_BUILD.dir
-C:/юля/julliqqx-OTIS-2024/trunk/ii02508/build/CMakeFiles/ZERO_CHECK.dir
