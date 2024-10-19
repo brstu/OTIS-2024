@@ -1,3 +1,0 @@
-/Users/anastasiacernoivan/Documents/уник/2 курс/отис/OTIS-2024/trunk/ii02612/task_01/build/CMakeFiles/task_01.cpp.dir
-/Users/anastasiacernoivan/Documents/уник/2 курс/отис/OTIS-2024/trunk/ii02612/task_01/build/CMakeFiles/edit_cache.dir
-/Users/anastasiacernoivan/Documents/уник/2 курс/отис/OTIS-2024/trunk/ii02612/task_01/build/CMakeFiles/rebuild_cache.dir
