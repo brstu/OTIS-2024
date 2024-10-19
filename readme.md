@@ -54,7 +54,7 @@
 |4|Валерия Цурукова||||||||||
 |5|Вика Сугак|[ii230205](./trunk/ii230205/)|:white_check_mark:|:white_check_mark:|||||||||
 |6|Даниил Турич||||||||||
-|7|Влад Рудь|[ii02614](./trunk/ii02614/)|:white_check_mark:|:white_check_mark:|||||||||
+|7|Влад Рудь|[ii02614](./trunk/ii02614/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||||
 |8|Денис Шарубнёв|[ii02625](./trunk/ii02625/)|:white_check_mark:|:white_check_mark:||||||||
 |9|Владислав Суховило ||:white_check_mark:|:white_check_mark:|||||||
 |10|Катя Шоева|[ii230326](./trunk/ii230326/)|:white_check_mark:|:white_check_mark:|||||||
