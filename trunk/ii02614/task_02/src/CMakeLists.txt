@@ -1,6 +1,4 @@
-cmake_minimum_required(VERSION 3.26)
-project(OTIS_2)
+cmake_minimum_required (VERSION 3.0.0)
 
-set(CMAKE_CXX_STANDARD 17)
-
-add_executable(OTIS_2 qwerty.cpp)
+ project (lab_02_ii02614)
+ add_executable ( ${PROJECT_NAME} qwerty.cpp)
