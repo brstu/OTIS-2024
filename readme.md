@@ -57,7 +57,7 @@
 |7|Влад Рудь|[ii02614](./trunk/ii02614/)|:white_check_mark:|:white_check_mark:|||||||||
 |8|Денис Шарубнёв|[ii02625](./trunk/ii02625/)|:white_check_mark:|:white_check_mark:||||||||
 |9|Владислав Суховило ||||||||||
-|10|Катя Шоева||||||||||
+|10|Катя Шоева|[ii230326](./trunk/ii230326/)|:white_check_mark:|:white_check_mark:|||||||
 |11|Илья Хомиченко||||||||||
 |12|Настя Черноиван|[ii230324](./trunk/ii230324/)|:white_check_mark:|:white_check_mark:|||||||
 |13|Алексей Хитренко||||||||||
