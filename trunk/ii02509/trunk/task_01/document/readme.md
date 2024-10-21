@@ -47,76 +47,73 @@ Task is to write program (**С++**), which simulates this object temperature.
 #include <cmath> 
 using namespace std;
 
-
-void simulateLinearModel(double a, double b, double y0, double u0, int num_steps) {
-    double y = y0; 
-    double u = u0; 
+void runLinearSimulation(double alpha, double beta, double temp0, double control0, int steps_count) {
+    double current_temp = temp0; 
+    double control_signal = control0; 
 
     cout << "Линейная модель:\n";
-    for (int t = 0; t < num_steps; ++t) {
-        double y_next = a * y + b * u;
-        cout << "Шаг времени " << t << ": Температура = " << y_next << std::endl;
-        y = y_next; 
+    for (int step = 0; step < steps_count; ++step) {
+        double next_temp = alpha * current_temp + beta * control_signal;
+        cout << "Шаг времени " << step << ": Температура = " << next_temp << std::endl;
+        current_temp = next_temp; 
     }
 }
 
-
-void simulateNonlinearModel(double a, double b, double c, double d, double y0, double u0, int num_steps) {
-    double y_prev = y0; 
-    double y = y0; 
-    double u = u0; 
+void runNonlinearSimulation(double alpha, double beta, double gamma, double delta, double temp0, double control0, int steps_count) {
+    double prev_temp = temp0; 
+    double current_temp = temp0; 
+    double control_signal = control0; 
 
     cout << "\nНелинейная модель:\n";
-    for (int t = 0; t < num_steps; ++t) {
-        double y_next = a * y - b * y_prev * y_prev + c * u + d * sin(u);
-        cout << "Шаг времени " << t << ": Температура = " << y_next << std::endl;
-        y_prev = y; 
-        y = y_next; 
+    for (int step = 0; step < steps_count; ++step) {
+        double next_temp = alpha * current_temp - beta * prev_temp * prev_temp + gamma * control_signal + delta * sin(control_signal);
+        cout << "Шаг времени " << step << ": Температура = " << next_temp << std::endl;
+        prev_temp = current_temp; 
+        current_temp = next_temp; 
     }
 }
 
 int main() {
     setlocale(LC_ALL, "Russian");
     
-    double a, b, c, d;
-    double initial_temperature, initial_input;
-    int num_steps;
+    double alpha, beta, gamma, delta;
+    double start_temp, start_control;
+    int steps_count;
 
-   
-    cout << "Введите значение параметра a: ";
-    cin >> a;
+    cout << "Введите значение параметра alpha: ";
+    cin >> alpha;
 
-    cout << "Введите значение параметра b: ";
-    cin >> b;
+    cout << "Введите значение параметра beta: ";
+    cin >> beta;
 
-    cout << "Введите значение параметра c (для нелинейной модели): ";
-    cin >> c;
+    cout << "Введите значение параметра gamma (для нелинейной модели): ";
+    cin >> gamma;
 
-    cout << "Введите значение параметра d (для нелинейной модели): ";
-    cin >> d;
+    cout << "Введите значение параметра delta (для нелинейной модели): ";
+    cin >> delta;
 
-    cout << "Введите начальное значение температуры y0: ";
-    cin >> initial_temperature;
+    cout << "Введите начальное значение температуры temp0: ";
+    cin >> start_temp;
 
-    cout << "Введите начальное значение управляющего сигнала u0: ";
-    cin >> initial_input;
+    cout << "Введите начальное значение управляющего сигнала control0: ";
+    cin >> start_control;
+
     cout << "Введите количество шагов моделирования: ";
-    cin >> num_steps;
+    cin >> steps_count;
 
-   
-    simulateLinearModel(a, b, initial_temperature, initial_input, num_steps);
-    simulateNonlinearModel(a, b, c, d, initial_temperature, initial_input, num_steps);
+    runLinearSimulation(alpha, beta, start_temp, start_control, steps_count);
+    runNonlinearSimulation(alpha, beta, gamma, delta, start_temp, start_control, steps_count);
 
     return 0;
 }
 ```     
 ```
-Введите значение параметра a: 1.2
-Введите значение параметра b: 0.05
-Введите значение параметра c (для нелинейной модели): 0.4
-Введите значение параметра d (для нелинейной модели): 0.8
-Введите начальное значение температуры y0: 1
-Введите начальное значение управляющего сигнала u0: 1
+Введите значение параметра alpha: 1.2
+Введите значение параметра beta: 0.05
+Введите значение параметра gamma (для нелинейной модели): 0.4
+Введите значение параметра delta (для нелинейной модели): 0.8
+Введите начальное значение температуры temp0: 1
+Введите начальное значение управляющего сигнала control0: 1
 Введите количество шагов моделирования: 11
 Линейная модель:
 Шаг времени 0: Температура = 1.25
