@@ -47,8 +47,10 @@ void nonLinear() {
 
     cout << "SteptOutputterrtControl Signaln";
     cout << endl;
-    for (int i = 0; i < output.size(); ++i)
+    int i = 0;
+    while(i < output.size())
         cout << i + 1 << " t " << output[i] << " t " << (des - output[i]) << " t " << prevSign[i] << endl;
+    ++i;
 }
 
 int main() {
