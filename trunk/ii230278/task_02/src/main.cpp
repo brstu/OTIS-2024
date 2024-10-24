@@ -1,58 +1,65 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
+
 using namespace std;
 
-double A = 0.5,
-B = 0.6,
-C = 0.6, 
-D = 0.6;
+// Константы для системы
+double alpha = 0.5,
+        beta = 0.6,
+        gamma = 0.6,
+        delta = 0.6;
 
-double gainn = 0.8,
-T_const_0 = 1.1,
-T_delay = 1.0,
-T_const = 1.1, 
-des = 20;
+double gain = 0.8,
+        time_const_0 = 1.1,
+        time_delay = 1.0,
+        time_const = 1.1,
+        desired_value = 20;
 
-double num_0 = gainn * (1 + (T_delay / T_const_0)),
-       num_1 = -gainn * (1 + 2 * (T_delay / T_const_0) - (T_const_0 / T_const)),
-       num_2 = gainn * (T_delay / T_const_0);
+// Коэффициенты для расчетов
+double coeff_0 = gain * (1 + (time_delay / time_const_0)),
+        coeff_1 = -gain * (1 + 2 * (time_delay / time_const_0) - (time_const_0 / time_const)),
+        coeff_2 = gain * (time_delay / time_const_0);
 
-void nonLinear() {
-    const double init_output = 2;
-    vector<double> output;
-    output.push_back(init_output);
-    double controlSign = 1.0; 
-    vector<double> err;
-    err.push_back(des - init_output); 
-    vector<double> prevSign;
-    prevSign.push_back(controlSign); 
-    
-    while (abs(des - output.back()) > 0.01) {
-        double current_err = des - output.back();  
-        err.push_back(current_err);  
-        
-        controlSign = prevSign.back() +
-                         num_0 * current_err +
-                         num_1 * (err.size() > 1 ? err[err.size() - 2] : 0) +
-                         num_2 * (err.size() > 2 ? err[err.size() - 3] : 0);
-        
-        output.push_back(A * output.back() -
-                         B * (output.size() > 1 ? output[output.size() - 2] : init_output) +
-                         C * controlSign +
-                         D * sin(prevSign.back()));
+// Функция для нелинейного управления
+void nonlinearControl() {
+    const double initial_output = 2;
+    vector<double> outputs;
+    outputs.push_back(initial_output);
 
-        prevSign.push_back(controlSign);
+    double control_signal = 1.0;
+    vector<double> error_values;
+    error_values.push_back(desired_value - initial_output);
+
+    vector<double> previous_signals;
+    previous_signals.push_back(control_signal);
+
+    // Цикл до достижения желаемого значения
+    while (abs(desired_value - outputs.back()) > 0.01) {
+        double current_error = desired_value - outputs.back();
+        error_values.push_back(current_error);
+
+        control_signal = previous_signals.back() +
+                         coeff_0 * current_error +
+                         coeff_1 * (error_values.size() > 1 ? error_values[error_values.size() - 2] : 0) +
+                         coeff_2 * (error_values.size() > 2 ? error_values[error_values.size() - 3] : 0);
+
+        outputs.push_back(alpha * outputs.back() -
+                          beta * (outputs.size() > 1 ? outputs[outputs.size() - 2] : initial_output) +
+                          gamma * control_signal +
+                          delta * sin(previous_signals.back()));
+
+        previous_signals.push_back(control_signal);
     }
 
-    cout << "SteptOutputterrtControl Signaln";
-    cout << endl;
-    int i = 0;
-    while(i < output.size())
-        cout << i + 1 << " t " << output[i] << " t " << (des - output[i]) << " t " << prevSign[i] << endl;
-    ++i;
+    
+    cout << "Step Output | Error | Control Signal" << endl;
+    for (size_t i = 0; i < outputs.size(); ++i) {
+        cout << i + 1 << " | " << outputs[i] << " | " << (desired_value - outputs[i]) << " | " << previous_signals[i] << endl;
+    }
 }
 
 int main() {
-    nonLinear();
+    nonlinearControl();
+    return 0;
 }
