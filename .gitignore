@@ -34,10 +34,6 @@
 .DS_Store
 .vs/
 out/
-<<<<<<< HEAD
-.idea/
-cmake-build-debug/
-=======
 build/
 .idea/
->>>>>>> 56bc637 (Update .gitignore)
+cmake-build-debug/
