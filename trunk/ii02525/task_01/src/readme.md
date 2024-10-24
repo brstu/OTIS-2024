@@ -32,30 +32,4 @@ public:
 
 };
 
-int main() {
-
-	Function func;
-
-	for (int i = 0; i < func.time; i++) {
-
-		func.linear_function();
-
-	}
-
-	for (int i = 0; i < func.time; i++) {
-
-		func.non_linear_function();
-
-	}
-
-	for (int i = 0; i < func.time; i++) {
-		
-		std::cout << i + 1 << "  " << func.first_function[i + 1] << "  ";
-		std::cout << func.second_function[i + 1] << std::endl;
-	}
-
-
-	return 0;
-}
-
 Вывод: В ходе лабораторной работы я реализовал линейную и не линейную модели для прогнозирования температуры
