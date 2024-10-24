@@ -2,11 +2,11 @@
 #include <cmath>
 using namespace std;
 
-const double a = 0.95, b = 0.2, c = 1.0, d = 1.5;
+const double m = 0.95, a = 0.2, r = 1.0, k = 1.5;
 
 double linear_model(double& y, double& u)
 {
-	y = a * y + b * u;
+	y = m * y + a * u;
 	return y;
 }
 
@@ -15,14 +15,14 @@ double unlinear_model(double& y, double& y_pred, double& y_penultimate, double& 
 	if (firstIter)
 	{
 		y_penultimate = y;
-		y_pred = a * y + c * u + d*sin(u);
+		y_pred = m * y + r * u + k*sin(u);
 		y = y_pred;
 		firstIter = false;
 		return y_pred;
 	}
 	else
 	{
-		y_pred = a * y - b * pow(y_penultimate, 2) + c * u + d * sin(u);
+		y_pred = m * y - a * pow(y_penultimate, 2) + r * u + k * sin(u);
 		y_penultimate = y;
 		y = y_pred;
 		return y_pred;
