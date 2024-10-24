@@ -1,4 +1,0 @@
-"C:\CLion 2024.1.1\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=C:/CLion 2024.1.1/bin/ninja/win/x64/ninja.exe" -G Ninja -S C:\OTIS24\OTIS-2024\trunk\ii230297\task_01\src -B C:\OTIS24\OTIS-2024\trunk\ii230297\task_01\src\cmake-build-debug
--- Configuring done (0.3s)
--- Generating done (0.0s)
--- Build files have been written to: C:/OTIS24/OTIS-2024/trunk/ii230297/task_01/src/cmake-build-debug
