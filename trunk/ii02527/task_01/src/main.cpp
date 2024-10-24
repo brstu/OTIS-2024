@@ -37,13 +37,13 @@ double nonlinearModel(unsigned int t) {
 
 int main() {
 
-	printf_s("Linear model\n");
+	printf("Linear model\n");
 	for (int t = 1; t < 11; t++)
-		printf_s("%d\t%.4f\n", t, linearModel(t));
+		printf("%d\t%.4f\n", t, linearModel(t));
 
-	printf_s("Nonlinear model\n");
+	printf("Nonlinear model\n");
 	for (int t = 1; t < 11; t++)
-		printf_s("%d\t%.4f\n", t, nonlinearModel(t));
+		printf("%d\t%.4f\n", t, nonlinearModel(t));
 
 	return 0;
 }
