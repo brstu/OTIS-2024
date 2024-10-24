@@ -34,6 +34,8 @@ public:
 
 int main() {
 
+	setlocale(LC_ALL, "Russian");
+
 	Function func;
 	int i = 0;
 	int j = 0;
@@ -52,12 +54,19 @@ int main() {
 
 	}
 
-	std::cout << "Вывод обеих моделей(линейной и нелинейной): " << std::endl;
+	std::cout << "Вывод линейной модели: " << std::endl;
+
+	for (int i = 0; i < func.time; i++) {
+
+		std::cout << i + 1 << "  " << func.first_function[i] << std::endl;
+
+	}
+
+	std::cout << "Вывод нелинейной модели: " << std::endl;
 
 	for (int i = 0; i < func.time; i++) {
 		
-		std::cout << i + 1 << "  " << func.first_function[i + 1] << "  ";
-		std::cout << func.second_function[i + 1] << std::endl;
+		std::cout << i + 1 << "  " << func.second_function[i] << std::endl;
 
 	}
 
