@@ -22,14 +22,16 @@ double NonLinear(double y,double u,double yPrev,double uPrev) {
 
 int main() {
 
-    double y;
-    cout << "Input the start temperature:" << endl;
-    cin >> y;
+
+    double y=15;
+
     double yNext = y;
     double yPrev;
     double u = 5;
     double uPrev;
-    uPrev = u;
+
+    uPrev = u;  
+
     int steps = 10;
 
     cout << "Linear Model: " << endl;
