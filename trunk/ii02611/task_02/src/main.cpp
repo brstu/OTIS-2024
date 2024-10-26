@@ -3,6 +3,8 @@
 #include <vector>
 #include <iomanip>
 
+using namespace std;
+
 float a = 0.6, b = 0.8, c = 0.2, d = 1.0, e = 0.2;
 
 float K = 0.9;
@@ -15,24 +17,24 @@ q1 = -K * (1 + 2 * (td / time0) - (time0 / tc)),
 q2 = K * (td / time0);
 
 void nonlinear() {
-    const short int init = 2;
-    std::vector<float> res = { init, init };
-    std::vector<double> err = { output - init, output - init };
-    double ctrl_signal = 1;
-    std::vector<double> ctrl = { ctrl_signal,ctrl_signal };
+    const short int n = 2;
+    vector<float> res = {n, n};
+    vector<float> err = { output - n, output - n};
+    float control = 1;
+    vector<float> ctrl = {control,control};
 
     while (abs(output - res.back()) > 1) {
         err.push_back(output - res.back());
-        ctrl_signal = ctrl.back() + q0 * err.back() + q1 * err[err.size() - 2] + q2 * err[err.size() - 3];
-        res.push_back(a * res.back() - b * res[res.size()-2] + c * ctrl_signal + d * sin(ctrl.back()));
-        ctrl.push_back(ctrl_signal);
+        control = ctrl.back() + q0 * err.back() + q1 * err[err.size() - 2] + q2 * err[err.size() - 3];
+        res.push_back(a * res.back() - b * res[res.size()-2] + c * control + d * sin(ctrl.back()));
+        ctrl.push_back(control);
     }
 
-    std::cout << std::right << std::setw(10) << "It" << std::setw(10) << std::right << "Output" << std::setw(13) << std::right << "Error" 
-    << std::setw(13) << std::right << "Control" << std::endl;
+    cout << right << setw(10) << "It" << setw(10) << right << "Output" << setw(13) << right << "Error" 
+    << setw(13) << right << "Control" << endl;
 
     for (int i = 0; i < res.size(); i++) {
-        std::cout << std::right << std::setw(10) << i+1 << std::setw(10) << res[i] << std::setw(13) << err[i] << std::setw(13) << ctrl[i] << std::endl;
+        cout << right << setw(10) << i+1 << setw(10) << res[i] << setw(13) << err[i] << setw(13) << ctrl[i] << endl;
     }}
 
 int main() {  
