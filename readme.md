@@ -67,7 +67,7 @@
 |17|Згера Егор|[ii02605](./trunk/ii02605/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||:white_check_mark:||||
 |18|Карпович Ксения|[ii02606](./trunk/ii02606/)|:white_check_mark:|:white_check_mark:||||||||
 |19|Ковальчук Артем|[ii00230308](./trunk/ii00230308/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||||
-|20|Кушнеревич Евгений|[ii02608](./trunk/ii02608/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||
+|20|Кушнеревич Евгений|[ii02608](./trunk/ii02608/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
 |21|Пасевич Ксения||||||||||
 |22|Петручик Дмитрий||||||||||
 |23|Пилипук Максим|[ii02611](./trunk/ii02611/)|:white_check_mark:|:white_check_mark:|||||||
