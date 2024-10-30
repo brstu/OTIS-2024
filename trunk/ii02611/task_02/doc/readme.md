@@ -10,7 +10,7 @@
 <p align="right">Выполнил:</p>
 <p align="right">Студент 2 курса</p>
 <p align="right">Группы ИИ-26</p>
-<p align="right">Прокопюк А.Д.</p>
+<p align="right">Пилипук М.А.</p>
 <p align="right">Проверил:</p>
 <p align="right">Ситковец Я. С.</p>
 <br><br><br><br><br>
