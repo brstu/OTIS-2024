@@ -14,7 +14,6 @@
 
 ## Группа ИИ-25
 
-<<<<<<< HEAD
 | №  | ФИО                  | Directory name              | #0 | #1 | #2 | #3 | #4 | #5 | #6 | Рейтинг |
 |----|----------------------|-----------------------------|----|----|----|----|----|----|----|---------|
 | 1  | Заседатель Никита    ||||||||||
@@ -29,8 +28,8 @@
 | 10 | Кулик Яна            ||||||||||
 | 11 | Борис Жук            ||||||||||
 | 12 | Милевский Артем      ||||||||||
-| 13 | Глеб Горбат          |[ii230278](trunk/ii230278)|✅|✅|||||||
-| 14 | Евгений Скачков      ||||||||||
+| 13 | Глеб Горбат          |[ii230278](trunk/ii230278)|✅|✅|✅||||||
+| 14 | Евгений Скачков      |[ii230297](./trunk/ii230297/)|:white_check_mark:|:white_check_mark:||||||||
 | 15 | Бажежа Анита         ||||||||||
 | 16 | Пальчастый Ярослав   |[ii02518](./trunk/ii02518/)|:white_check_mark:|:white_check_mark:||||||||
 | 17 | Максимчук Елизавета  |[ii02513](./trunk/ii02518/)|:white_check_mark:|:white_check_mark:||||||||
@@ -43,7 +42,7 @@
 | 24 | Нешумаев Александр   ||||||||||
 | 25 | Редькович Станислав  ||||||||||
 | 26 | Рашед                ||||||||||
-| 27 | Юхнович Виктор       ||||||||||
+| 27 | Юхнович Виктор       |[ii02527](./trunk/ii02527)|✅|✅|||||||
 
 ## Группа ИИ-26
 
@@ -60,18 +59,19 @@
 |9|Владислав Суховило ||:white_check_mark:|:white_check_mark:|||||||
 |10|Катя Шоева|[ii230326](./trunk/ii230326/)|:white_check_mark:|:white_check_mark:|||||||
 |11|Илья Хомиченко||||||||||
-|12|Настя Черноиван|[ii230324](./trunk/ii230324/)|:white_check_mark:|:white_check_mark:|||||:white_check_mark:||
+|12|Настя Черноиван|[ii230324](./trunk/ii230324/)|:white_check_mark:|:white_check_mark:||:white_check_mark:|||||
 |13|Алексей Хитренко||||||||||
 |14|Вирко Егор||||||||||
-|15|Данилюк Тимофей|[ii02602](./trunk/ii02602/)|:white_check_mark:|:white_check_mark:||||||||
-|16|Заруцкий Владислав ||||||||||
-|17|Згера Егор|[ii02605](./trunk/ii02605/)|:white_check_mark:|:white_check_mark:||||||||
-|18|Карпович Ксения||||||||||
-|19|Ковальчук Артем|[ii00230308](./trunk/ii00230308/)|:white_check_mark:|:white_check_mark:||||||||
-|20|Кушнеревич Евгений|[ii02608](./trunk/ii02608/)|:white_check_mark:|:white_check_mark:||||||||
+|15|Данилюк Тимофей|[ii02602](./trunk/ii02602/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||||
+|16|Заруцкий Владислав |[ii02604](./trunk/ii02604/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||||
+|17|Згера Егор|[ii02605](./trunk/ii02605/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||:white_check_mark:||||
+|18|Карпович Ксения|[ii02606](./trunk/ii02606/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||||
+|19|Ковальчук Артем|[ii00230308](./trunk/ii00230308/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||||
+|20|Кушнеревич Евгений|[ii02608](./trunk/ii02608/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
 |21|Пасевич Ксения||||||||||
 |22|Петручик Дмитрий||||||||||
-|23|Пилипук Максим||||||||||
-|24|Прокопюк Артем|[ii02612](./trunk/ii02612/)|:white_check_mark:|:white_check_mark:|||||||
-|25|Рубцов Дмитрий||||||||||
+|23|Пилипук Максим|[ii02611](./trunk/ii02611/)|:white_check_mark:|:white_check_mark:|||||||
+|24|Прокопюк Артем|[ii02612](./trunk/ii02612/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||
+|25|Рубцов Дмитрий|[ii02613](./trunk/ii02613/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||
 |26|Ерошин Егор|[ii02621](./trunk/ii02621/)|:white_check_mark:|:white_check_mark:||||||||
+
