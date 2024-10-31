@@ -7,16 +7,16 @@ const double A = 0.5;
 const double B = 0.6;
 const double C = 0.6;
 const double D = 0.6;
-const double K = 0.8;
-const double T0 = 1.1;
-const double TD = 1.0;
-const double T = 1.1;
+const double M = 0.8;
+const double RO = 1.1;
+const double RD = 1.0;
+const double R = 1.1;
 const double TARGET_VALUE = 20.0;
 
 // Предвычисленные коэффициенты
-const double q0 = K * (1 + (TD / T0));
-const double q1 = -K * (1 + 2 * (TD / T0) - (T0 / T));
-const double q2 = K * (TD / T0);
+const double q0 = M * (1 + (RD / R0));
+const double q1 = -M * (1 + 2 * (RD / R0) - (R0 / R));
+const double q2 = M * (RD / R0);
 
 void simulateNonlinearModel() {
     const double initialY = 2.0;
