@@ -57,20 +57,6 @@ void simulateNonlinearModel() {
     std::vector<double> errors = { TARGET_VALUE - initialY, TARGET_VALUE - initialY }; // Вектор для хранения значений разности TARGET_VALUE - y
     std::vector<double> controlSignals = { controlSignal, controlSignal }; // Вектор для хранения значений предыдущей управляющей переменной u
 
-    // Моделирование
-    while (std::abs(TARGET_VALUE - outputs.back()) > 0.01) { // Цикл выполняется, пока разница между TARGET_VALUE и последним значением y больше 0.01
-        errors.push_back(TARGET_VALUE - outputs.back()); // Добавление текущей разности в вектор errors
-        controlSignal = controlSignals.back() + q0 * errors.back() + q1 * errors[errors.size() - 2];
-
-        // Проверка на наличие достаточного количества элементов в errors для использования q2
-        if (errors.size() >= 3) {
-            controlSignal += q2 * errors[errors.size() - 3];
-        }
-
-        // Вычисление нового значения переменной y
-        outputs.push_back(A * outputs.back() - B * outputs[outputs.size() - 2] + C * controlSignal + D * std::sin(controlSignals.back()));
-        controlSignals.push_back(controlSignal); // Добавление нового значения управляющей переменной u в вектор controlSignals
-    }
 
     // Вывод результатов моделирования
     for (std::size_t i = 0; i < outputs.size(); i++) {
@@ -78,11 +64,6 @@ void simulateNonlinearModel() {
         std::cout << "e[" << i << "] = " << errors[i] << std::setw(15);
         std::cout << "u_pr[" << i << "] = " << controlSignals[i] << std::endl; // Вывод значений y, e и u_pr на каждой итерации цикла
     }
-}
 
-int main() {
-    simulateNonlinearModel(); // Вызов функции моделирования
-    return 0;
-}
 ```    
 ![График](./graphics.png)
