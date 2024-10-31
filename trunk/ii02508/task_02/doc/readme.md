@@ -33,41 +33,38 @@
 Код программы:
 ```C++
 #include <iostream>
-#include <vector>
 #include <cmath>
 using namespace std;
 
-double a = 0.5, b = 0.6,  c = 0.6, d = 0.6;
-double K = 0.8, T0 = 1.1, TD = 1.0, T = 1.1;
-double q0, q1, q2;
-double d_val = 10;
+struct PIDParameters {
+    double kp, ki, kd;
+    double K, T, TD, T0;
+};
 
-void nonlinearModel() {
-    q0 = K * (1 + (TD / T0)),
-    q1 = -K * (1 + 2 * (TD / T0) - (T0 / T)),
-    q2 = K * (TD / T0);
+double nonlinearModel(double start, double val, double dt, PIDParameters& params, double& err_prev, double& integ) {
+    double err = start - val;
+    integ += err * dt;
+    double derivative = (err - err_prev) / dt;
+    double output = params.kp * err + params.ki * integ + params.kd * derivative;
 
-	double u = 1.0; 
-	const int start = 2;
-	vector<double> outputs = { start, start }; 
-	vector<double> err = { d_val - start, d_val - start };  
-	vector<double> u_p = { u, u };
-
-	while (abs(d_val - outputs.back()) > 0.01) {
-		err.push_back(d_val - outputs.back()); 
-		u = u_p.back() + q0 * err.back() + q1 * err[err.size() - 2] + q2 * err[err.size() - 3];
-		outputs.push_back(a * outputs.back() - b * outputs[outputs.size() - 2] + c * u + d * sin(u_p.back()));
-		u_p.push_back(u);  
-	}
-
-	for (int i = 0; i < outputs.size(); i++) {
-	    cout << i + 1 << ", " << outputs[i] << ", " << err[i] << ", " << u_prev[i] << endl;
-	}
+    err_prev = err;
+    return output;
 }
 
 int main() {
-	setlocale(LC_ALL, "ru");
-    nonlinearModel();
+    PIDParameters par = { 1.0, 0.1, 0.05, 0.8, 100, 100, 1.1 };
+
+    double start = 100.0;
+    double val = 90.0;
+    double dt = 0.1;
+    double err_prev = 0.0;
+    double integ = 0.0;
+
+    for (int i = 0; i < 100; ++i) {
+        double control = nonlinearModel(start, val, dt, par, err_prev, integ);
+        cout << control << endl;
+        val += control * 0.1;
+    }
     return 0;
 }
 ```
@@ -75,18 +72,104 @@ int main() {
 Результат выполнения программы:
 
 ```
-1, 2, 8, 1
-2, 2, 8, 1
-3, 4.74488, 8, 7.4
-4, 7.47636, 5.25512, 9.60782
-5, 7.76393, 2.52364, 11.6365
-6, 8.03685, 2.23607, 15.2027
-7, 9.72082, 1.96315, 16.7839
-8, 9.0989, 0.279184, 15.981
-9, 9.5825, 0.901105, 18.3789
-10, 9.80518, 0.417502, 17.9089
-11, 9.62104, 0.194816, 18.2545
-12, 9.90322, 0.378962, 18.8536
-13, 10.3365, 0.0967779, 18.5918
-14, 10.001, -0.336495, 18.2128
+15.1
+7.9199
+7.5639
+6.89472
+6.30123
+5.757
+5.25898
+4.80318
+4.38606
+4.00432
+3.65499
+3.33531
+3.04278
+2.77511
+2.53019
+2.30609
+2.10105
+1.91346
+1.74185
+1.58485
+1.44124
+1.30988
+1.18973
+1.07985
+0.979366
+0.887479
+0.803463
+0.726651
+0.656434
+0.592253
+0.533595
+0.479994
+0.431019
+0.38628
+0.345417
+0.308101
+0.274031
+0.242931
+0.214551
+0.188657
+0.16504
+0.143506
+0.123878
+0.105993
+0.0897038
+0.0748739
+0.0613791
+0.0491057
+0.0379494
+0.027815
+0.0186151
+0.0102698
+0.00270608
+-0.00414307
+-0.0103389
+-0.0159374
+-0.0209901
+-0.0255438
+-0.0296415
+-0.0333226
+-0.0366231
+-0.0395759
+-0.0422113
+-0.0445568
+-0.0466377
+-0.0484771
+-0.0500961
+-0.0515142
+-0.052749
+-0.0538167
+-0.0547322
+-0.055509
+-0.0561596
+-0.0566952
+-0.0571264
+-0.0574625
+-0.0577123
+-0.0578838
+-0.0579841
+-0.0580199
+-0.0579974
+-0.0579221
+-0.057799
+-0.0576328
+-0.0574277
+-0.0571877
+-0.0569162
+-0.0566165
+-0.0562916
+-0.0559442
+-0.0555767
+-0.0551913
+-0.0547902
+-0.0543752
+-0.0539481
+-0.0535103
+-0.0530633
+-0.0526084
+-0.0521467
+-0.0516795
 ```
