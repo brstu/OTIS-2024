@@ -46,7 +46,7 @@ double T0 = 1.1;
 double TD = 1.0;
 double T = 1.1;
 double q0, q1, q2;
-double val = 10;
+double d_val = 10;
 
 void nonlinearModel() {
     q0 = K * (1 + (TD / T0)),
@@ -56,27 +56,26 @@ void nonlinearModel() {
 	double u = 1.0; 
 	const int start = 2;
 	vector<double> outputs = { start, start }; 
-	vector<double> err = { val - start, val - start };  
-	vector<double> u_prev = { u, u };
+	vector<double> err = { d_val - start, d_val - start };  
+	vector<double> u_p = { u, u };
 
-	while (abs(val - outputs.back()) > 0.01) {
-		err.push_back(val - outputs.back()); 
-		u = u_prev.back() + q0 * err.back() + q1 * err[err.size() - 2] + q2 * err[err.size() - 3];
-		outputs.push_back(a * outputs.back() - b * outputs[outputs.size() - 2] + c * u + d * sin(u_prev.back()));
-		u_prev.push_back(u);  
+	while (abs(d_val - outputs.back()) > 0.01) {
+		err.push_back(d_val - outputs.back()); 
+		u = u_p.back() + q0 * err.back() + q1 * err[err.size() - 2] + q2 * err[err.size() - 3];
+		outputs.push_back(a * outputs.back() - b * outputs[outputs.size() - 2] + c * u + d * sin(u_p.back()));
+		u_p.push_back(u);  
 	}
 
 	for (int i = 0; i < outputs.size(); i++) {
 		cout << "Шаг: " << i + 1 << endl;
 		cout << "Start: " << outputs[i] << endl;
 		cout << "Ошибка: " << err[i] << endl;
-		cout << "u: " << u_prev[i] << endl;
+		cout << "u: " << u_p[i] << endl;
 	}
 }
 
 int main() {
 	setlocale(LC_ALL, "ru");
-
     nonlinearModel();
     return 0;
 }
