@@ -33,10 +33,7 @@ void nonlinearModel() {
 	}
 
 	for (int i = 0; i < outputs.size(); i++) {
-		cout << "Шаг: " << i + 1 << endl;
-		cout << "Start: " << outputs[i] << endl;
-		cout << "Ошибка: " << err[i] << endl;
-		cout << "u: " << u_p[i] << endl;
+		cout << i + 1 << ", " << outputs[i] << ", " << err[i] << ", " << u_prev[i] << endl;
 	}
 }
 
