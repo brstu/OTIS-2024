@@ -60,5 +60,7 @@
 26) y[25] = 19.8347             e[25] = 0.311366          u_pr[25] = 37.6304
 27) y[26] = 20.4041             e[26] = 0.165296          u_pr[26] = 37.2353
 28) y[27] = 19.9953             e[27] = -0.404112          u_pr[27] = 36.6041
+
+C:\Users\user\source\repos\ConsoleApplication1\x64\Debug\ConsoleApplication1.exe (процесс 20156) завершил работу с кодом 0.
 ```
 ![График](./graphics.png)
