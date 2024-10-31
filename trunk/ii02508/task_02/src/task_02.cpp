@@ -2,11 +2,11 @@
 #include <cmath>
 using namespace std;
 
-struct PIDParameters {
+struct param {
     double kp, ki, kd, K, T, TD, T0;
 };
 
-double nonlinearModel(double start, double val, double dt, PIDParameters& params, double& err_prev, double& integ) {
+double nonlinearModel(double start, double val, double dt, param& params, double& err_prev, double& integ) {
     double err = start - val;
     integ += err * dt;
     double derivative = (err - err_prev) / dt;
@@ -17,7 +17,7 @@ double nonlinearModel(double start, double val, double dt, PIDParameters& params
 }
 
 int main() {
-    PIDParameters par = { 1.0, 0.1, 0.05, 0.8, 100, 100, 1.1 };
+    param par = { 1.0, 0.1, 0.05, 0.8, 100, 100, 1.1 };
 
     double start = 100.0;
     double val = 90.0;
