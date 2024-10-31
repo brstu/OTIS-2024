@@ -14,11 +14,15 @@ double T = 1.1;
 double q0, q1, q2;
 double val = 10;
 
-void nonlinearModel() {
-	const int start = 2;
-	vector<double> outputs = { start, start }; 
+int main() {
+	setlocale(LC_ALL, "ru");
+    q0 = K * (1 + (TD / T0)),
+    q1 = -K * (1 + 2 * (TD / T0) - (T0 / T)),
+    q2 = K * (TD / T0);
 
+	const int start = 2;
 	double u = 1.0; 
+	vector<double> outputs = { start, start }; 
 	vector<double> err = { val - start, val - start };  
 	vector<double> u_prev = { u, u };
 
@@ -35,14 +39,5 @@ void nonlinearModel() {
 		cout << "Ошибка: " << err[i] << endl;
 		cout << "u: " << u_prev[i] << endl;
 	}
-}
-
-int main() {
-	setlocale(LC_ALL, "ru");
-    q0 = K * (1 + (TD / T0)),
-    q1 = -K * (1 + 2 * (TD / T0) - (T0 / T)),
-    q2 = K * (TD / T0);
-
-	nonlinearModel();
     return 0;
 }
