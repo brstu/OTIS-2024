@@ -30,34 +30,59 @@
 
 Код программы:
  
-```
-1) y[0] = 2             e[0] = 18          u_pr[0] = 1
-2) y[1] = 2             e[1] = 18          u_pr[1] = 1
-3) y[2] = 9.54488             e[2] = 18          u_pr[2] = 15.4
-4) y[3] = 14.7205             e[3] = 10.4551          u_pr[3] = 18.2769
-5) y[4] = 15.8424             e[4] = 5.27954          u_pr[4] = 24.2237
-6) y[5] = 16.9143             e[5] = 4.15761          u_pr[5] = 30.4979
-7) y[6] = 18.2768             e[6] = 3.08572          u_pr[6] = 33.0028
-8) y[7] = 20.0918             e[7] = 1.72325          u_pr[7] = 34.1701
-9) y[8] = 19.567             e[8] = -0.0917899          u_pr[8] = 33.7675
-10) y[9] = 19.644             e[9] = 0.432959          u_pr[9] = 35.8156
-11) y[10] = 18.9085             e[10] = 0.35601          u_pr[10] = 35.6628
-12) y[11] = 19.4078             e[11] = 1.09146          u_pr[11] = 37.1268
-13) y[12] = 20.0554             e[12] = 0.592205          u_pr[12] = 36.7026
-14) y[13] = 19.8095             e[13] = -0.055358          u_pr[13] = 36.5504
-15) y[14] = 19.7358             e[14] = 0.190501          u_pr[14] = 37.3526
-16) y[15] = 20.2417             e[15] = 0.264249          u_pr[15] = 37.4388
-17) y[16] = 20.2193             e[16] = -0.241687          u_pr[16] = 36.8239
-18) y[17] = 19.7236             e[17] = -0.219299          u_pr[17] = 37.0327
-19) y[18] = 19.9181             e[18] = 0.276374          u_pr[18] = 37.598
-20) y[19] = 20.3612             e[19] = 0.0818919          u_pr[19] = 37.1616
-21) y[20] = 19.9376             e[20] = -0.361241          u_pr[20] = 36.6917
-22) y[21] = 19.668             e[21] = 0.0624235          u_pr[21] = 37.3721
-23) y[22] = 20.1941             e[22] = 0.331975          u_pr[22] = 37.5256
-24) y[23] = 20.2676             e[23] = -0.194062          u_pr[23] = 36.7917
-25) y[24] = 19.6886             e[24] = -0.267637          u_pr[24] = 36.9067
-26) y[25] = 19.8347             e[25] = 0.311366          u_pr[25] = 37.6304
-27) y[26] = 20.4041             e[26] = 0.165296          u_pr[26] = 37.2353
-28) y[27] = 19.9953             e[27] = -0.404112          u_pr[27] = 36.6041
-```
+```#include <iostream>
+#include <vector>
+#include <cmath>
+#include <iomanip>
+
+const double A = 0.5;
+const double B = 0.6;
+const double C = 0.6;
+const double D = 0.6;
+const double K = 0.8;
+const double T0 = 1.1;
+const double TD = 1.0;
+const double T = 1.1;
+const double TARGET_VALUE = 20.0;
+
+// Предвычисленные коэффициенты
+const double q0 = K * (1 + (TD / T0));
+const double q1 = -K * (1 + 2 * (TD / T0) - (T0 / T));
+const double q2 = K * (TD / T0);
+
+void simulateNonlinearModel() {
+    const double initialY = 2.0;
+    std::vector<double> outputs = { initialY, initialY }; // Вектор для хранения значений переменной y
+    double controlSignal = 1.0; // Начальное значение управляющей переменной u
+    std::vector<double> errors = { TARGET_VALUE - initialY, TARGET_VALUE - initialY }; // Вектор для хранения значений разности TARGET_VALUE - y
+    std::vector<double> controlSignals = { controlSignal, controlSignal }; // Вектор для хранения значений предыдущей управляющей переменной u
+
+    // Моделирование
+    while (std::abs(TARGET_VALUE - outputs.back()) > 0.01) { // Цикл выполняется, пока разница между TARGET_VALUE и последним значением y больше 0.01
+        errors.push_back(TARGET_VALUE - outputs.back()); // Добавление текущей разности в вектор errors
+        controlSignal = controlSignals.back() + q0 * errors.back() + q1 * errors[errors.size() - 2];
+
+        // Проверка на наличие достаточного количества элементов в errors для использования q2
+        if (errors.size() >= 3) {
+            controlSignal += q2 * errors[errors.size() - 3];
+        }
+
+        // Вычисление нового значения переменной y
+        outputs.push_back(A * outputs.back() - B * outputs[outputs.size() - 2] + C * controlSignal + D * std::sin(controlSignals.back()));
+        controlSignals.push_back(controlSignal); // Добавление нового значения управляющей переменной u в вектор controlSignals
+    }
+
+    // Вывод результатов моделирования
+    for (std::size_t i = 0; i < outputs.size(); i++) {
+        std::cout << i + 1 << ") y[" << i << "] = " << outputs[i] << std::setw(15);
+        std::cout << "e[" << i << "] = " << errors[i] << std::setw(15);
+        std::cout << "u_pr[" << i << "] = " << controlSignals[i] << std::endl; // Вывод значений y, e и u_pr на каждой итерации цикла
+    }
+}
+
+int main() {
+    simulateNonlinearModel(); // Вызов функции моделирования
+    return 0;
+}
+```    
 ![График](./graphics.png)
