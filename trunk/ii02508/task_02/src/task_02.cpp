@@ -3,14 +3,8 @@
 #include <cmath>
 using namespace std;
 
-double a = 0.5;
-double b = 0.6; 
-double c = 0.6; 
-double d = 0.6;
-double K = 0.8;
-double T0 = 1.1;
-double TD = 1.0;
-double T = 1.1;
+double a = 0.5, b = 0.6,  c = 0.6, d = 0.6;
+double K = 0.8, T0 = 1.1, TD = 1.0, T = 1.1;
 double q0, q1, q2;
 double d_val = 10;
 
