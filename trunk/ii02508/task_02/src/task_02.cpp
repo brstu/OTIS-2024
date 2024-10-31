@@ -3,8 +3,7 @@
 using namespace std;
 
 struct PIDParameters {
-    double kp, ki, kd;
-    double K, T, TD, T0;
+    double kp, ki, kd, K, T, TD, T0;
 };
 
 double nonlinearModel(double start, double val, double dt, PIDParameters& params, double& err_prev, double& integ) {
