@@ -1,8 +1,4 @@
-﻿# CMakeList.txt: проект CMake для task_02; включите исходный код и определения,
-# укажите здесь логику для конкретного проекта.
-#
+cmake_minimum_required (VERSION 3.0.0)
 
-# Добавьте источник в исполняемый файл этого проекта.
-add_executable (task_02 "task_02.cpp" "task_02.h")
-
-
+project (lab_02_ii02625)
+add_executable ( ${PROJECT_NAME} task_02.cpp)
