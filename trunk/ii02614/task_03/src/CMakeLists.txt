@@ -11,4 +11,4 @@ set(HEADERS
     header.h
 )
 
-add_executable(OTIS_03 ${SOURCES} ${HEADERS})
+add_executable(lab_03 ${SOURCES} ${HEADERS})
