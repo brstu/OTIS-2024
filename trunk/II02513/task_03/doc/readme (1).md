@@ -89,88 +89,88 @@
 
 using namespace std;
 
-struct Vertex {
+struct Node {
     int id;
-    vector<int> neighbors;
+    vector<int> adjacentNodes;
 };
 
 class Graph {
 public:
-    vector<Vertex> vertices;
+    vector<Node> nodes;
 
-    void addVertex(int id) {
-        vertices.push_back({ id, {} });
+    void addNode(int id) {
+        nodes.push_back({ id, {} });
     }
 
-    void addEdge(int from, int to) {
-        vertices[from].neighbors.push_back(to);
-        vertices[to].neighbors.push_back(from);
+    void addEdge(int start, int end) {
+        nodes[start].adjacentNodes.push_back(end);
+        nodes[end].adjacentNodes.push_back(start);
     }
 
-    void visualize() {
-        for (int i = 0; i < vertices.size(); ++i) {
-            cout << "Вершина " << vertices[i].id << ": ";
-            for (int neighbor : vertices[i].neighbors) {
+    void showGraph() {
+        for (int i = 0; i < nodes.size(); ++i) {
+            cout << "Node " << nodes[i].id << ": ";
+            for (int neighbor : nodes[i].adjacentNodes) {
                 cout << neighbor << " ";
             }
             cout << endl;
         }
     }
 
-    vector<int> findEulerianCycle() {
+    vector<int> getEulerianCycle() {
         vector<int> cycle;
         if (!isEulerian()) {
             return cycle;
         }
-        vector<bool> visited(vertices.size(), false);
-        int startVertex = 0; // Выбираем стартовую вершину
+        vector<bool> visitedNodes(nodes.size(), false);
+        int startingNode = 0;
 
-        cycle.push_back(startVertex);
-        visited[startVertex] = true;
+        cycle.push_back(startingNode);
+        visitedNodes[startingNode] = true;
 
-        int currentVertex = startVertex;
+        int currentNode = startingNode;
         while (!cycle.empty()) {
             bool foundNeighbor = false;
-            for (int i = 0; i < vertices[currentVertex].neighbors.size(); ++i) {
-                int neighbor = vertices[currentVertex].neighbors[i];
-                if (!visited[neighbor]) {
+            for (int i = 0; i < nodes[currentNode].adjacentNodes.size(); ++i) {
+                int neighbor = nodes[currentNode].adjacentNodes[i];
+                if (!visitedNodes[neighbor]) {
                     foundNeighbor = true;
-                    visited[neighbor] = true;
-                    currentVertex = neighbor;
-                    cycle.push_back(currentVertex);
+                    visitedNodes[neighbor] = true;
+                    currentNode = neighbor;
+                    cycle.push_back(currentNode);
                     break;
                 }
             }
             if (!foundNeighbor) {
                 cycle.pop_back();
                 if (!cycle.empty()) {
-                    currentVertex = cycle.back();
+                    currentNode = cycle.back();
                 }
             }
         }
         return cycle;
     }
 
-    vector<int> findHamiltonianCycle() {
+    vector<int> getHamiltonianCycle() {
         vector<int> cycle;
-        vector<bool> visited(vertices.size(), false);
-        visited[0] = true; // Помечаем начальную вершину как посещенную
+        vector<bool> visitedNodes(nodes.size(), false);
+        visitedNodes[0] = true;
         cycle.push_back(0);
 
-        if (!hasHamiltonianCycle(0, 1, cycle, visited)) {
+        if (!hasHamiltonianCycle(0, 1, cycle, visitedNodes)) {
             return cycle;
         }
         return cycle;
     }
 
-    Graph constructSpanningTree() {
+    Graph getSpanningTree() {
         Graph spanningTree;
-        for (int i = 0; i < vertices.size(); ++i) {
-            spanningTree.addVertex(i);
+        for (int i = 0; i < nodes.size(); ++i) {
+            spanningTree.addNode(i);
         }
-        vector<bool> visited(vertices.size(), false);
+        vector<bool> visitedNodes(nodes.size(), false);
 
-        visited[0] = true;
+        visitedNodes[0] = true;
         queue<int> nodeQueue;
         nodeQueue.push(0);
 
@@ -178,10 +178,10 @@ public:
             int currentNode = nodeQueue.front();
             nodeQueue.pop();
 
-            for (int neighbor : vertices[currentNode].neighbors) {
-                if (!visited[neighbor]) {
+            for (int neighbor : nodes[currentNode].adjacentNodes) {
+                if (!visitedNodes[neighbor]) {
                     spanningTree.addEdge(currentNode, neighbor);
-                    visited[neighbor] = true;
+                    visitedNodes[neighbor] = true;
                     nodeQueue.push(neighbor);
                 }
             }
@@ -191,29 +191,29 @@ public:
 
 private:
     bool isEulerian() {
-        for (int i = 0; i < vertices.size(); ++i) {
-            if (vertices[i].neighbors.size() % 2 != 0) {
+        for (int i = 0; i < nodes.size(); ++i) {
+            if (nodes[i].adjacentNodes.size() % 2 != 0) {
                 return false;
             }
         }
         return true;
     }
 
-    bool hasHamiltonianCycle(int currentVertex, int depth, vector<int>& cycle, vector<bool>& visited) {
-        if (depth == vertices.size()) {
+    bool hasHamiltonianCycle(int currentNode, int depth, vector<int>& cycle, vector<bool>& visitedNodes) {
+        if (depth == nodes.size()) {
             if (cycle[0] == cycle[depth - 1]) {
                 return true;
             }
             return false;
         }
-        for (int i = 0; i < vertices.size(); ++i) {
-            if (vertices[currentVertex].neighbors[i] == 1 && !visited[i]) {
-                visited[i] = true;
+        for (int i = 0; i < nodes.size(); ++i) {
+            if (nodes[currentNode].adjacentNodes[i] == 1 && !visitedNodes[i]) {
+                visitedNodes[i] = true;
                 cycle[depth] = i;
-                if (hasHamiltonianCycle(i, depth + 1, cycle, visited)) {
+                if (hasHamiltonianCycle(i, depth + 1, cycle, visitedNodes)) {
                     return true;
                 }
-                visited[i] = false; // Отменяем посещение для следующей итерации
+                visitedNodes[i] = false;
             }
         }
         return false;
@@ -223,11 +223,11 @@ private:
 int main() {
     Graph graph;
 
-    graph.addVertex(0);
-    graph.addVertex(1);
-    graph.addVertex(2);
-    graph.addVertex(3);
-    graph.addVertex(4);
+    graph.addNode(0);
+    graph.addNode(1);
+    graph.addNode(2);
+    graph.addNode(3);
+    graph.addNode(4);
 
     graph.addEdge(0, 1);
     graph.addEdge(1, 2);
@@ -235,35 +235,34 @@ int main() {
     graph.addEdge(3, 4);
     graph.addEdge(4, 0);
 
-    graph.visualize();
+    graph.showGraph();
 
-    if (vector<int> eulerianCycle = graph.findEulerianCycle(); !eulerianCycle.empty()) {
-        cout << "Эйлеров цикл: ";
-        for (int vertex : eulerianCycle) {
-            cout << vertex << " ";
+    if (vector<int> eulerianCycle = graph.getEulerianCycle(); !eulerianCycle.empty()) {
+        cout << "Eulerian cycle: ";
+        for (int node : eulerianCycle) {
+            cout << node << " ";
         }
         cout << endl;
     }
     else {
-        cout << "Граф не содержит Эйлерова цикла." << endl;
+        cout << "The graph does not contain an Eulerian cycle." << endl;
     }
 
-    vector<int> hamiltonianCycle = graph.findHamiltonianCycle();
-    if (vector<int> newHamiltonianCycle = graph.findHamiltonianCycle(); !newHamiltonianCycle.empty()) {
-        cout << "Гамильтонов цикл: ";
-        for (int vertex : hamiltonianCycle) {
-            cout << vertex << " ";
+    vector<int> hamiltonianCycle = graph.getHamiltonianCycle();
+    if (vector<int> newHamiltonianCycle = graph.getHamiltonianCycle(); !newHamiltonianCycle.empty()) {
+        cout << "Hamiltonian cycle: ";
+        for (int node : hamiltonianCycle) {
+            cout << node << " ";
         }
         cout << endl;
     }
     else {
-        cout << "Граф не содержит Гамильтонова цикла." << endl;
+        cout << "The graph does not contain a Hamiltonian cycle." << endl;
     }
-    Graph spanningTree = graph.constructSpanningTree();
-    spanningTree.visualize();
+    Graph spanningTree = graph.getSpanningTree();
+    spanningTree.showGraph();
     return 0;
 }
-
 ```
 
 
