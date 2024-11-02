@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include "..\Graph_lib\header.h";
+#include "header.h"
 
 using namespace std;
 
