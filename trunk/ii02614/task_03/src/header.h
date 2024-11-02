@@ -17,5 +17,5 @@ void main_kruskal(int**&, int, int, string);
 void Kali();
 void Permutation(string);
 void StrongConnectedComponents(int**&, int);
-//void findBiconnectedComponents(int**&, int);
+void findBiconnectedComponents(int**&, int);
 void FindArtPointsAndBridges(int**&, int);
