@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(otis_3)
+project (lab_03)
 
 set(SOURCES
     Source.cpp
