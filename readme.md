@@ -30,7 +30,7 @@
 | 12 | Милевский Артем      ||||||||||
 | 13 | Глеб Горбат          |[ii230278](trunk/ii230278)|✅|✅|✅||||||
 | 14 | Евгений Скачков      |[ii230297](./trunk/ii230297/)|:white_check_mark:|:white_check_mark:||||||||
-| 15 | Бажежа Анита         ||||||||||
+| 15 | Бажежа Анита         |[ii230276](./trunk/ii-230276/)|✅|✅|||||||
 | 16 | Пальчастый Ярослав   |[ii02518](./trunk/ii02518/)|:white_check_mark:|:white_check_mark:||||||||
 | 17 | Максимчук Елизавета  |[ii02513](./trunk/ii02518/)|:white_check_mark:|:white_check_mark:||||||||
 | 18 | Денис Дулько         ||||||||||
@@ -52,13 +52,13 @@
 |2|Павел Яшков||:white_check_mark:|:white_check_mark:|||||||
 |3|Михаил Рулько||||||||||
 |4|Валерия Цурукова||||||||||
-|5|Вика Сугак|[ii230205](./trunk/ii230205/)|:white_check_mark:|:white_check_mark:|||||||||
+|5|Вика Сугак|[ii230205](./trunk/ii230205/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||||
 |6|Даниил Турич||||||||||
-|7|Влад Рудь|[ii02614](./trunk/ii02614/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||||
-|8|Денис Шарубнёв|[ii02625](./trunk/ii02625/)|:white_check_mark:|:white_check_mark:||||||||
+|7|Влад Рудь|[ii02614](./trunk/ii02614/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||:white_check_mark:||||||
+|8|Денис Шарубнёв|[ii02625](./trunk/ii02625/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||
 |9|Владислав Суховило ||:white_check_mark:|:white_check_mark:|||||||
 |10|Катя Шоева|[ii230326](./trunk/ii230326/)|:white_check_mark:|:white_check_mark:|||||||
-|11|Илья Хомиченко||||||||||
+|11|Илья Хомиченко|[ii02621](./trunk/ii02621/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||||
 |12|Настя Черноиван|[ii230324](./trunk/ii230324/)|:white_check_mark:|:white_check_mark:||:white_check_mark:|||||
 |13|Алексей Хитренко||||||||||
 |14|Вирко Егор||||||||||
