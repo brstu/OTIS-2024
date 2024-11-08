@@ -5,6 +5,7 @@
 #include <fstream>
 #include <limits>
 #include <iomanip>
+#include <algorithm>
 
 class Node {
 public:
