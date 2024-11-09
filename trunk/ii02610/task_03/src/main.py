@@ -271,9 +271,6 @@ def shortest_path():
 
     win.mainloop()
 
-    if len(enter) < 2:
-        messagebox.showerror("Error", "Not enough vertices chosen")
-        return None, None
 
     return enter[0], enter[1]
 def display_props(title, props):
