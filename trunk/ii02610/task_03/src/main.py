@@ -228,11 +228,28 @@ def shortest_path():
     def func(arr, win):
         arr += [entry1.get(), entry2.get()]
         win.destroy()
-        display_props("Shortest path", nx.algorithms.shortest_path(graph, arr[0], arr[1]))
 
+        # Проверяем, выбраны ли обе вершины
+        if not arr[0] or not arr[1]:
+            messagebox.showerror("Error", "Not enough vertices chosen")
+            return None
+
+        # Если обе вершины выбраны, показываем кратчайший путь
+        try:
+            path = nx.algorithms.shortest_path(graph, arr[0], arr[1])
+            display_props("Shortest path", path)
+        except nx.NetworkXNoPath:
+            messagebox.showerror("Error", "No path between chosen vertices")
+    
     def display_props(title, path):
-        # Add your implementation to display the properties or do something with the path
-        pass
+        # Здесь можно добавить логику для отображения пути или свойств
+        path_str = ' -> '.join(path)
+        win = Tk()
+        win.title(title)
+        win.geometry("500x100")
+        label = Label(win, text=path_str)
+        label.pack()
+        win.mainloop()
 
     win = Tk()
     win.title("Choose vertices")
@@ -243,10 +260,12 @@ def shortest_path():
     label.grid(row=0, column=0, sticky="ew")
     entry1 = Entry(win)
     entry1.grid(row=1, column=0, sticky="ewns")
+
     label2 = Label(win, text="Choose second vertex")
     label2.grid(row=2, column=0, sticky="ew")
     entry2 = Entry(win)
     entry2.grid(row=3, column=0, sticky="ewns")
+
     button = Button(win, text="Choose", command=lambda: func(enter, win))
     button.grid(row=4, column=0, sticky="ewns")
 
