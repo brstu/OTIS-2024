@@ -226,23 +226,26 @@ def shortest_path():
     enter = []
 
     def func(arr, win):
+        # Append chosen vertices to `arr` list
         arr += [entry1.get(), entry2.get()]
+        
+        # Close the window after selecting
         win.destroy()
 
-        # Проверяем, выбраны ли обе вершины
-        if not arr[0] or not arr[1]:
-            messagebox.showerror("Error", "Not enough vertices chosen")
-            return None
+        # Check if we have exactly two vertices
+        if len(arr) < 2 or not arr[0] or not arr[1]:
+            messagebox.showerror("Error", "Please choose both vertices!")
+            return
 
-        # Если обе вершины выбраны, показываем кратчайший путь
+        # Try finding the shortest path between the chosen vertices
         try:
             path = nx.algorithms.shortest_path(graph, arr[0], arr[1])
             display_props("Shortest path", path)
         except nx.NetworkXNoPath:
-            messagebox.showerror("Error", "No path between chosen vertices")
-    
+            messagebox.showerror("Error", "No path exists between the chosen vertices.")
+
     def display_props(title, path):
-        # Здесь можно добавить логику для отображения пути или свойств
+        # Display the shortest path in a new window
         path_str = ' -> '.join(path)
         win = Tk()
         win.title(title)
@@ -250,6 +253,28 @@ def shortest_path():
         label = Label(win, text=path_str)
         label.pack()
         win.mainloop()
+
+    # GUI setup for selecting vertices
+    win = Tk()
+    win.title("Choose vertices")
+    win.geometry("200x120+1050+250")
+    win.resizable(False, False)
+
+    label = Label(win, text="Choose first vertex")
+    label.grid(row=0, column=0, sticky="ew")
+    entry1 = Entry(win)
+    entry1.grid(row=1, column=0, sticky="ewns")
+
+    label2 = Label(win, text="Choose second vertex")
+    label2.grid(row=2, column=0, sticky="ew")
+    entry2 = Entry(win)
+    entry2.grid(row=3, column=0, sticky="ewns")
+
+    button = Button(win, text="Choose", command=lambda: func(enter, win))
+    button.grid(row=4, column=0, sticky="ewns")
+
+    win.mainloop()
+
 
     win = Tk()
     win.title("Choose vertices")
