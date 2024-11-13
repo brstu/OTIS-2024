@@ -1,245 +1,186 @@
 #include <iostream>
-#include <unordered_map>
-#include <unordered_set>
+#include <vector>
 #include <list>
-#include <fstream>
-#include <sstream>
-#include <iomanip>
-#include <limits>
+#include <queue>
+#include <unordered_set>
 
-class Node {
-public:
-    std::string name;
-    std::unordered_set<std::string> connectedNodes;  // Множество смежных узлов
-
-    Node(const std::string& nodeName) : name(nodeName) {}
-};
-
-class Edge {
-public:
-    std::string from;
-    std::string to;
-    bool directed;
-
-    Edge(const std::string& fromNode, const std::string& toNode, bool isDirected = false)
-        : from(fromNode), to(toNode), directed(isDirected) {}
-};
+using namespace std;
 
 class Graph {
 private:
-    std::string name;
-    bool directed;
-    std::unordered_map<std::string, Node> nodes;
-    std::list<Edge> edges;
+    struct Node {
+        int id;
+        list<int> adjNodes;
+    };
+
+    vector<Node> nodes;
+
+    // Проверка на наличие Эйлерова цикла
+    bool isEulerian() const {
+        for (const auto& node : nodes) {
+            if (node.adjNodes.size() % 2 != 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // Рекурсивная помощь для нахождения Гамильтонова цикла
+    bool findHamiltonianCycle(int node, int depth, vector<int>& cycle, vector<bool>& visited) {
+        if (depth == nodes.size()) {
+            return cycle.front() == cycle.back();
+        }
+
+        for (int adj : nodes[node].adjNodes) {
+            if (!visited[adj]) {
+                visited[adj] = true;
+                cycle[depth] = adj;
+                if (findHamiltonianCycle(adj, depth + 1, cycle, visited)) {
+                    return true;
+                }
+                visited[adj] = false;
+            }
+        }
+        return false;
+    }
 
 public:
-    Graph(const std::string& graphName, bool isDirected)
-        : name(graphName), directed(isDirected) {}
-
-    void addNode(const std::string& nodeName) {
-        if (nodes.find(nodeName) == nodes.end()) {
-            nodes[nodeName] = Node(nodeName);
-            std::cout << "Node '" << nodeName << "' successfully added.\n";
-        } else {
-            std::cout << "Node '" << nodeName << "' already exists.\n";
-        }
+    // Добавление нового узла
+    void addNode(int id) {
+        nodes.push_back({id, {}});
     }
 
-    void removeNode(const std::string& nodeName) {
-        auto it = nodes.find(nodeName);
-        if (it != nodes.end()) {
-            nodes.erase(it);
-            // Удаляем все рёбра, связанные с этим узлом
-            edges.remove_if([&](const Edge& edge) {
-                return edge.from == nodeName || edge.to == nodeName;
-            });
-            std::cout << "Node '" << nodeName << "' has been removed.\n";
-        } else {
-            std::cout << "Node '" << nodeName << "' does not exist.\n";
-        }
+    // Добавление рёбер (неориентированный граф)
+    void addEdge(int start, int end) {
+        nodes[start].adjNodes.push_back(end);
+        nodes[end].adjNodes.push_back(start);
     }
 
-    void addEdge(const std::string& from, const std::string& to) {
-        if (nodes.count(from) && nodes.count(to)) {
-            edges.push_back(Edge(from, to, directed));
-            nodes[from].connectedNodes.insert(to);
-            if (!directed) {
-                nodes[to].connectedNodes.insert(from);  // Для неориентированного графа добавляем обратное ребро
+    // Вывод графа
+    void showGraph() const {
+        for (const auto& node : nodes) {
+            cout << "Node " << node.id << ": ";
+            for (int neighbor : node.adjNodes) {
+                cout << neighbor << " ";
             }
-            std::cout << "Edge from '" << from << "' to '" << to << "' successfully added.\n";
-        } else {
-            std::cout << "One or both nodes do not exist.\n";
+            cout << endl;
         }
     }
 
-    void removeEdge(const std::string& from, const std::string& to) {
-        edges.remove_if([&](const Edge& edge) {
-            return (edge.from == from && edge.to == to);
-        });
-        nodes[from].connectedNodes.erase(to);
-        if (!directed) {
-            nodes[to].connectedNodes.erase(from);
-        }
-        std::cout << "Edge from '" << from << "' to '" << to << "' has been removed.\n";
-    }
+    // Получение Эйлерова цикла
+    vector<int> getEulerianCycle() {
+        vector<int> cycle;
+        if (!isEulerian()) return cycle;
 
-    void exportGraph(const std::string& filename) const {
-        std::ofstream outFile(filename);
-        if (outFile.is_open()) {
-            outFile << name << " : " << (directed ? "ORIENT" : "UNORIENT") << " ;\n";
-            outFile << "Nodes: ";
-            for (const auto& nodePair : nodes) {
-                outFile << nodePair.first << " ";
-            }
-            outFile << ";\n";
+        vector<bool> visited(nodes.size(), false);
+        list<int> stack;
+        stack.push_back(0);
 
-            for (const auto& edge : edges) {
-                outFile << edge.from << " -> " << edge.to << (directed ? " ;" : " ");
-            }
-            outFile.close();
-            std::cout << "Graph successfully exported to '" << filename << "'\n";
-        } else {
-            std::cout << "Error opening file for export.\n";
-        }
-    }
-
-    void importGraph(const std::string& filename) {
-        std::ifstream inFile(filename);
-        if (inFile.is_open()) {
-            nodes.clear();
-            edges.clear();
-            std::string line;
-
-            // Read the first line for graph info
-            std::getline(inFile, line);
-            std::istringstream graphInfo(line);
-            std::string graphType;
-            graphInfo >> name >> graphType;
-            directed = graphType == "ORIENT";
-
-            // Read the node list
-            std::getline(inFile, line);
-            std::istringstream nodeStream(line);
-            std::string nodeName;
-            while (nodeStream >> nodeName) {
-                addNode(nodeName);
-            }
-
-            // Read the edge list
-            std::getline(inFile, line);
-            std::istringstream edgeStream(line);
-            std::string from, to;
-            while (edgeStream >> from >> to) {
-                addEdge(from, to);
-            }
-
-            inFile.close();
-            std::cout << "Graph successfully imported from '" << filename << "'\n";
-        } else {
-            std::cout << "Error opening file for import.\n";
-        }
-    }
-
-    void displayInfo() const {
-        std::cout << "Graph: " << name << "\n";
-        std::cout << "Number of nodes: " << nodes.size() << "\n";
-        std::cout << "Number of edges: " << edges.size() << "\n";
-    }
-
-    void drawGraph() const {
-        std::cout << "\n--- Graph Visualization ---\n";
-        for (const auto& edge : edges) {
-            std::cout << edge.from << " --> " << edge.to << "\n";
-            if (!directed) {
-                std::cout << edge.to << " --> " << edge.from << "\n";
+        while (!stack.empty()) {
+            int current = stack.back();
+            if (!nodes[current].adjNodes.empty()) {
+                int next = nodes[current].adjNodes.front();
+                stack.push_back(next);
+                nodes[current].adjNodes.remove(next);
+                nodes[next].adjNodes.remove(current);
+            } else {
+                cycle.push_back(current);
+                stack.pop_back();
             }
         }
-        std::cout << "----------------------------\n";
+        return cycle;
+    }
+
+    // Получение Гамильтонова цикла
+    vector<int> getHamiltonianCycle() {
+        vector<int> cycle(nodes.size(), -1);
+        vector<bool> visited(nodes.size(), false);
+        visited[0] = true;
+        cycle[0] = 0;
+
+        if (findHamiltonianCycle(0, 1, cycle, visited)) {
+            return cycle;
+        }
+        return {};
+    }
+
+    // Построение остовного дерева (используем BFS)
+    Graph getSpanningTree() const {
+        Graph spanningTree;
+        for (int i = 0; i < nodes.size(); ++i) {
+            spanningTree.addNode(i);
+        }
+
+        vector<bool> visited(nodes.size(), false);
+        visited[0] = true;
+        queue<int> q;
+        q.push(0);
+
+        while (!q.empty()) {
+            int current = q.front();
+            q.pop();
+
+            for (int neighbor : nodes[current].adjNodes) {
+                if (!visited[neighbor]) {
+                    visited[neighbor] = true;
+                    spanningTree.addEdge(current, neighbor);
+                    q.push(neighbor);
+                }
+            }
+        }
+        return spanningTree;
     }
 };
 
-void displayMenu() {
-    std::cout << "\n--- Graph Editor Menu ---\n";
-    std::cout << "1. Add Node\n";
-    std::cout << "2. Remove Node\n";
-    std::cout << "3. Add Edge\n";
-    std::cout << "4. Remove Edge\n";
-    std::cout << "5. Display Graph Info\n";
-    std::cout << "6. Export Graph\n";
-    std::cout << "7. Import Graph\n";
-    std::cout << "8. Draw Graph\n";
-    std::cout << "9. Exit\n";
-    std::cout << "Choose an option: ";
-}
-
 int main() {
-    Graph graph("ExampleGraph", true);  // Example directed graph
-    int choice;
-    std::string nodeName, fromNode, toNode, filename;
+    Graph g;
 
-    while (true) {
-        displayMenu();
-        std::cin >> choice;
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');  // Clear input buffer
+    // Добавляем узлы
+    g.addNode(0);
+    g.addNode(1);
+    g.addNode(2);
+    g.addNode(3);
+    g.addNode(4);
 
-        switch (choice) {
-        case 1:
-            std::cout << "Enter node name: ";
-            std::getline(std::cin, nodeName);
-            graph.addNode(nodeName);
-            break;
+    // Добавляем рёбра
+    g.addEdge(0, 1);
+    g.addEdge(1, 2);
+    g.addEdge(2, 3);
+    g.addEdge(3, 4);
+    g.addEdge(4, 0);
 
-        case 2:
-            std::cout << "Enter node name to remove: ";
-            std::getline(std::cin, nodeName);
-            graph.removeNode(nodeName);
-            break;
+    // Выводим граф
+    cout << "Graph structure:\n";
+    g.showGraph();
 
-        case 3:
-            std::cout << "Enter the 'from' node: ";
-            std::getline(std::cin, fromNode);
-            std::cout << "Enter the 'to' node: ";
-            std::getline(std::cin, toNode);
-            graph.addEdge(fromNode, toNode);
-            break;
-
-        case 4:
-            std::cout << "Enter the 'from' node to remove: ";
-            std::getline(std::cin, fromNode);
-            std::cout << "Enter the 'to' node to remove: ";
-            std::getline(std::cin, toNode);
-            graph.removeEdge(fromNode, toNode);
-            break;
-
-        case 5:
-            graph.displayInfo();
-            break;
-
-        case 6:
-            std::cout << "Enter filename to export: ";
-            std::getline(std::cin, filename);
-            graph.exportGraph(filename);
-            break;
-
-        case 7:
-            std::cout << "Enter filename to import: ";
-            std::getline(std::cin, filename);
-            graph.importGraph(filename);
-            break;
-
-        case 8:
-            graph.drawGraph();
-            break;
-
-        case 9:
-            std::cout << "Exiting program.\n";
-            return 0;
-
-        default:
-            std::cout << "Invalid choice. Try again.\n";
-            break;
+    // Проверка на Эйлеров цикл
+    vector<int> eulerCycle = g.getEulerianCycle();
+    if (!eulerCycle.empty()) {
+        cout << "Eulerian cycle: ";
+        for (int node : eulerCycle) {
+            cout << node << " ";
         }
+        cout << endl;
+    } else {
+        cout << "No Eulerian cycle found.\n";
     }
+
+    // Проверка на Гамильтонов цикл
+    vector<int> hamiltonCycle = g.getHamiltonianCycle();
+    if (!hamiltonCycle.empty()) {
+        cout << "Hamiltonian cycle: ";
+        for (int node : hamiltonCycle) {
+            cout << node << " ";
+        }
+        cout << endl;
+    } else {
+        cout << "No Hamiltonian cycle found.\n";
+    }
+
+    // Построение остовного дерева
+    Graph spanningTree = g.getSpanningTree();
+    cout << "Spanning Tree structure:\n";
+    spanningTree.showGraph();
 
     return 0;
 }
