@@ -43,81 +43,78 @@ Task is to write program (**Julia**), which simulates this object temperature.
 
 Код программы:
 ```C++
-#include<iostream>
-#include<cmath>
+#include <iostream>
+#include <cmath>
 
 using namespace std;
 
-double coeff_a = 1.0, 
-coeff_b = 0.5, 
-coeff_c = 0.1, 
-coeff_d = 0.9, 
-input_u = 1.5;
-
-void linear_model(double& temp_linear)
-{
-	temp_linear = coeff_a * temp_linear + coeff_b * input_u;
-	cout << "|" << temp_linear  << endl;
-}
-
-void nonlinear_model(double& temp_nonlinear, double& prev_temp_nonlinear, bool& is_first_iteration)
-{
-	if (is_first_iteration) {
-		prev_temp_nonlinear = temp_nonlinear;
-		temp_nonlinear = coeff_a * temp_nonlinear + coeff_c * input_u + coeff_d * sin(input_u);
-		is_first_iteration = false; // первая итерация закончена
-		cout << "|" << temp_nonlinear << endl;
-	}
-	else {
-		double temp_new = 0; // переменная для хранения значения новой температуры 
-		temp_new = coeff_a * temp_nonlinear - coeff_b * pow(prev_temp_nonlinear, 2) + coeff_c * input_u + coeff_d * sin(input_u);
-		prev_temp_nonlinear = temp_nonlinear; // устанавливаем новое значение для предыдущего значения
-		temp_nonlinear = temp_new; // устанавливаем новое значение для текущего значения
-		cout << "|" << temp_nonlinear << endl;
-	}
-}
-
 int main() {
-	setlocale(LC_ALL, "rus");
-	double temp_linear = 0, temp_nonlinear = 0, prev_temp_nonlinear = 0; 
-	bool is_first_iteration = true; // используется для определения первой итерации в функции нелинейной модели 
-	cout << "Введите начальную температуру:";
-	cin >> temp_linear;
-	temp_nonlinear = temp_linear;
-	int iterations = 10;
-	cout << "Линейная модель:" << endl;
-	for (int i = 0; i < iterations; i++) {
-		linear_model(temp_linear);
-	}
-	cout << "Нелинейная модель:" << endl;
-	for (int i = 0; i < iterations; i++) {
-		nonlinear_model(temp_nonlinear, prev_temp_nonlinear, is_first_iteration);
-	}
-	return 0;
+    setlocale(LC_ALL, "RUS");
+
+    double coeff_a = 1.0,
+        coeff_b = 0.5,
+        coeff_c = 0.1,
+        coeff_d = 0.9,
+        input_u = 1.5;
+
+    double initial_temp = 0, current_nonlinear_temp = 0, previous_nonlinear_temp = 0;
+    bool first_iteration = true; // используется для определения первой итерации
+
+    cout << "Введите начальную температуру: ";
+    cin >> initial_temp;
+
+    current_nonlinear_temp = initial_temp;
+    int iterations = 10;
+
+    cout << "Линейная модель:" << endl;
+    for (int i = 0; i < iterations; i++) {
+        initial_temp = coeff_a * initial_temp + coeff_b * input_u;
+        cout << "=" << initial_temp << endl;
+    }
+
+    cout << "Нелинейная модель:" << endl;
+    for (int i = 0; i < iterations; i++) {
+        if (first_iteration) {
+            previous_nonlinear_temp = current_nonlinear_temp;
+            current_nonlinear_temp = coeff_a * current_nonlinear_temp + coeff_c * input_u + coeff_d * sin(input_u);
+            first_iteration = false; // первая итерация завершена
+            cout << "=" << current_nonlinear_temp << endl;
+        }
+        else {
+            double new_value = coeff_a * current_nonlinear_temp - coeff_b * pow(previous_nonlinear_temp, 2) + coeff_c * input_u + coeff_d * sin(input_u);
+            previous_nonlinear_temp = current_nonlinear_temp; // обновляем предыдущее значение
+            current_nonlinear_temp = new_value; // обновляем текущее значение
+            cout << "=" << current_nonlinear_temp << endl;
+        }
+    }
+
+    return 0;
 }
+
 ```     
 ```
 Вывод программы:
-линейная модель:
-|0.85
-|1.6
-|2.35
-|3.1
-|3.85
-|4.6
-|5.35
-|6.1
-|6.85
-|7.6
-нелинейная модель:
-|1.14775
-|2.19049
-|2.57958
-|1.2282
-|-1.05117
-|-0.757654
-|-0.262383
-|0.498343
-|1.51167
-|2.43524```
+Введите начальную температуру: 0
+Линейная модель:
+=0.75
+=1.5
+=2.25
+=3
+=3.75
+=4.5
+=5.25
+=6
+=6.75
+=7.5
+Нелинейная модель:
+=1.04775
+=2.09549
+=2.59435
+=1.44656
+=-0.871028
+=-0.869544
+=-0.201143
+=0.468549
+=1.49607
+=2.43404
 ![График](./graphics.png)
