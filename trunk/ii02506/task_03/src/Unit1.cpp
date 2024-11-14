@@ -1,4 +1,4 @@
-#include <vcl.h>
+//#include <vcl.h>
 #pragma hdrstop
 #include "Unit1.h"
 #include "Unit2.h"
@@ -287,7 +287,7 @@ void __fastcall TForm1::InfoGraphClick(TObject *Sender)
 		full=false;
 
 	Form4->StringGrid2->Cells[0][0] = "Vn";
-	Form4->StringGrid2->Cells[1][0] = "Ст-нь";
+	Form4->StringGrid2->Cells[1][0] = "пїЅпїЅ-пїЅпїЅ";
 	for (int i = 1; i <=graph.size(); i++) {
 	   Form4->StringGrid2->Cells[0][i] = "V" + IntToStr(i);
 	   if(graph[i-1].size()>2)
