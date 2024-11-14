@@ -1,4 +1,4 @@
-//#include <vcl.h>
+/*#include <vcl.h>
 #pragma hdrstop
 #include "Unit1.h"
 #include "Unit2.h"
@@ -417,3 +417,4 @@ void __fastcall TForm1::ExportClick(TObject *Sender)
         file.close();
 	}
 }
+*/
