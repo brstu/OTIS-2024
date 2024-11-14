@@ -7,10 +7,10 @@
 <p align="center">По дисциплине “Общая теория интеллектуальных систем”</p>
 <p align="center">Тема: “Моделирования температуры объекта”</p>
 <br><br><br><br><br>
-<p align="right">Выполнил:</p>
+<p align="right">Выполнила:</p>
 <p align="right">Студент 2 курса</p>
-<p align="right">Группы ИИ-26</p>
-<p align="right">Семёнов А.В.</p>
+<p align="right">Группы ИИ-25</p>
+<p align="right">Мохорева Т. Д.</p>
 <p align="right">Проверила:</p>
 <p align="right">Ситковец Я. С.</p>
 <br><br><br><br><br>
@@ -45,56 +45,96 @@ Task is to write program (**C++**), which simulates this object temperature.
 ```C++
 #include <iostream>
 #include <cmath>
-#include <vector>
-#include <iomanip>
-
 using namespace std;
 
-float alf = 0.6, bet = 0.8, c = 0.2, dlt = 1.0, es = 0.2;
+double calculateNextLinearValue(double a, double b, double u, const double& y) {
+    return a * y + b * u;
+}
 
-vector<float> Linear(int tau, float temp) {
-    vector<float> res(tau); res[0] = temp;
-    for (int i = 1; i < tau; i++) {
-        res[i] = alf * res[i - 1] + bet * es;
-    }
-    return res;
+void setLinearOutput(double& y, double newY) {
+    y = newY;
 }
-vector<float> Nonlinear(int tau, float temp) {
-    vector<float> res(tau); res[0] = temp;
-    if (tau > 1) res[1] = alf * res[0] + c * es + dlt * sin(es);
-    for (int i = 2; i < tau; i++) {
-        res[i] = alf * res[i - 1] - bet * pow(res[i - 2], 2) + c * es + dlt * sin(es);
+
+void displayLinearModel(const double& y, double a, double b, double u, int iterations) {
+    cout << "Linear model" << endl;
+    double currentY = y;
+    for (int i = 0; i < iterations; ++i) {
+        cout << currentY << endl;
+        double newY = calculateNextLinearValue(a, b, u, currentY);
+        setLinearOutput(currentY, newY);
     }
-    return res;
 }
+
+double calculateNextNonlinearValue(double a, double b, double c, double d, double u, const double& y, const double& prevY) {
+    if (prevY == 0) {
+        return a * y - b * pow(prevY, 2) + c * 1 + d * sin(1);
+    }
+    else {
+        return a * y - b * pow(prevY, 2) + c * u + d * sin(u);
+    }
+}
+
+void setNonlinearOutput(double& y, double& prevY, double newY) {
+    prevY = y;
+    y = newY;
+}
+
+void displayNonlinearModel(const double& y, double a, double b, double c, double d, double u, int iterations) {
+    cout << "Nonlinear model" << endl;
+    double currentY = y;
+    double previousY = 0.0;
+    for (int i = 0; i < iterations; ++i) {
+        cout << currentY << endl;
+        double newY = calculateNextNonlinearValue(a, b, c, d, u, currentY, previousY);
+        setNonlinearOutput(currentY, previousY, newY);
+    }
+}
+
 int main() {
-    setlocale(LC_ALL, "Russian");
-    float startTemperature; int tau; vector<vector<float>> results;
-    cout << "Введите начальное T: "; cin >> startTemperature;
-    cout << "Введите шаг: "; cin >> tau; tau++;
-    results.push_back(Linear(tau, startTemperature));
-    results.push_back(Nonlinear(tau, startTemperature));
-    cout << right << setw(10) << "It:" << setw(10) << right << "Linear" << setw(13) << right << "No-Linear" << endl;
-    for (int i = 0; i < tau; i++) {
-        cout << right << setw(10) << i << setw(10) << results[0][i] << setw(13) << results[1][i] << endl;
-    }
+    // Параметры для линейной модели
+    const double linearA = 0.3;
+    const double linearB = 0.3;
+    const double linearU = 0.9;
+    double linearY = 0.0;
+    const int linearIterations = 10;
+
+    displayLinearModel(linearY, linearA, linearB, linearU, linearIterations);
+
+    // Параметры для нелинейной модели
+    const double nonlinearA = 0.1;
+    const double nonlinearB = 0.2;
+    const double nonlinearC = 0.4;
+    const double nonlinearD = 0.2;
+    const double nonlinearU = 0.8;
+    double nonlinearY = 0.0;
+    const int nonlinearIterations = 10;
+
+    displayNonlinearModel(nonlinearY, nonlinearA, nonlinearB, nonlinearC, nonlinearD, nonlinearU, nonlinearIterations);
+
     return 0;
 }
 ```     
 ```
-Введите начальное T: 1
-Введите шаг: 10
-       It:    Linear    No-Linear
-         0         1            1
-         1      0.76     0.838669
-         2     0.616    -0.058129
-         3    0.5296    -0.358901
-         4   0.47776    0.0206255
-         5  0.446656     0.147997
-         6  0.427994     0.327127
-         7  0.416796     0.417423
-         8  0.410078     0.403514
-         9  0.406047     0.341384
-        10  0.403628     0.313241
+Linear model
+0
+0.27
+0.351
+0.3753
+0.38259
+0.384777
+0.385433
+0.38563
+0.385689
+0.385707
+Nonlinear model
+0
+0.568294
+0.625124
+0.461392
+0.431455
+0.46404
+0.472645
+0.467669
+0.46556
+0.466284
 ```
-![График](./graphic.png)
