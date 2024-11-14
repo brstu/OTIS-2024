@@ -9,8 +9,8 @@
 <br><br><br><br><br>
 <p align="right">Выполнила:</p>
 <p align="right">Студентка 2 курса</p>
-<p align="right">Группы ИИ-26</p>
-<p align="right">Карпович К. А.</p>
+<p align="right">Группы ИИ-25</p>
+<p align="right">Бекназаровой А. С.</p>
 <p align="right">Проверила:</p>
 <p align="right">Ситковец Я. С.</p>
 <br><br><br><br><br>
@@ -44,62 +44,59 @@ Task is to write program (**С++**), which simulates this object temperature.
 Код программы:
 ```C++
 #include <iostream>
-#include <vector>
 #include <cmath>
 
-using namespace std;
+// Константы
+const double a = 0.5;  // Пример значения
+const double b = 0.1;  // Пример значения
+const double c = 0.05; // Пример значения
+const double d = 0.01; // Пример значения
 
-// Константы модели
-const double a = 0.8;  // Примерное значение
-const double b = 0.05; // Примерное значение
-const double c = 0.1;  // Примерное значение
-const double d = 0.02; // Примерное значение
+const int time_steps = 100; // Количество шагов по времени
 
-// Функция для расчета rpex (предполагаем, что это функция активации)
-double rpex(double u_prev) {
-    return std::exp(-u_prev);
+void simulate_linear_model(double y[], double u[]) {
+    for (int t = 0; t < time_steps; ++t) {
+        y[t + 1] = a * y[t] + b * u[t];
+        std::cout << "Linear Model at time " << t << ": " << y[t + 1] << std::endl;
+    }
+}
+
+void simulate_nonlinear_model(double y[], double u[]) {
+    for (int t = 1; t < time_steps; ++t) {
+        y[t + 1] = a * y[t] - b * y[t - 1] * y[t - 1] + c * y[t] + d * std::sin(u[t - 1]);
+        std::cout << "Nonlinear Model at time " << t << ": " << y[t + 1] << std::endl;
+    }
 }
 
 int main() {
-    setlocale(LC_ALL, "RU");
-    int n = 10; // Количество временных шагов
-    double y_0 = 20.0; // Начальная температура
-    double u = 5.0; // Постоянное входное тепло
+    double y[time_steps + 1] = { 0 }; // Инициализация массива температур
+    double u[time_steps] = { 0 };   // Инициализация массива теплового воздействия
 
-    std::vector<double> y_linear(n + 1, y_0);
-    std::vector<double> y_nonlinear(n + 1, y_0);
-
-    // Моделирование линейной и нелинейной модели
-    for (int tau = 0; tau < n; ++tau) {
-        // Линейная модель
-        y_linear[tau + 1] = a * y_linear[tau] + b * u;
-
-        // Нелинейная модель
-        double u_prev = (tau > 0) ? u : 0.0; // u_{τ-1}, для первого шага считаем его 0
-        y_nonlinear[tau + 1] = a * y_nonlinear[tau] - b * std::pow(y_nonlinear[tau], 2) + c * u + d * rpex(u_prev);
+    // Пример заполнения массива u значениями теплового воздействия
+    for (int t = 0; t < time_steps; ++t) {
+        u[t] = 1.0; // Например, постоянное воздействие
     }
 
-    // Вывод результатов
-    std::cout << "Временной шаг\tЛинейная модель\tНелинейная модель\n";
-    for (int tau = 0; tau <= n; ++tau) {
-        std::cout << tau << "\t\t" << y_linear[tau] << "\t\t" << y_nonlinear[tau] << "\n";
-    }
+    // Симуляция линейной модели
+    simulate_linear_model(y, u);
+
+    // Симуляция нелинейной модели
+    simulate_nonlinear_model(y, u);
 
     return 0;
 }
+
 ```     
 ```
 Временной шаг   Линейная модель Нелинейная модель
-0               20              20
-1               16.25           -3.48
-2               13.25           -2.88939
-3               10.85           -2.2288
-4               8.93            -1.53128
-5               7.394           -0.842134
-6               6.1652          -0.209031
-7               5.18216         0.330725
-8               4.39573         0.759246
-9               3.76658         1.07871
-10              3.26327         1.30492
-
-![График](image.png)
+0               0.15             0.0634147
+1               0.175            0.0422928
+2               0.1875           0.0312736
+3               0.19375          0.0254363
+4               0.196875         0.0223069
+5               0.198438         0.0206188
+6               0.199219         0.0197053
+7               0.199609         0.0192101
+8               0.199805         0.0189414
+9               0.199902         0.0187956
+10              0.199952         0.0187164
