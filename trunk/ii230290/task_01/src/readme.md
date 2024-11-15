@@ -1,47 +1,47 @@
-<p align="center"> Министерство образования Республики Беларусь</p>
-<p align="center">Учреждение образования</p>
-<p align="center">“Брестский Государственный технический университет”</p>
-<p align="center">Кафедра ИИТ</p>
+<p align="center"> РњРёРЅРёСЃС‚РµСЂСЃС‚РІРѕ РѕР±СЂР°Р·РѕРІР°РЅРёСЏ Р РµСЃРїСѓР±Р»РёРєРё Р‘РµР»Р°СЂСѓСЃСЊ</p>
+<p align="center">РЈС‡СЂРµР¶РґРµРЅРёРµ РѕР±СЂР°Р·РѕРІР°РЅРёСЏ</p>
+<p align="center">вЂњР‘СЂРµСЃС‚СЃРєРёР№ Р“РѕСЃСѓРґР°СЂСЃС‚РІРµРЅРЅС‹Р№ С‚РµС…РЅРёС‡РµСЃРєРёР№ СѓРЅРёРІРµСЂСЃРёС‚РµС‚вЂќ</p>
+<p align="center">РљР°С„РµРґСЂР° РРРў</p>
 <br><br><br><br><br><br><br>
-<p align="center">Лабораторная работа №1</p>
-<p align="center">По дисциплине “Общая теория интеллектуальных систем”</p>
-<p align="center">Тема: “Моделирования температуры объекта”</p>
+<p align="center">Р›Р°Р±РѕСЂР°С‚РѕСЂРЅР°СЏ СЂР°Р±РѕС‚Р° в„–1</p>
+<p align="center">РџРѕ РґРёСЃС†РёРїР»РёРЅРµ вЂњРћР±С‰Р°СЏ С‚РµРѕСЂРёСЏ РёРЅС‚РµР»Р»РµРєС‚СѓР°Р»СЊРЅС‹С… СЃРёСЃС‚РµРјвЂќ</p>
+<p align="center">РўРµРјР°: вЂњРњРѕРґРµР»РёСЂРѕРІР°РЅРёСЏ С‚РµРјРїРµСЂР°С‚СѓСЂС‹ РѕР±СЉРµРєС‚Р°вЂќ</p>
 <br><br><br><br><br>
-<p align="right">Выполнила:</p>
-<p align="right">Студент 2 курса</p>
-<p align="right">Группы ИИ-25</p>
-<p align="right">Мохорева Т. Д.</p>
-<p align="right">Проверила:</p>
-<p align="right">Ситковец Я. С.</p>
+<p align="right">Р’С‹РїРѕР»РЅРёР»Р°:</p>
+<p align="right">РЎС‚СѓРґРµРЅС‚ 2 РєСѓСЂСЃР°</p>
+<p align="right">Р“СЂСѓРїРїС‹ РР-25</p>
+<p align="right">РњРѕС…РѕСЂРµРІР° Рў. Р”.</p>
+<p align="right">РџСЂРѕРІРµСЂРёР»Р°:</p>
+<p align="right">РЎРёС‚РєРѕРІРµС† РЇ. РЎ.</p>
 <br><br><br><br><br>
-<p align="center">Брест 2024</p>
+<p align="center">Р‘СЂРµСЃС‚ 2024</p>
 
 <hr>
 
-# Общее задание #
-1. Написать отчет по выполненной лабораторной работе №1 в .md формате (readme.md) и с помощью запроса на внесение изменений (**pull request**) разместить его в следующем каталоге: **trunk\ii0xxyy\task_01\doc** (где **xx** - номер группы, **yy** - номер студента, например **ii02102**).
-2. Исходный код написанной программы разместить в каталоге: **trunk\ii0xxyy\task_01\src**.
+# РћР±С‰РµРµ Р·Р°РґР°РЅРёРµ #
+1. РќР°РїРёСЃР°С‚СЊ РѕС‚С‡РµС‚ РїРѕ РІС‹РїРѕР»РЅРµРЅРЅРѕР№ Р»Р°Р±РѕСЂР°С‚РѕСЂРЅРѕР№ СЂР°Р±РѕС‚Рµ в„–1 РІ .md С„РѕСЂРјР°С‚Рµ (readme.md) Рё СЃ РїРѕРјРѕС‰СЊСЋ Р·Р°РїСЂРѕСЃР° РЅР° РІРЅРµСЃРµРЅРёРµ РёР·РјРµРЅРµРЅРёР№ (**pull request**) СЂР°Р·РјРµСЃС‚РёС‚СЊ РµРіРѕ РІ СЃР»РµРґСѓСЋС‰РµРј РєР°С‚Р°Р»РѕРіРµ: **trunk\ii0xxyy\task_01\doc** (РіРґРµ **xx** - РЅРѕРјРµСЂ РіСЂСѓРїРїС‹, **yy** - РЅРѕРјРµСЂ СЃС‚СѓРґРµРЅС‚Р°, РЅР°РїСЂРёРјРµСЂ **ii02102**).
+2. РСЃС…РѕРґРЅС‹Р№ РєРѕРґ РЅР°РїРёСЃР°РЅРЅРѕР№ РїСЂРѕРіСЂР°РјРјС‹ СЂР°Р·РјРµСЃС‚РёС‚СЊ РІ РєР°С‚Р°Р»РѕРіРµ: **trunk\ii0xxyy\task_01\src**.
 ## Task 1. Modeling controlled object ##
 Let's get some object to be controlled. We want to control its temperature, which can be described by this differential equation:
 
 $$\Large\frac{dy(\tau)}{d\tau}=\frac{u(\tau)}{C}+\frac{Y_0-y(\tau)}{RC} $$ (1)
 
-where $\tau$ – time; $y(\tau)$ – input temperature; $u(\tau)$ – input warm; $Y_0$ – room temperature; $C,RC$ – some constants.
+where $\tau$ вЂ“ time; $y(\tau)$ вЂ“ input temperature; $u(\tau)$ вЂ“ input warm; $Y_0$ вЂ“ room temperature; $C,RC$ вЂ“ some constants.
 
 After transformation, we get these linear (2) and nonlinear (3) models:
 
 $$\Large y_{\tau+1}=ay_{\tau}+bu_{\tau}$$ (2)
 $$\Large y_{\tau+1}=ay_{\tau}-by_{\tau-1}^2+cu_{\tau}+d\sin(u_{\tau-1})$$ (3)
 
-where $\tau$ – time discrete moments ($1,2,3{\dots}n$); $a,b,c,d$ – some constants.
+where $\tau$ вЂ“ time discrete moments ($1,2,3{\dots}n$); $a,b,c,d$ вЂ“ some constants.
 
 Task is to write program (**C++**), which simulates this object temperature.
 
 <hr>
 
-# Выполнение задания #
+# Р’С‹РїРѕР»РЅРµРЅРёРµ Р·Р°РґР°РЅРёСЏ #
 
-Код программы:
+РљРѕРґ РїСЂРѕРіСЂР°РјРјС‹:
 ```C++
 #include <iostream>
 #include <cmath>
@@ -91,7 +91,7 @@ void displayNonlinearModel(const double& y, double a, double b, double c, double
 }
 
 int main() {
-    // Параметры для линейной модели
+    // РџР°СЂР°РјРµС‚СЂС‹ РґР»СЏ Р»РёРЅРµР№РЅРѕР№ РјРѕРґРµР»Рё
     const double linearA = 0.3;
     const double linearB = 0.3;
     const double linearU = 0.9;
@@ -100,7 +100,7 @@ int main() {
 
     displayLinearModel(linearY, linearA, linearB, linearU, linearIterations);
 
-    // Параметры для нелинейной модели
+    // РџР°СЂР°РјРµС‚СЂС‹ РґР»СЏ РЅРµР»РёРЅРµР№РЅРѕР№ РјРѕРґРµР»Рё
     const double nonlinearA = 0.1;
     const double nonlinearB = 0.2;
     const double nonlinearC = 0.4;
