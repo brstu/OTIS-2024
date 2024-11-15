@@ -9,8 +9,8 @@
 <br><br><br><br><br>
 <p align="right">Выполнил:</p>
 <p align="right">Студент 2 курса</p>
-<p align="right">Группы ИИ-26</p>
-<p align="right">Рудь В. В.</p>
+<p align="right">Группы ИИ-25</p>
+<p align="right">Кулик Я. А.</p>
 <p align="right">Проверил:</p>
 <p align="right">Иванюк Д. С.</p>
 <br><br><br><br><br>
