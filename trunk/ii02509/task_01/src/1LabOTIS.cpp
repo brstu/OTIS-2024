@@ -1,66 +1,62 @@
 ﻿#include <iostream>
-#include <cmath> // Для использования функции sin()
+#include <cmath>
+
 using namespace std;
 
-// Линейная модель: y(t+1) = p * y(t) + q * v(t)
-void executeLinearModel(double p, double q, double startValue, double inputValue, int iterations) {
-    double currentState = startValue; // Начальное состояние
-    double controlInput = inputValue; // Начальный управляющий вход
+// Функция для моделирования линейной системы
+void simulateLinearSystem(double coeffA, double coeffB, double initialValue, double inputValue, int steps) {
+    double currentValue = initialValue;
+    double controlValue = inputValue;
 
-    cout << "Результаты линейной модели:n";
-    for (int i = 0; i < iterations; ++i) {
-        double nextState = p * currentState + q * controlInput;
-        cout << "Шаг " << i << ": Состояние = " << nextState << endl;
-        currentState = nextState; // Обновляем текущее состояние
+    cout << "n--- Моделирование линейной системы ---n";
+    for (int step = 0; step < steps; ++step) {
+        double nextValue = coeffA * currentValue + coeffB * controlValue;  // Уравнение линейной модели
+        cout << "Шаг " << step + 1 << ": y[" << step + 1 << "] = " << nextValue << endl;
+        currentValue = nextValue;
     }
 }
 
-// Нелинейная модель: y(t+1) = p * y(t) - q * y^2(t-1) + r * v(t) + s * sin(v(t))
-void executeNonlinearModel(double p, double q, double r, double s, double startValue, double inputValue, int iterations) {
-    double previousState = startValue; // Состояние на предыдущем шаге
-    double currentState = startValue; // Начальное состояние
-    double controlInput = inputValue; // Начальный управляющий вход
+// Функция для моделирования нелинейной системы
+void simulateNonlinearSystem(double coeffA, double coeffB, double coeffC, double coeffD, double initialValue, double previousValue, double inputValue, int steps) {
+    double currentValue = initialValue;
+    double lastValue = previousValue;
+    double controlValue = inputValue;
 
-    cout << "nРезультаты нелинейной модели:n";
-    for (int i = 0; i < iterations; ++i) {
-        double nextState = p * currentState - q * previousState * previousState + r * controlInput + s * sin(controlInput);
-        cout << "Шаг " << i << ": Состояние = " << nextState << endl;
-        previousState = currentState; // Обновляем состояние на предыдущем шаге
-        currentState = nextState; // Обновляем текущее состояние
+    cout << "n--- Моделирование нелинейной системы ---n";
+    for (int step = 0; step < steps; ++step) {
+        double nextValue = coeffA * currentValue - coeffB * lastValue * lastValue + coeffC * controlValue + coeffD * sin(controlValue - 1);  // Уравнение нелинейной модели
+        cout << "Шаг " << step + 1 << ": y[" << step + 1 << "] = " << nextValue << endl;
+
+        lastValue = currentValue;
+        currentValue = nextValue;
     }
 }
 
 int main() {
-    // Переменные для параметров модели
-    double paramP, paramQ, paramR, paramS;
-    double initialTemp, initialControl;
-    int stepCount;
+    setlocale(LC_ALL, "Russian");
+    double coeffA, coeffB, coeffC, coeffD;
+    double initialTemp, inputTemp, previousTemp;
+    int totalSteps;
 
-    // Сбор данных от пользователя
-    cout << "Введите параметр p: ";
-    cin >> paramP;
-
-    cout << "Введите параметр q: ";
-    cin >> paramQ;
-
-    cout << "Введите параметр r (для нелинейной модели): ";
-    cin >> paramR;
-
-    cout << "Введите параметр s (для нелинейной модели): ";
-    cin >> paramS;
-
-    cout << "Введите начальное значение состояния: ";
+    cout << "Введите коэффициент a: ";
+    cin >> coeffA;
+    cout << "Введите коэффициент b: ";
+    cin >> coeffB;
+    cout << "Введите коэффициент c (для нелинейной модели): ";
+    cin >> coeffC;
+    cout << "Введите коэффициент d (для нелинейной модели): ";
+    cin >> coeffD;
+    cout << "Введите начальное значение температуры: ";
     cin >> initialTemp;
-
+    cout << "Введите начальное значение предыдущей температуры (для нелинейной модели): ";
+    cin >> previousTemp;
     cout << "Введите начальное значение управляющего входа: ";
-    cin >> initialControl;
+    cin >> inputTemp;
+    cout << "Введите количество временных шагов: ";
+    cin >> totalSteps;
 
-    cout << "Введите количество итераций моделирования: ";
-    cin >> stepCount;
-
-    // Запуск симуляций
-    executeLinearModel(paramP, paramQ, initialTemp, initialControl, stepCount);
-    executeNonlinearModel(paramP, paramQ, paramR, paramS, initialTemp, initialControl, stepCount);
+    simulateLinearSystem(coeffA, coeffB, initialTemp, inputTemp, totalSteps);
+    simulateNonlinearSystem(coeffA, coeffB, coeffC, coeffD, initialTemp, previousTemp, inputTemp, totalSteps);
 
     return 0;
 }
