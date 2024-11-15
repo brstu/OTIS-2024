@@ -56,7 +56,7 @@
 |6|Даниил Турич|[ii02619](./trunk/ii02619/)|:white_check_mark:|:white_check_mark:|||||||||
 |7|Влад Рудь|[ii02614](./trunk/ii02614/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||
 |8|Денис Шарубнёв|[ii02625](./trunk/ii02625/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||
-|9|Владислав Суховило |[ii02618](./trunk/ii02618/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||:white_check_mark:||||
+|9|Владислав Суховило |[ii02618](./trunk/ii02618/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||:white_check_mark:|:white_check_mark:|||
 |10|Катя Шоева|[ii230326](./trunk/ii230326/)|:white_check_mark:|:white_check_mark:|||||||
 |11|Илья Хомиченко|[ii02621](./trunk/ii02621/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||
 |12|Настя Черноиван|[ii230324](./trunk/ii230324/)|:white_check_mark:|:white_check_mark:||:white_check_mark:|||||
