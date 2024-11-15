@@ -44,65 +44,64 @@ Task is to write program (**С++**), which simulates this object temperature.
 Код программы:
 ```C++
 #include <iostream>
-#include <cmath> 
+#include <cmath>
+
 using namespace std;
 
-void runLinearSimulation(double alpha, double beta, double temp0, double control0, int steps_count) {
-    double current_temp = temp0; 
-    double control_signal = control0; 
+// Функция для моделирования линейной системы
+void simulateLinearSystem(double coeffA, double coeffB, double initialValue, double inputValue, int steps) {
+    double currentValue = initialValue;  
+    double controlValue = inputValue;  
 
-    cout << "Линейная модель:\n";
-    for (int step = 0; step < steps_count; ++step) {
-        double next_temp = alpha * current_temp + beta * control_signal;
-        cout << "Шаг времени " << step << ": Температура = " << next_temp << std::endl;
-        current_temp = next_temp; 
+    cout << "n--- Моделирование линейной системы ---n";
+    for (int step = 0; step < steps; ++step) {
+        double nextValue = coeffA * currentValue + coeffB * controlValue;  // Уравнение линейной модели
+        cout << "Шаг " << step + 1 << ": y[" << step + 1 << "] = " << nextValue << endl;
+        currentValue = nextValue;
     }
 }
 
-void runNonlinearSimulation(double alpha, double beta, double gamma, double delta, double temp0, double control0, int steps_count) {
-    double prev_temp = temp0; 
-    double current_temp = temp0; 
-    double control_signal = control0; 
+// Функция для моделирования нелинейной системы
+void simulateNonlinearSystem(double coeffA, double coeffB, double coeffC, double coeffD, double initialValue, double previousValue, double inputValue, int steps) {
+    double currentValue = initialValue;           
+    double lastValue = previousValue; 
+    double controlValue = inputValue;           
 
-    cout << "\nНелинейная модель:\n";
-    for (int step = 0; step < steps_count; ++step) {
-        double next_temp = alpha * current_temp - beta * prev_temp * prev_temp + gamma * control_signal + delta * sin(control_signal);
-        cout << "Шаг времени " << step << ": Температура = " << next_temp << std::endl;
-        prev_temp = current_temp; 
-        current_temp = next_temp; 
+    cout << "n--- Моделирование нелинейной системы ---n";
+    for (int step = 0; step < steps; ++step) {
+        double nextValue = coeffA * currentValue - coeffB * lastValue * lastValue + coeffC * controlValue + coeffD * sin(controlValue - 1);  // Уравнение нелинейной модели
+        cout << "Шаг " << step + 1 << ": y[" << step + 1 << "] = " << nextValue << endl;
+
+        lastValue = currentValue;  
+        currentValue = nextValue;
     }
 }
 
 int main() {
     setlocale(LC_ALL, "Russian");
-    
-    double alpha, beta, gamma, delta;
-    double start_temp, start_control;
-    int steps_count;
+    double coeffA, coeffB, coeffC, coeffD;  
+    double initialTemp, inputTemp, previousTemp;  
+    int totalSteps;  
 
-    cout << "Введите значение параметра alpha: ";
-    cin >> alpha;
+    cout << "Введите коэффициент a: ";
+    cin >> coeffA;
+    cout << "Введите коэффициент b: ";
+    cin >> coeffB;
+    cout << "Введите коэффициент c (для нелинейной модели): ";
+    cin >> coeffC;
+    cout << "Введите коэффициент d (для нелинейной модели): ";
+    cin >> coeffD;
+    cout << "Введите начальное значение температуры: ";
+    cin >> initialTemp;                                                      
+    cout << "Введите начальное значение предыдущей температуры (для нелинейной модели): ";
+    cin >> previousTemp;
+    cout << "Введите начальное значение управляющего входа: ";
+    cin >> inputTemp;
+    cout << "Введите количество временных шагов: ";
+    cin >> totalSteps;
 
-    cout << "Введите значение параметра beta: ";
-    cin >> beta;
-
-    cout << "Введите значение параметра gamma (для нелинейной модели): ";
-    cin >> gamma;
-
-    cout << "Введите значение параметра delta (для нелинейной модели): ";
-    cin >> delta;
-
-    cout << "Введите начальное значение температуры temp0: ";
-    cin >> start_temp;
-
-    cout << "Введите начальное значение управляющего сигнала control0: ";
-    cin >> start_control;
-
-    cout << "Введите количество шагов моделирования: ";
-    cin >> steps_count;
-
-    runLinearSimulation(alpha, beta, start_temp, start_control, steps_count);
-    runNonlinearSimulation(alpha, beta, gamma, delta, start_temp, start_control, steps_count);
+    simulateLinearSystem(coeffA, coeffB, initialTemp, inputTemp, totalSteps);
+    simulateNonlinearSystem(coeffA, coeffB, coeffC, coeffD, initialTemp, previousTemp, inputTemp, totalSteps);
 
     return 0;
 }
