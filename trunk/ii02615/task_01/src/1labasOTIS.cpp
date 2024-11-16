@@ -50,10 +50,10 @@ int main() {
     results.push_back(Linear(steps, initialTemperature));
     results.push_back(NonLinear(steps, initialTemperature));
 
-    std::cout << right << setw(10) << "Ит:" << setw(10) << right << "Линейный" << setw(13) << right << "Нелинейный" << endl;
+    std::cout << right << std::setw(10) << "Ит:" << std::setw(10) << right << "Линейный" << std::setw(13) << right << "Нелинейный" << std::endl;
 
     for (int i = 0; i < steps; ++i) {
-        std::cout << right << setw(10) << i << setw(10) << results[0][i] << setw(13) << results[1][i] << endl;
+        std::cout << right << std::setw(10) << i << std::setw(10) << results[0][i] << std::setw(13) << results[1][i] << std::endl;
     }
 
     return 0;
