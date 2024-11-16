@@ -35,7 +35,7 @@ int main() {
     setlocale(LC_ALL, "Russian");
     float начальнаяТемпература;
     int шаг;
-    vector<vector<float>> результаты;
+    vector<vector<float> результаты;
 
     cout << "Введите начальное значение T: ";
     cin >> начальнаяТемпература;
