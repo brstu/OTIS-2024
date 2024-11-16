@@ -38,7 +38,7 @@ int main() {
     setlocale(LC_ALL, "Russian");
     float initialTemperature;
     int steps;
-    std::vector<vector<float> > results;
+    std::vector<std::vector<float> > results;
 
     std::cout << "Введите начальное значение T: ";
     std::cin >> initialTemperature;
