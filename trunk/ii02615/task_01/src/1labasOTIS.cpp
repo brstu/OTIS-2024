@@ -5,7 +5,11 @@
 
 using namespace std;
 
-float alpha = 0.6, beta = 0.8, c = 0.2, delta = 1.0, epsilon = 0.2;
+float alpha = 0.6;
+float beta = 0.8;
+float c = 0.2;
+float delta = 1.0;
+float epsilon = 0.2;
 
 vector<float> Linear(int steps, float initialTemperature) {
     vector<float> result(steps);
