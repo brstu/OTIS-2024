@@ -3,7 +3,6 @@
 #include <vector>
 #include <iomanip>
 
-using namespace std;
 
 float alpha = 0.6;
 float beta = 0.8;
@@ -11,8 +10,8 @@ float c = 0.2;
 float delta = 1.0;
 float epsilon = 0.2;
 
-vector<float> Linear(int steps, float initialTemperature) {
-    vector<float> result(steps);
+std::vector<float> Linear(int steps, float initialTemperature) {
+    std::vector<float> result(steps);
     result[0] = initialTemperature;
 
     for (int i = 1; i < steps; ++i) {
@@ -21,8 +20,8 @@ vector<float> Linear(int steps, float initialTemperature) {
     return result;
 }
 
-vector<float> NonLinear(int steps, float initialTemperature) {
-    vector<float> result(steps);
+std::vector<float> NonLinear(int steps, float initialTemperature) {
+    std::vector<float> result(steps);
     result[0] = initialTemperature;
 
     if (steps > 1) {
@@ -41,20 +40,20 @@ int main() {
     int steps;
     vector<vector<float> > results;
 
-    cout << "Введите начальное значение T: ";
-    cin >> initialTemperature;
+    std::cout << "Введите начальное значение T: ";
+    std::cin >> initialTemperature;
 
-    cout << "Введите количество шагов: ";
-    cin >> steps;
+    std::cout << "Введите количество шагов: ";
+    std::cin >> steps;
     steps++;
 
     results.push_back(Linear(steps, initialTemperature));
     results.push_back(NonLinear(steps, initialTemperature));
 
-    cout << right << setw(10) << "Ит:" << setw(10) << right << "Линейный" << setw(13) << right << "Нелинейный" << endl;
+    std::cout << right << setw(10) << "Ит:" << setw(10) << right << "Линейный" << setw(13) << right << "Нелинейный" << endl;
 
     for (int i = 0; i < steps; ++i) {
-        cout << right << setw(10) << i << setw(10) << results[0][i] << setw(13) << results[1][i] << endl;
+        std::cout << right << setw(10) << i << setw(10) << results[0][i] << setw(13) << results[1][i] << endl;
     }
 
     return 0;
