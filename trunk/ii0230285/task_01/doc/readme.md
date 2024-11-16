@@ -12,7 +12,7 @@
 <p align="right">Группы ИИ-25</p>
 <p align="right">Кулик Я. А.</p>
 <p align="right">Проверил:</p>
-<p align="right">Иванюк Д. С.</p>
+<p align="right">Ситковец Я. С.</p>
 <br><br><br><br><br>
 <p align="center">Брест 2024</p>
 
