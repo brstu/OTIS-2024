@@ -5,52 +5,52 @@
 
 using namespace std;
 
-float альфа = 0.6, бета = 0.8, с = 0.2, дельта = 1.0, еpsilon = 0.2;
+float alpha = 0.6, beta = 0.8, c = 0.2, delta = 1.0, epsilon = 0.2;
 
-vector<float> Линейный(int шаг, float начальнаяТемпература) {
-    vector<float> результат(шаг);
-    результат[0] = начальнаяТемпература;
+vector<float> Linear(int steps, float initialTemperature) {
+    vector<float> result(steps);
+    result[0] = initialTemperature;
 
-    for (int i = 1; i < шаг; ++i) {
-        результат[i] = альфа * результат[i - 1] + бета * еpsilon;
+    for (int i = 1; i < steps; ++i) {
+        result[i] = alpha * result[i - 1] + beta * epsilon;
     }
-    return результат;
+    return result;
 }
 
-vector<float> Нелинейный(int шаг, float начальнаяТемпература) {
-    vector<float> результат(шаг);
-    результат[0] = начальнаяТемпература;
+vector<float> NonLinear(int steps, float initialTemperature) {
+    vector<float> result(steps);
+    result[0] = initialTemperature;
 
-    if (шаг > 1) {
-        результат[1] = альфа * результат[0] + с * еpsilon + дельта * sin(epsilon);
+    if (steps > 1) {
+        result[1] = alpha * result[0] + c * epsilon + delta * sin(epsilon);
     }
-    
-    for (int i = 2; i < шаг; ++i) {
-        результат[i] = альфа * результат[i - 1] - бета * pow(результат[i - 2], 2) + с * еpsilon + дельта * sin(epsilon);
+
+    for (int i = 2; i < steps; ++i) {
+        result[i] = alpha * result[i - 1] - beta * pow(result[i - 2], 2) + c * epsilon + delta * sin(epsilon);
     }
-    return результат;
+    return result;
 }
 
 int main() {
     setlocale(LC_ALL, "Russian");
-    float начальнаяТемпература;
-    int шаг;
-    vector<vector<float>> результаты;
+    float initialTemperature;
+    int steps;
+    vector<vector<float>> results;
 
     cout << "Введите начальное значение T: ";
-    cin >> начальнаяТемпература;
+    cin >> initialTemperature;
 
     cout << "Введите количество шагов: ";
-    cin >> шаг;
-    шаг++;
+    cin >> steps;
+    steps++;
 
-    результаты.push_back(Линейный(шаг, начальнаяТемпература));
-    результаты.push_back(Нелинейный(шаг, начальнаяТемпература));
+    results.push_back(Linear(steps, initialTemperature));
+    results.push_back(NonLinear(steps, initialTemperature));
 
     cout << right << setw(10) << "Ит:" << setw(10) << right << "Линейный" << setw(13) << right << "Нелинейный" << endl;
 
-    for (int i = 0; i < шаг; ++i) {
-        cout << right << setw(10) << i << setw(10) << результаты[0][i] << setw(13) << результаты[1][i] << endl;
+    for (int i = 0; i < steps; ++i) {
+        cout << right << setw(10) << i << setw(10) << results[0][i] << setw(13) << results[1][i] << endl;
     }
 
     return 0;
