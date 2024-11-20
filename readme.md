@@ -30,7 +30,7 @@
 | 12 | Милевский Артем      ||||||||||
 | 13 | Глеб Горбат          |[ii230278](trunk/ii230278)|✅|✅|✅||||||
 | 14 | Евгений Скачков      |[ii230297](./trunk/ii230297/)|:white_check_mark:|:white_check_mark:||||||||
-| 15 | Бажежа Анита         |[ii230276](./trunk/ii-230276/)|✅|✅|||||||
+| 15 | Бажежа Анита         |[ii230276](./trunk/ii-230276/)|✅|✅|✅||||||
 | 16 | Пальчастый Ярослав   |[ii02518](./trunk/ii02518/)|:white_check_mark:|:white_check_mark:|✅|✅|✅|||||
 | 17 | Максимчук Елизавета  |[ii02513](./trunk/ii02513/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
 | 18 | Денис Дулько         ||||||||||
