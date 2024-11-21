@@ -27,21 +27,26 @@
 | 9  | Сидорчук Артём       ||||||||||
 | 10 | Кулик Яна            |[ii0230285](./trunk/ii0230285/)|✅|✅|||||||
 | 11 | Борис Жук            ||||||||||
+<<<<<<< HEAD
 | 12 | Милевский Артем      |[ii0230289](./trunk/ii0230289/)|✅|✅|||||||
 | 13 | Глеб Горбат          |[ii230278](trunk/ii230278)|✅|✅|✅||||||
+=======
+| 12 | Милевский Артем      |[ii230289](trunk/ii230289)|✅|✅|✅||||||
+| 13 | Глеб Горбат          |[ii230278](trunk/ii230278)|✅|✅|✅|✅|||||
+>>>>>>> Dyiellcorpdy0/LAB4
 | 14 | Евгений Скачков      |[ii230297](./trunk/ii230297/)|:white_check_mark:|:white_check_mark:||||||||
 | 15 | Бажежа Анита         |[ii230276](./trunk/ii-230276/)|✅|✅|✅||||||
 | 16 | Пальчастый Ярослав   |[ii02518](./trunk/ii02518/)|:white_check_mark:|:white_check_mark:|✅|✅|✅|||||
 | 17 | Максимчук Елизавета  |[ii02513](./trunk/ii02513/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
 | 18 | Денис Дулько         ||||||||||
-| 19 | Вячеслав Янушкевич   |[ii230300](./trunk/ii230300/)|:white_check_mark:|:white_check_mark:||||||||
-| 20 | Максим Ящук          ||||||||||
+| 19 | Вячеслав Янушкевич   |[ii230300](./trunk/ii230300/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||||
+| 20 | Максим Ящук          |[ii02520](./trunk/ii02520/)|✅|✅|||||||
 | 21 | Артем Левай          |[ii230286](./trunk/ii230286/)|:white_check_mark:|:white_check_mark:|||||||||
-| 22 | Владимир Котов       |[ii025022](./trunk/II-230284) |✅|✅|||||||
-| 23 | Мархель Анастасия    |[ii00230288](./trunk/ii00230288/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||||
+| 22 | Владимир Котов       |[ii025022](./trunk/II-230284) |✅|✅|✅||||||
+| 23 | Мархель Анастасия    |[ii00230288](./trunk/ii00230288/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||
 | 24 | Нешумаев Александр   ||||||||||
-| 25 | Редькович Станислав  |[ii02525](./trunk/ii02525)|✅|✅|✅||||||
-| 26 | Рашед Аль-Хауатма    ||||||||||
+| 25 | Редькович Станислав  |[ii02525](./trunk/ii02525)|✅|✅||✅|||||
+| 26 | Рашед                ||||||||||
 | 27 | Юхнович Виктор       |[ii02527](./trunk/ii02527)|✅|✅|||||||
 
 ## Группа ИИ-26
@@ -53,7 +58,7 @@
 |3|Михаил Рулько|ii02615|:white_check_mark:|:white_check_mark:|||||||
 |4|Валерия Цурукова||||||||||
 |5|Вика Сугак|[ii230205](./trunk/ii230205/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||||
-|6|Даниил Турич|[ii02619](./trunk/ii02619/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||||
+|6|Даниил Турич|[ii02619](./trunk/ii02619/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||||
 |7|Влад Рудь|[ii02614](./trunk/ii02614/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||
 |8|Денис Шарубнёв|[ii02625](./trunk/ii02625/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||
 |9|Владислав Суховило |[ii02618](./trunk/ii02618/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||:white_check_mark:|:white_check_mark:|||
