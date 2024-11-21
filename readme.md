@@ -30,8 +30,8 @@
 | 12 | Милевский Артем      |[ii230289](trunk/ii230289)|✅|✅|||||||
 | 13 | Глеб Горбат          |[ii230278](trunk/ii230278)|✅|✅|✅||||||
 | 14 | Евгений Скачков      |[ii230297](./trunk/ii230297/)|:white_check_mark:|:white_check_mark:||||||||
-| 15 | Бажежа Анита         |[ii230276](./trunk/ii230276/)|✅|✅|✅||||||
-| 16 | Пальчастый Ярослав   |[ii02518](./trunk/ii02518/)|:white_check_mark:|:white_check_mark:|✅|||||||
+| 15 | Бажежа Анита         |[ii230276](./trunk/ii-230276/)|✅|✅|✅||||||
+| 16 | Пальчастый Ярослав   |[ii02518](./trunk/ii02518/)|:white_check_mark:|:white_check_mark:|✅|✅||||||
 | 17 | Максимчук Елизавета  |[ii02513](./trunk/ii02513/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
 | 18 | Денис Дулько         ||||||||||
 | 19 | Вячеслав Янушкевич   |[ii230300](./trunk/ii230300/)|:white_check_mark:|:white_check_mark:||||||||
@@ -53,7 +53,7 @@
 |3|Михаил Рулько|ii02615|:white_check_mark:|:white_check_mark:|||||||
 |4|Валерия Цурукова||||||||||
 |5|Вика Сугак|[ii230205](./trunk/ii230205/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||||
-|6|Даниил Турич|[ii02619](./trunk/ii02619/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||||
+|6|Даниил Турич|[ii02619](./trunk/ii02619/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||||
 |7|Влад Рудь|[ii02614](./trunk/ii02614/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||
 |8|Денис Шарубнёв|[ii02625](./trunk/ii02625/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||
 |9|Владислав Суховило |[ii02618](./trunk/ii02618/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||:white_check_mark:|:white_check_mark:|||
