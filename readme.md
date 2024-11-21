@@ -50,7 +50,7 @@
 |----|-----------------------------|------------------------------|----|----|----|----|----|----|----|---------|
 |1|Семенов Арсений|[ii02616](./trunk/ii02616/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||
 |2|Павел Яшков||:white_check_mark:|:white_check_mark:|||||||
-|3|Михаил Рулько||||||||||
+|3|Михаил Рулько|ii02615|:white_check_mark:|:white_check_mark:|||||||
 |4|Валерия Цурукова||||||||||
 |5|Вика Сугак|[ii230205](./trunk/ii230205/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||||
 |6|Даниил Турич|[ii02619](./trunk/ii02619/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||||
