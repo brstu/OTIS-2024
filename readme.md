@@ -25,7 +25,7 @@
 | 7  | Бекназарова Анжелика |[ii0230277](./trunk/ii0230277/)|✅|✅|||||||
 | 8  |Елец Юлия |[ii02508](trunk/ii02508)|✅|✅|✅||||||
 | 9  | Сидорчук Артём       ||||||||||
-| 10 | Кулик Яна            ||||||||||
+| 10 | Кулик Яна            |[ii0230285](./trunk/ii0230285/)|✅|✅|||||||
 | 11 | Борис Жук            ||||||||||
 | 12 | Милевский Артем      |[ii230289](trunk/ii230289)|✅|✅|||||||
 | 13 | Глеб Горбат          |[ii230278](trunk/ii230278)|✅|✅|✅||||||
@@ -65,7 +65,7 @@
 |15|Данилюк Тимофей|[ii02602](./trunk/ii02602/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||:white_check_mark:|||||
 |16|Заруцкий Владислав |[ii02604](./trunk/ii02604/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||||
 |17|Згера Егор|[ii02605](./trunk/ii02605/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||:white_check_mark:||||
-|18|Карпович Ксения|[ii02606](./trunk/ii02606/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||:white_check_mark:|||||
+|18|Карпович Ксения|[ii02606](./trunk/ii02606/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
 |19|Ковальчук Артем|[ii00230308](./trunk/ii00230308/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|✅|:white_check_mark:|||||
 |20|Кушнеревич Евгений|[ii02608](./trunk/ii02608/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
 |21|Пасевич Ксения|[ii230311](./trunk/ii230311/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||
