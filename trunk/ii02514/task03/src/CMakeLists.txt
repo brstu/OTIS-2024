@@ -8,4 +8,4 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 
 # Добавление исполняемого файла
-add_executable(task3 lab3.cpp)
+add_executable(${PROJECT_NAME} lab3.cpp)
