@@ -29,9 +29,9 @@ int main() {
     double desired_value;
     int iterations;
 
-    cout << "Âàøå æåëàåìîå çíà÷åíèå: ";
+    cout << "Ð’Ð°ÑˆÐµ Ð¶ÐµÐ»Ð°ÐµÐ¼Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ: ";
     cin >> desired_value;
-    cout << "Êîëè÷åñòâî èòåðàöèé: ";
+    cout << "ÐšÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð¸Ñ‚ÐµÑ€Ð°Ñ†Ð¸Ð¹: ";
     cin >> iterations;
 
     control_system(desired_value, iterations);
