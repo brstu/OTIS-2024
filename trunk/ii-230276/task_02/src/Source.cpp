@@ -46,7 +46,7 @@ public:
             r[1] = target - z[z.size() - 2];
             r[2] = target - z[z.size() - 3];
             v[0] = v[1] + total();
-            z.push_back(x * z[z.size() - 1] - y * z[z.size() - 2] 
+            z.push_back(x * z[z.size() - 1] - y * z[z.size() - 2]
                 * z[z.size() - 2] + w * v[0] + s * sin(v[1]));
             v[1] = v[0];
         }
@@ -72,7 +72,7 @@ int main()
     for (int i = 0; i < z_values.size(); i++)
     {
         double scaledValue = z_values[i] * target / z_values[z_values.size() - 1];
-        cout << i << " " << scaledValue << endl;
+        cout << i << "    " << scaledValue << endl;
     }
 
     return 0;
