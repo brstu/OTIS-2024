@@ -1,5 +1,9 @@
-project(otis3_1)
 
-set(SOURCES_TASK_03 task.cpp)
+cmake_minimum_required(VERSION 3.6)
 
-add_executable(NewExecutable ${SOURCES_TASK_03})
+project(LAB_03)
+
+set(SOURCES lab3.cpp)
+
+add_executable(MyExecut__ ${SOURCES})
+
