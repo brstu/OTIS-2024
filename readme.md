@@ -27,11 +27,11 @@
 | 9  | Сидорчук Артём       ||||||||||
 | 10 | Кулик Яна            |[ii0230285](./trunk/ii0230285/)|✅|✅|||||||
 | 11 | Борис Жук            ||||||||||
-| 12 | Милевский Артем      |[ii230289](trunk/ii230289)|✅|✅|||||||
+| 12 | Милевский Артем      |[ii0230289](./trunk/ii0230289/)|✅|✅|||||||
 | 13 | Глеб Горбат          |[ii230278](trunk/ii230278)|✅|✅|✅|✅|||||
-| 14 | Евгений Скачков      | [ii0230297](./trunk/ii0230297/)   |:white_check_mark:|:white_check_mark:|:white_check_mark:|||||||
-| 15 | Бажежа Анита         |[ii230276](./trunk/ii230276/)|✅|✅|✅||||||
-| 16 | Пальчастый Ярослав   |[ii02518](./trunk/ii02518/)|:white_check_mark:|:white_check_mark:|✅|✅||||||
+| 14 | Евгений Скачков      | [ii0230297](./trunk/ii0230297/)   |:white_check_mark:|:white_check_mark:|:white_check_mark:|||||||
+| 15 | Бажежа Анита         |[ii230276](./trunk/ii-230276/)|✅|✅|✅||||||
+| 16 | Пальчастый Ярослав   |[ii02518](./trunk/ii02518/)|:white_check_mark:|:white_check_mark:|✅|✅|✅|||||
 | 17 | Максимчук Елизавета  |[ii02513](./trunk/ii02513/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
 | 18 | Денис Дулько         ||||||||||
 | 19 | Вячеслав Янушкевич   |[ii230300](./trunk/ii230300/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||||
@@ -74,4 +74,3 @@
 |24|Прокопюк Артем|[ii02612](./trunk/ii02612/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||
 |25|Рубцов Дмитрий|[ii02613](./trunk/ii02613/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||
 |26|Ерошин Егор|[ii00230304](./trunk/ii00230304/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||
-
