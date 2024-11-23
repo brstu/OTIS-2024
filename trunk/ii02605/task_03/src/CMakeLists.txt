@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.5)
 project (otis_03)
 
 set(SOURCES
-    Source.cpp
+    library.cpp
 )
 
 set(HEADERS
