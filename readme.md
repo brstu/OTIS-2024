@@ -38,7 +38,7 @@
 | 20 | Максим Ящук          |[ii02520](./trunk/ii02520/)|✅|✅|||||||
 | 21 | Артем Левай          |[ii230286](./trunk/ii230286/)|:white_check_mark:|:white_check_mark:|||||||||
 | 22 | Владимир Котов       |[ii025022](./trunk/II-230284) |✅|✅|✅||||||
-| 23 | Мархель Анастасия    |[ii00230288](./trunk/ii00230288/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||
+| 23 | Мархель Анастасия    |[ii00230288](./trunk/ii00230288/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
 | 24 | Нешумаев Александр   ||||||||||
 | 25 | Редькович Станислав  |[ii02525](./trunk/ii02525)|✅|✅||✅|||||
 | 26 | Рашед                ||||||||||
@@ -74,4 +74,5 @@
 |24|Прокопюк Артем|[ii02612](./trunk/ii02612/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||
 |25|Рубцов Дмитрий|[ii02613](./trunk/ii02613/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||
 |26|Ерошин Егор|[ii00230304](./trunk/ii00230304/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
+
 
