@@ -4,7 +4,6 @@ project (otis_03)
 
 set(SOURCES
     Source.cpp
-    library.cpp
 )
 
 set(HEADERS
