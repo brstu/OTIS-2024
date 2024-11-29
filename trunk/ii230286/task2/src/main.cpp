@@ -1,41 +1,41 @@
 #include <iostream>
 
-struct PIDConfig {
-    double proportional;
-    double integral;
-    double derivative;
-    double gain;
-    double sampling_time;
-    double derivative_time;
-    double initial_time;
+struct PIDController {
+    double Kp; // Proportional gain
+    double Ki; // Integral gain
+    double Kd; // Derivative gain
+    double gain; // Overall gain
+    double sampleTime; // Sampling time
+    double derivativeTime; // Derivative time
+    double initialDelay; // Initial time delay
 };
 
-double computeControl(double target, double current, double delta_time, PIDConfig& config, double& last_error, double& accumulated_error) {
-    double error = target - current;
-    accumulated_error += error * delta_time;
-    double rate_of_change = (error - last_error) / delta_time;
+double computePID(double desiredValue, double actualValue, double timeStep, PIDController& controller, double& lastError, double& accumulatedError) {
+    double error = desiredValue - actualValue;
+    accumulatedError += error * timeStep;
+    double rateOfChange = (error - lastError) / timeStep;
 
-    double output_signal = config.proportional * error + config.integral * accumulated_error + config.derivative * rate_of_change;
+    double output = controller.Kp * error + controller.Ki * accumulatedError + controller.Kd * rateOfChange;
 
-    last_error = error;
-    return output_signal;
+    lastError = error;
+    return output;
 }
 
 int main() {
-    PIDConfig config = { 1.0, 0.1, 0.05, 0.0001, 100, 100, 1 };
+    PIDController controller = { 1.2, 0.1, 0.05, 0.0001, 0.1, 0.1, 1.0 };
 
-    double target_value = 100.0;
-    double current_value = 90.0;
-    double delta_time = 0.1;
+    double target = 100.0;
+    double current = 90.0;
+    double timeStep = 0.1;
 
-    double last_error = 0.0;
-    double accumulated_error = 0.0;
+    double lastError = 0.0;
+    double accumulatedError = 0.0;
 
-    for (int step = 0; step < 100; ++step) {
-        double control_signal = computeControl(target_value, current_value, delta_time, config, last_error, accumulated_error);
-        std::cout << control_signal << std::endl;
+    for (int iteration = 0; iteration < 100; ++iteration) {
+        double controlValue = computePID(target, current, timeStep, controller, lastError, accumulatedError);
+        std::cout << controlValue << std::endl;
 
-        current_value += control_signal * 0.1;
+        current += controlValue * 0.1; // Simulating the process response
     }
 
     return 0;
