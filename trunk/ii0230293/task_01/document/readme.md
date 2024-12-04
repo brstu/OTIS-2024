@@ -10,9 +10,9 @@
 <p align="right">Выполнил:</p>
 <p align="right">Студент 2 курса</p>
 <p align="right">Группы ИИ-25</p>
-<p align="right">Кулик Я. А.</p>
-<p align="right">Проверил:</p>
-<p align="right">Ситковец Я. С.</p>
+<p align="right">Подгайский Д.А.</p>
+<p align="right">Проверила:</p>
+<p align="right">Ситковец Я.С.</p>
 <br><br><br><br><br>
 <p align="center">Брест 2024</p>
 
@@ -35,7 +35,7 @@ $$\Large y_{\tau+1}=ay_{\tau}-by_{\tau-1}^2+cu_{\tau}+d\sin(u_{\tau-1})$$ (3)
 
 where $\tau$ – time discrete moments ($1,2,3{\dots}n$); $a,b,c,d$ – some constants.
 
-Task is to write program (**Julia**), which simulates this object temperature.
+Task is to write program (**С++**), which simulates this object temperature.
 
 <hr>
 
@@ -46,75 +46,88 @@ Task is to write program (**Julia**), which simulates this object temperature.
 #include <iostream>
 #include <cmath>
 
-using namespace std;
+using std::cin;
+using std::cout;
+using std::endl;
+
+const double A = 0.5;
+const double B = 0.01;
+const double C = 0.2;
+const double D = 0.4;
+
+// Линейная модель
+double linearModel(double temp, double control) {
+    return A * temp + B * control;
+}
+
+// Нелинейная модель
+double nonlinearModel(double temp, double control, double prevTemp, double prevControl) {
+    return A * temp - B * std::pow(prevTemp, 2) + C * control + D * std::sin(prevControl);
+}
 
 int main() {
-    setlocale(LC_ALL, "RUS");
+    setlocale(LC_ALL, "Russian");
 
-    double coeff_a = 1.0,
-        coeff_b = 0.5,
-        coeff_c = 0.1,
-        coeff_d = 0.9,
-        input_u = 1.5;
+    double currentTemp;
+    cout << "Введите начальное значение температуры: ";
+    cin >> currentTemp;
 
-    double initial_temp = 0, current_nonlinear_temp = 0, previous_nonlinear_temp = 0;
-    bool first_iteration = true; // используется для определения первой итерации
+    double nextTemp = currentTemp;
+    double previousTemp;
+    double controlSignal = 8.0;
+    double previousControlSignal = controlSignal;
 
-    cout << "Введите начальную температуру: ";
-    cin >> initial_temp;
+    const int iterationCount = 10;
 
-    current_nonlinear_temp = initial_temp;
-    int iterations = 10;
-
-    cout << "Линейная модель:" << endl;
-    for (int i = 0; i < iterations; i++) {
-        initial_temp = coeff_a * initial_temp + coeff_b * input_u;
-        cout << "=" << initial_temp << endl;
+    // Линейная модель
+    cout << "\nЛинейная модель:\n";
+    cout << "Шаг:\tТемпература\n";
+    for (int step = 1; step <= iterationCount; ++step) {
+        previousTemp = nextTemp;
+        nextTemp = linearModel(previousTemp, controlSignal);
+        cout << step << "\t" << nextTemp << endl;
     }
 
-    cout << "Нелинейная модель:" << endl;
-    for (int i = 0; i < iterations; i++) {
-        if (first_iteration) {
-            previous_nonlinear_temp = current_nonlinear_temp;
-            current_nonlinear_temp = coeff_a * current_nonlinear_temp + coeff_c * input_u + coeff_d * sin(input_u);
-            first_iteration = false; // первая итерация завершена
-            cout << "=" << current_nonlinear_temp << endl;
-        }
-        else {
-            double new_value = coeff_a * current_nonlinear_temp - coeff_b * pow(previous_nonlinear_temp, 2) + coeff_c * input_u + coeff_d * sin(input_u);
-            previous_nonlinear_temp = current_nonlinear_temp; // обновляем предыдущее значение
-            current_nonlinear_temp = new_value; // обновляем текущее значение
-            cout << "=" << current_nonlinear_temp << endl;
-        }
+    // Сброс температуры для нелинейной модели
+    nextTemp = currentTemp;
+    cout << "\nНелинейная модель:\n";
+    cout << "Шаг:\tТемпература\n";
+    for (int step = 1; step <= iterationCount; ++step) {
+        previousTemp = nextTemp;
+        nextTemp = nonlinearModel(previousTemp, controlSignal, currentTemp, previousControlSignal);
+        cout << step << "\t" << nextTemp << endl;
     }
 
     return 0;
 }
-
 ```     
 ```
-Вывод программы:
-Введите начальную температуру: 0
+Введите начальное значение температуры: 1
+
 Линейная модель:
-=0.75
-=1.5
-=2.25
-=3
-=3.75
-=4.5
-=5.25
-=6
-=6.75
-=7.5
+Шаг:    Температура
+1       0.58
+2       0.37
+3       0.265
+4       0.2125
+5       0.18625
+6       0.173125
+7       0.166563
+8       0.163281
+9       0.161641
+10      0.16082
+
 Нелинейная модель:
-=1.04775
-=2.09549
-=2.59435
-=1.44656
-=-0.871028
-=-0.869544
-=-0.201143
-=0.468549
-=1.49607
-=2.43404
-![График](./graphics.png)
+Шаг:    Температура
+1       2.48574
+2       3.22861
+3       3.60005
+4       3.78577
+5       3.87863
+6       3.92506
+7       3.94827
+8       3.95988
+9       3.96568
+10      3.96858
+```
+![График](./depend.png)
