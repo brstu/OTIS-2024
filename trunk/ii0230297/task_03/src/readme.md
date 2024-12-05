@@ -4,14 +4,13 @@
 #### Для чего нужен этот код
 Реализовывает программу, позволяющую редактировать графовые конструкции различных видов и производить над ними различные действия
 #### Функция данного кода
-Функция addNode добавляет узел, а removeNode наоборот удаляет уезл из графа по его имени
+Функция addNode добавляет узел
 ```C++
-void addNode(const std::string& name) {
-        nodes.push_back(new Node(name));
-    }
-    void removeNode(const std::string& name) {
-        auto it = std::remove_if(nodes.begin(), nodes.end(), [&](Node* n) { return n->name == name; });
-        nodes.erase(it, nodes.end());
-
+void addEdge(const std::string& fromName, const std::string& toName, bool directed) {
+        auto fromNode = findNode(fromName);
+        auto toNode = findNode(toName);
+        if (fromNode && toNode) {
+            edges.push_back(std::make_shared<Edge>(fromNode, toNode, directed));
+        }
     }
 ```
