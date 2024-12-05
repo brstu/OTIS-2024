@@ -1,161 +1,189 @@
+#include <cstdlib>
 #include <iostream>
 #include <vector>
-#include <string>
-#include <map>
-#include <fstream>
+#include <list>
+#include <queue>
+#include <unordered_set>
 
-class Edge {
-public:
-    std::string startNode;
-    std::string endNode;
-    std::string color;
-    // Other attributes for edge properties
-};
+using namespace std;
 
-class Node {
-public:
-    std::string name;
-    std::string content;
-    std::string color;
-    std::string imagePath;
-    // Other attributes for node properties
-};
-
-class Graph {
+class GraphStructure {
 private:
-    std::string name;
-    std::vector<Node> nodes;
-    std::vector<Edge> edges;
-    // Other attributes for graph properties
+    struct Node {
+        int id;
+        list<int> connections;
+    };
+
+    vector<Node> nodes;
+
+    // Check if there exists an Eulerian cycle
+    bool hasEulerianCircuit() const {
+        for (const auto& node : nodes) {
+            if (node.connections.size() % 2 != 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // Recursive function for Hamiltonian cycle search
+    bool searchHamiltonianCircuit(int current, int depth, vector<int>& path, vector<bool>& visited) {
+        if (depth == nodes.size()) {
+            return path.front() == path.back();
+        }
+
+        for (int neighbor : nodes[current].connections) {
+            if (!visited[neighbor]) {
+                visited[neighbor] = true;
+                path[depth] = neighbor;
+
+                if (searchHamiltonianCircuit(neighbor, depth + 1, path, visited)) {
+                    return true;
+                }
+
+                visited[neighbor] = false;
+            }
+        }
+        return false;
+    }
 
 public:
-    explicit Graph(const std::string& graphName) : name(graphName) {}
-
-    void AddNode(const Node& node) {
-        nodes.push_back(node);
+    // Add a new node
+    void addNode(int id) {
+        nodes.push_back({id, {}});
     }
 
-    void AddEdge(const Edge& edge) {
-        edges.push_back(edge);
+    // Add edges (undirected graph)
+    void addEdge(int start, int end) {
+        nodes[start].connections.push_back(end);
+        nodes[end].connections.push_back(start);
     }
 
-    void RemoveNode(const std::string& nodeName) {
-        for (auto it = nodes.begin(); it != nodes.end(); ++it) {
-            if (it->name == nodeName) {
-                nodes.erase(it);
-                break;
+    // Display the graph
+    void displayGraph() const {
+        for (const auto& node : nodes) {
+            cout << "Node " << node.id << ": ";
+            for (int connection : node.connections) {
+                cout << connection << " ";
             }
+            cout << endl;
         }
     }
 
-    void RemoveEdge(const std::string& startNode, const std::string& endNode) {
-        for (auto it = edges.begin(); it != edges.end(); ++it) {
-            if (it->startNode == startNode && it->endNode == endNode) {
-                edges.erase(it);
-                break;
+    // Get the Eulerian cycle
+    vector<int> findEulerianCircuit() {
+        vector<int> circuit;
+        if (!hasEulerianCircuit()) return circuit;
+
+        vector<bool> visited(nodes.size(), false);
+        list<int> stack;
+        stack.push_back(0);
+
+        while (!stack.empty()) {
+            int current = stack.back();
+            if (!nodes[current].connections.empty()) {
+                int next = nodes[current].connections.front();
+                stack.push_back(next);
+                nodes[current].connections.remove(next);
+                nodes[next].connections.remove(current);
+            } else {
+                circuit.push_back(current);
+                stack.pop_back();
             }
         }
+        return circuit;
     }
 
-    void SaveToFile(const std::string& fileName) {
-        std::ofstream file(fileName);
-        if (file.is_open()) {
-            file << "Graph: " << name << std::endl;
-            file << "Nodes:" << std::endl;
-            for (const auto& node : nodes) {
-                file << "Node: " << node.name << ", Content: " << node.content << ", Color: " << node.color << ", Image: " << node.imagePath << std::endl;
-            }
-            file << "Edges:" << std::endl;
-            for (const auto& edge : edges) {
-                file << "Edge: " << edge.startNode << " -> " << edge.endNode << ", Color: " << edge.color << std::endl;
-            }
-            file.close();
-        } else {
-            std::cout << "Unable to open file" << std::endl;
+    // Get the Hamiltonian cycle
+    vector<int> findHamiltonianCircuit() {
+        vector<int> path(nodes.size(), -1);
+        vector<bool> visited(nodes.size(), false);
+        visited[0] = true;
+        path[0] = 0;
+
+        if (searchHamiltonianCircuit(0, 1, path, visited)) {
+            return path;
         }
+        return {};
     }
 
-    void LoadFromFile(const std::string& fileName) {
-        std::ifstream file(fileName);
-        if (file.is_open()) {
-            std::string line;
-            while (getline(file, line)) {
-                if (line.find("Graph:") == 0) {
-                    name = line.substr(7);
-                } else if (line.find("Node:") == 0) {
-                    Node node;
-                    size_t pos = line.find(", Content:");
-                    node.name = line.substr(6, pos - 6);
-                    node.content = line.substr(pos + 11);
-                    pos = line.find(", Color:");
-                    node.color = line.substr(pos + 8);
-                    pos = line.find(", Image:");
-                    node.imagePath = line.substr(pos + 8);
-                    nodes.push_back(node);
-                } else if (line.find("Edge:") == 0) {
-                    Edge edge;
-                    size_t pos = line.find(" -> ");
-                    edge.startNode = line.substr(6, pos - 6);
-                    edge.endNode = line.substr(pos + 4);
-                    pos = line.find(", Color:");
-                    edge.color = line.substr(pos + 8);
-                    edges.push_back(edge);
+    // Construct a spanning tree (using BFS)
+    GraphStructure constructSpanningTree() const {
+        GraphStructure tree;
+        for (int i = 0; i < nodes.size(); ++i) {
+            tree.addNode(i);
+        }
+
+        vector<bool> visited(nodes.size(), false);
+        visited[0] = true;
+        queue<int> q;
+        q.push(0);
+
+        while (!q.empty()) {
+            int current = q.front();
+            q.pop();
+
+            for (int connection : nodes[current].connections) {
+                if (!visited[connection]) {
+                    visited[connection] = true;
+                    tree.addEdge(current, connection);
+                    q.push(connection);
                 }
             }
-            file.close();
-        } else {
-            std::cout << "Unable to open file" << std::endl;
         }
+        return tree;
     }
-
-    // Other methods for editing and performing actions on the graph
-};
-
-class GraphEditor {
-private:
-    std::map<std::string, Graph> graphs;
-
-public:
-    void CreateGraph(const std::string& graphName) {
-        graphs[graphName] = Graph(graphName);
-    }
-
-    void DeleteGraph(const std::string& graphName) {
-        graphs.erase(graphName);
-    }
-
-    void SaveGraph(const std::string& graphName, const std::string& fileName) {
-        auto it = graphs.find(graphName);
-        if (it != graphs.end()) {
-            it->second.SaveToFile(fileName);
-        } else {
-            std::cout << "Graph not found" << std::endl;
-        }
-    }
-
-    void LoadGraph(const std::string& graphName, const std::string& fileName) {
-        graphs[graphName].LoadFromFile(fileName);
-    }
-
-    Graph& GetGraph(const std::string& graphName) {
-        return graphs[graphName];
-    }
-
-    // Other methods for editing and performing actions on the graphs
 };
 
 int main() {
-    GraphEditor editor;
+    GraphStructure g;
 
-    // Example usage
-    editor.CreateGraph("MyGraph");
-    Node node1 = {"Node1", "Content of Node 1", "Red", "image1.png"};
-    Node node2 = {"Node2", "Content of Node 2", "Blue", "image2.png"};
-    Edge edge1 = {"Node1", "Node2", "Green"};
-    editor.GetGraph("MyGraph").AddNode(node1);
-    editor.GetGraph("MyGraph").AddNode(node2);
-    editor.GetGraph("MyGraph").AddEdge(edge1);
-    editor.SaveGraph("MyGraph", "mygraph.txt");
+    // Add nodes
+    g.addNode(0);
+    g.addNode(1);
+    g.addNode(2);
+    g.addNode(3);
+    g.addNode(4);
+
+    // Add edges
+    g.addEdge(0, 1);
+    g.addEdge(1, 2);
+    g.addEdge(2, 3);
+    g.addEdge(3, 4);
+    g.addEdge(4, 0);
+
+    // Display the graph
+    cout << "Graph structure:\n";
+    g.displayGraph();
+
+    // Check for Eulerian cycle
+    vector<int> eulerCircuit = g.findEulerianCircuit();
+    if (!eulerCircuit.empty()) {
+        cout << "Eulerian circuit: ";
+        for (int node : eulerCircuit) {
+            cout << node << " ";
+        }
+        cout << endl;
+    } else {
+        cout << "No Eulerian circuit found.\n";
+    }
+
+    // Check for Hamiltonian cycle
+    vector<int> hamiltonCircuit = g.findHamiltonianCircuit();
+    if (!hamiltonCircuit.empty()) {
+        cout << "Hamiltonian circuit: ";
+        for (int node : hamiltonCircuit) {
+            cout << node << " ";
+        }
+        cout << endl;
+    } else {
+        cout << "No Hamiltonian circuit found.\n";
+    }
+
+    // Construct a spanning tree
+    GraphStructure spanningTree = g.constructSpanningTree();
+    cout << "Spanning Tree structure:\n";
+    spanningTree.displayGraph();
 
     return 0;
 }
