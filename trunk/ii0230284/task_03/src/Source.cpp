@@ -10,7 +10,7 @@ private:
     vector<vector<int>> adjList;
 
 public:
-    Graph(int size) : adjList(size) {}
+    explicit Graph(int size) : adjList(size) {} //explicit constructor
 
     void addEdge(int u, int v) {
         adjList[u].push_back(v);
@@ -20,7 +20,9 @@ public:
     void printGraph() const {
         for (size_t i = 0; i < adjList.size(); ++i) {
             cout << "Node " << i << ": ";
-            for (int neighbor : adjList[i]) cout << neighbor << " ";
+            for (int neighbor : adjList[i]) {
+                cout << neighbor << " ";
+            }
             cout << endl;
         }
     }
@@ -30,7 +32,7 @@ public:
     }
 
     vector<int> findEulerianCycle() const {
-        if (!hasEulerianCycle()) return {};
+        if (!hasEulerianCycle()) { return {}; } //Added Braces for clarity
         vector<vector<int>> tempAdj = adjList;
         vector<int> cycle;
         vector<int> stack = { 0 };
@@ -40,7 +42,8 @@ public:
             if (!tempAdj[v].empty()) {
                 int u = tempAdj[v].back();
                 tempAdj[v].pop_back();
-                tempAdj[u].erase(remove(tempAdj[u].begin(), tempAdj[u].end(), v), tempAdj[u].end());
+                auto it = remove(tempAdj[u].begin(), tempAdj[u].end(), v);
+                tempAdj[u].erase(it, tempAdj[u].end());
                 stack.push_back(u);
             }
             else {
@@ -55,7 +58,7 @@ public:
         vector<int> path = { 0 };
         vector<bool> visited(adjList.size(), false);
         visited[0] = true;
-        if (hamiltonianDFS(0, path, visited)) return path;
+        if (hamiltonianDFS(0, path, visited)) { return path; } //Added Braces for clarity
         return {};
     }
 
@@ -81,12 +84,12 @@ public:
 
 private:
     bool hamiltonianDFS(int node, vector<int>& path, vector<bool>& visited) const {
-        if (path.size() == adjList.size()) return find(adjList[node].begin(), adjList[node].end(), path[0]) != adjList[node].end();
+        if (path.size() == adjList.size()) { return find(adjList[node].begin(), adjList[node].end(), path[0]) != adjList[node].end(); } //Added Braces for clarity
         for (int neighbor : adjList[node]) {
             if (!visited[neighbor]) {
                 visited[neighbor] = true;
                 path.push_back(neighbor);
-                if (hamiltonianDFS(neighbor, path, visited)) return true;
+                if (hamiltonianDFS(neighbor, path, visited)) { return true; } //Added Braces for clarity
                 path.pop_back();
                 visited[neighbor] = false;
             }
@@ -105,17 +108,17 @@ int main() {
 
     graph.printGraph();
     auto eulerCycle = graph.findEulerianCycle();
-    cout << (eulerCycle.empty() ? "No Eulerian Cycle found.\n" : "Eulerian Cycle: ");
+    cout << (eulerCycle.empty() ? "No Eulerian Cycle found.n" : "Eulerian Cycle: ");
     for (int node : eulerCycle) cout << node << " ";
     cout << endl;
 
     auto hamiltonCycle = graph.findHamiltonianCycle();
-    cout << (hamiltonCycle.empty() ? "No Hamiltonian Cycle found.\n" : "Hamiltonian Cycle: ");
+    cout << (hamiltonCycle.empty() ? "No Hamiltonian Cycle found.n" : "Hamiltonian Cycle: ");
     for (int node : hamiltonCycle) cout << node << " ";
     cout << endl;
 
     auto spanningTree = graph.buildSpanningTree();
-    cout << "Spanning Tree:\n";
+    cout << "Spanning Tree:n";
     spanningTree.printGraph();
     return 0;
 }
