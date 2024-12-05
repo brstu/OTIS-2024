@@ -2,12 +2,11 @@
 #include <vector>
 #include <cmath>
 
-using namespace std;
 
 // Константы для системы
 double alpha = 0.5,
         beta = 0.6,
-        gamma = 0.6,
+        asjdnskj = 0.6,
         delta = 0.6;
 
 double gain = 0.8,
@@ -24,14 +23,14 @@ double coeff_0 = gain * (1 + (time_delay / time_const_0)),
 // Функция для нелинейного управления
 void nonlinearControl() {
     const double initial_output = 2;
-    vector<double> outputs;
+    std::vector<double> outputs;
     outputs.push_back(initial_output);
 
     double control_signal = 1.0;
-    vector<double> error_values;
+    std::vector<double> error_values;
     error_values.push_back(desired_value - initial_output);
 
-    vector<double> previous_signals;
+    std::vector<double> previous_signals;
     previous_signals.push_back(control_signal);
 
     // Цикл до достижения желаемого значения
@@ -46,16 +45,16 @@ void nonlinearControl() {
 
         outputs.push_back(alpha * outputs.back() -
                           beta * (outputs.size() > 1 ? outputs[outputs.size() - 2] : initial_output) +
-                          gamma * control_signal +
+                          asjdnskj * control_signal +
                           delta * sin(previous_signals.back()));
 
         previous_signals.push_back(control_signal);
     }
 
     // Вывод результатов
-    cout << "Step Output | Error | Control Signal" << endl;
+    std::cout << "Step Output | Error | Control Signal" << std::endl;
     for (size_t i = 0; i < outputs.size(); ++i) {
-        cout << i + 1 << " | " << outputs[i] << " | " << (desired_value - outputs[i]) << " | " << previous_signals[i] << endl;
+        std::cout << i + 1 << " | " << outputs[i] << " | " << (desired_value - outputs[i]) << " | " << previous_signals[i] << std::endl;
     }
 }
 

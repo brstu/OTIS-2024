@@ -1,4 +1,3 @@
-# Graph Editor
 
 ## Описание проекта
 
@@ -88,3 +87,4 @@ Edges:
     A -> B [weight=2, color="black"];
     B -> C [weight=3];
     C -> A [weight=1];
+
