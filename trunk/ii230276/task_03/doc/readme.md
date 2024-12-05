@@ -66,18 +66,9 @@
  + планарный граф;
  + связанный граф;
 
-4. Формат текстового представления графа:
-<ГРАФ> ::= <ИМЯ ГРАФА> : UNORIENT | ORIENT ; <ОПИСАНИЕ УЗЛОВ> ;
-<ОПИСАНИЕ СВЯЗЕЙ> .
-<ИМЯ ГРАФА> ::= <ИДЕНТИФИКАТОР>
-<ОПИСАНИЕ УЗЛОВ> ::= <ИМЯ УЗЛА> [ , <ИМЯ УЗЛА> …]
-<ИМЯ УЗЛА> ::= <ИДЕНТИФИКАТОР>
-<ОПИСАНИЕ СВЯЗЕЙ> ::= <ИМЯ УЗЛА> -> <ИМЯ УЗЛА> [ , <ИМЯ УЗЛА> …] ;
-[<ОПИСАНИЕ СВЯЗЕЙ> …]
+4. Написать отчет по выполненной лабораторной работе в .md формате (readme.md). Разместить его в следующем каталоге: **trunk\ii0xxyy\task_03\doc** (где **xx** - номер группы, **yy** - номер студента, например **ii02102**). 
 
-5. Написать отчет по выполненной лабораторной работе в .md формате (readme.md). Разместить его в следующем каталоге: **trunk\ii0xxyy\task_03\doc** (где **xx** - номер группы, **yy** - номер студента, например **ii02102**). 
-
-6. Исходный код разработанной программы разместить в каталоге: **trunk\ii0xxyy\task_03\src**.
+5. Исходный код разработанной программы разместить в каталоге: **trunk\ii0xxyy\task_03\src**.
 
 ---
 
@@ -179,65 +170,4 @@ public:
         }
         return tree;
     }
-
-private:
-    bool hamiltonianDFS(int node, vector<int>& path, vector<bool>& visited) const {
-        if (path.size() == adjList.size()) {
-            return find(adjList[node].begin(), adjList[node].end(), path[0]) != adjList[node].end();
-        }
-
-        for (int neighbor : adjList[node]) {
-            if (!visited[neighbor]) {
-                visited[neighbor] = true;
-                path.push_back(neighbor);
-                if (hamiltonianDFS(neighbor, path, visited)) {
-                    return true;
-                }
-                path.pop_back();
-                visited[neighbor] = false;
-            }
-        }
-        return false;
-    }
-};
-
-int main() {
-    Graph graph(5);
-
-    graph.addEdge(0, 1);
-    graph.addEdge(1, 2);
-    graph.addEdge(2, 3);
-    graph.addEdge(3, 4);
-    graph.addEdge(4, 0);
-
-    graph.printGraph();
-
-    auto eulerCycle = graph.findEulerianCycle();
-    if (!eulerCycle.empty()) {
-        std::cout << "Eulerian Cycle: ";
-        for (int node : eulerCycle) {
-            std::cout << node << " ";
-        }
-        std::cout << endl;
-    }
-    else {
-        std::cout << "No Eulerian Cycle found." << endl;
-    }
-
-    auto hamiltonCycle = graph.findHamiltonianCycle();
-    if (!hamiltonCycle.empty()) {
-        std::cout << "Hamiltonian Cycle: ";
-        for (int node : hamiltonCycle) {
-            std::cout << node << " ";
-        }
-        std::cout << endl;
-    }
-    else {
-        std::cout << "No Hamiltonian Cycle found." << endl;
-    }
-    auto spanningTree = graph.buildSpanningTree();
-    std::cout << "Spanning Tree:" << endl;
-    spanningTree.printGraph();
-
-    return 0;
-}
+```
