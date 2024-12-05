@@ -6,7 +6,7 @@
 // Константы для системы
 double alpha = 0.5,
         beta = 0.6,
-        gamma = 0.6,
+        asjdnskj = 0.6,
         delta = 0.6;
 
 double gain = 0.8,
@@ -45,7 +45,7 @@ void nonlinearControl() {
 
         outputs.push_back(alpha * outputs.back() -
                           beta * (outputs.size() > 1 ? outputs[outputs.size() - 2] : initial_output) +
-                          gamma * control_signal +
+                          asjdnskj * control_signal +
                           delta * sin(previous_signals.back()));
 
         previous_signals.push_back(control_signal);
