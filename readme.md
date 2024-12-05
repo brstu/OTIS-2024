@@ -1,3 +1,4 @@
+
 # Общая теория интеллектуальных систем
 
 ## Задания
@@ -28,19 +29,19 @@
 | 10 | Кулик Яна            |[ii0230285](./trunk/ii0230285/)|✅|✅|||||||
 | 11 | Борис Жук            ||||||||||
 | 12 | Милевский Артем      |[ii230289](trunk/ii230289)|✅|✅|✅||||||
-| 13 | Глеб Горбат          |[ii230278](trunk/ii230278)|✅|✅|✅|✅|||||
-| 14 | Евгений Скачков      |[ii0230297](./trunk/ii0230297/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||||
-| 15 | Бажежа Анита         |[ii230276](./trunk/ii-230276/)|✅|✅|✅||||||
+| 13 | Глеб Горбат          |[ii0230278](./trunk/ii0230278/)|✅|✅|✅|✅|✅||||
+| 14 | Евгений Скачков      | [ii0230297](./trunk/ii0230297/)   |:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||
+| 15 | Бажежа Анита         |[ii230276](./trunk/ii230276/)|✅|✅|✅||✅||||
 | 16 | Пальчастый Ярослав   |[ii02518](./trunk/ii02518/)|:white_check_mark:|:white_check_mark:|✅|✅|✅|||||
 | 17 | Максимчук Елизавета  |[ii02513](./trunk/ii02513/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
 | 18 | Денис Дулько         ||||||||||
-| 19 | Вячеслав Янушкевич   |[ii230300](./trunk/ii230300/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||
+| 19 | Вячеслав Янушкевич   |[ii230300](./trunk/ii230300/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
 | 20 | Максим Ящук          |[ii02520](./trunk/ii02520/)|✅|✅|||||||
 | 21 | Артем Левай          |[ii230286](./trunk/ii230286/)|:white_check_mark:|:white_check_mark:|||||||||
-| 22 | Владимир Котов       |[ii025022](./trunk/II-230284) |✅|✅|✅||||||
+| 22 | Владимир Котов       |[ii025022](./trunk/ii0230284) |✅|✅|✅|✅|✅||||
 | 23 | Мархель Анастасия    |[ii00230288](./trunk/ii00230288/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
-| 24 | Нешумаев Александр   ||||||||||
-| 25 | Редькович Станислав  |[ii02525](./trunk/ii02525)|✅|✅||✅|||||
+| 24 | Нешумаев Александр   |[ii002517](./trunk/ii002517/)|✅|✅|||||||
+| 25 | Редькович Станислав  |[ii02525](./trunk/ii02525)|✅|✅|✅|✅|✅||||
 | 26 | Рашед Аль-Хауатма    ||||||||||
 | 27 | Юхнович Виктор       |[ii02527](./trunk/ii02527)|✅|✅|✅|✅|||||
 
@@ -74,5 +75,3 @@
 |24|Прокопюк Артем|[ii02612](./trunk/ii02612/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||
 |25|Рубцов Дмитрий|[ii02613](./trunk/ii02613/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
 |26|Ерошин Егор|[ii00230304](./trunk/ii00230304/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
-
-
