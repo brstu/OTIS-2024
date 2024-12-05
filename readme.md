@@ -1,3 +1,4 @@
+
 # Общая теория интеллектуальных систем
 
 ## Задания
@@ -28,7 +29,7 @@
 | 10 | Кулик Яна            |[ii0230285](./trunk/ii0230285/)|✅|✅|||||||
 | 11 | Борис Жук            ||||||||||
 | 12 | Милевский Артем      |[ii230289](trunk/ii230289)|✅|✅|✅||||||
-| 13 | Глеб Горбат          |[ii230278](trunk/ii230278)|✅|✅|✅|✅|||||
+| 13 | Глеб Горбат          |[ii0230278](./trunk/ii0230278/)|✅|✅|✅|✅|✅||||
 | 14 | Евгений Скачков      |[ii0230297](./trunk/ii0230297/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||||
 | 15 | Бажежа Анита         |[ii230276](./trunk/ii-230276/)|✅|✅|✅||||||
 | 16 | Пальчастый Ярослав   |[ii02518](./trunk/ii02518/)|:white_check_mark:|:white_check_mark:|✅|✅|✅|||||
@@ -74,5 +75,3 @@
 |24|Прокопюк Артем|[ii02612](./trunk/ii02612/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||
 |25|Рубцов Дмитрий|[ii02613](./trunk/ii02613/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
 |26|Ерошин Егор|[ii00230304](./trunk/ii00230304/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
-
-
