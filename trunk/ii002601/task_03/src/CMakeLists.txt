@@ -1,14 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required (VERSION 3.0)
 
-project (otis_03)
-
-set(SOURCES
-    Source.cpp
-    library.cpp
-)
-
-set(HEADERS
-    header.h
-)
-
-add_executable(OTIS_03 ${SOURCES} ${HEADERS})
+project (lab_03_ii002601)
+add_executable ( ${PROJECT_NAME} otis3.cpp)
