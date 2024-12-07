@@ -30,20 +30,20 @@
 | 11 | Борис Жук            ||||||||||
 | 12 | Милевский Артем      |[ii230289](trunk/ii230289)|✅|✅|✅||||||
 | 13 | Глеб Горбат          |[ii0230278](./trunk/ii0230278/)|✅|✅|✅|✅|✅||||
-| 14 | Евгений Скачков      |[ii0230297](./trunk/ii0230297/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||||
-| 15 | Бажежа Анита         |[ii230276](./trunk/ii-230276/)|✅|✅|✅||||||
+| 14 | Евгений Скачков      | [ii0230297](./trunk/ii0230297/)   |:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||
+| 15 | Бажежа Анита         |[ii230276](./trunk/ii230276/)|✅|✅|✅||✅||||
 | 16 | Пальчастый Ярослав   |[ii02518](./trunk/ii02518/)|:white_check_mark:|:white_check_mark:|✅|✅|✅|||||
 | 17 | Максимчук Елизавета  |[ii02513](./trunk/ii02513/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
 | 18 | Денис Дулько         ||||||||||
 | 19 | Вячеслав Янушкевич   |[ii230300](./trunk/ii230300/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
 | 20 | Максим Ящук          |[ii02520](./trunk/ii02520/)|✅|✅|||||||
 | 21 | Артем Левай          |[ii230286](./trunk/ii230286/)|:white_check_mark:|:white_check_mark:|||||||||
-| 22 | Владимир Котов       |[ii025022](./trunk/ii0230284) |✅|✅|✅|✅|||||
+| 22 | Владимир Котов       |[ii025022](./trunk/ii0230284) |✅|✅|✅|✅|✅||||
 | 23 | Мархель Анастасия    |[ii00230288](./trunk/ii00230288/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
 | 24 | Нешумаев Александр   |[ii002517](./trunk/ii002517/)|✅|✅|||||||
 | 25 | Редькович Станислав  |[ii02525](./trunk/ii02525)|✅|✅|✅|✅|✅||||
 | 26 | Рашед Аль-Хауатма ||||||||||
-| 27 | Юхнович Виктор       |[ii02527](./trunk/ii02527)|✅|✅|||||||
+| 27 | Юхнович Виктор       |[ii02527](./trunk/ii02527)|✅|✅✅|||||||
 
 ## Группа ИИ-26
 
