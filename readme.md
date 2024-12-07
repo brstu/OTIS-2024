@@ -34,7 +34,7 @@
 | 15 | Бажежа Анита         |[ii230276](./trunk/ii230276/)|✅|✅|✅||✅||||
 | 16 | Пальчастый Ярослав   |[ii02518](./trunk/ii02518/)|:white_check_mark:|:white_check_mark:|✅|✅|✅|||||
 | 17 | Максимчук Елизавета  |[ii02513](./trunk/ii02513/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
-| 18 | Денис Дулько         ||||||||||
+| 18 | Денис Дулько         |[ii230280](./trunk/ii230280/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||
 | 19 | Вячеслав Янушкевич   |[ii230300](./trunk/ii230300/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
 | 20 | Максим Ящук          |[ii02520](./trunk/ii02520/)|✅|✅|||||||
 | 21 | Артем Левай          |[ii230286](./trunk/ii230286/)|:white_check_mark:|:white_check_mark:|||||||||
@@ -64,14 +64,14 @@
 |13|Алексей Хитренко||||||||||
 |14|Вирко Егор|[ii002601](./trunk/ii002601/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||:white_check_mark:||||
 |15|Данилюк Тимофей|[ii02602](./trunk/ii02602/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||:white_check_mark:|||||
-|16|Заруцкий Владислав |[ii02604](./trunk/ii02604/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||||
+|16|Заруцкий Владислав |[ii02604](./trunk/ii02604/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||:white_check_mark:|||||
 |17|Згера Егор|[ii02605](./trunk/ii02605/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||
 |18|Карпович Ксения|[ii02606](./trunk/ii02606/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
 |19|Ковальчук Артем|[ii00230308](./trunk/ii00230308/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|✅|:white_check_mark:|||||
 |20|Кушнеревич Евгений|[ii02608](./trunk/ii02608/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
 |21|Пасевич Ксения|[ii230311](./trunk/ii230311/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||
 |22|Петручик Дмитрий|[ii02610](./trunk/ii02610/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||
-|23|Пилипук Максим|[ii02611](./trunk/ii02611/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||
+|23|Пилипук Максим|[ii02611](./trunk/ii02611/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||:white_check_mark:||||
 |24|Прокопюк Артем|[ii02612](./trunk/ii02612/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||
 |25|Рубцов Дмитрий|[ii02613](./trunk/ii02613/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
 |26|Ерошин Егор|[ii00230304](./trunk/ii00230304/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
