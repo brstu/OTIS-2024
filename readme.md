@@ -71,7 +71,7 @@
 |20|Кушнеревич Евгений|[ii02608](./trunk/ii02608/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
 |21|Пасевич Ксения|[ii230311](./trunk/ii230311/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||
 |22|Петручик Дмитрий|[ii02610](./trunk/ii02610/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||
-|23|Пилипук Максим|[ii02611](./trunk/ii02611/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||
+|23|Пилипук Максим|[ii02611](./trunk/ii02611/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||:white_check_mark:||||
 |24|Прокопюк Артем|[ii02612](./trunk/ii02612/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||
 |25|Рубцов Дмитрий|[ii02613](./trunk/ii02613/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
 |26|Ерошин Егор|[ii00230304](./trunk/ii00230304/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
