@@ -2,7 +2,7 @@
 
 int main() {
 	
-	system("python main.py");
+	system("python lab3.py");
 
 
 	return 0;
