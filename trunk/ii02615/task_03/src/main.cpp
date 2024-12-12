@@ -10,33 +10,33 @@ class Graph {
 private:
     struct Node {
         int id;
-        list<int> neighbors;
+        list<int> adjNodes;
     };
 
     vector<Node> nodes;
 
-    bool hasEulerian() const {
+    bool isEvenDegree() const {
         for (const auto& node : nodes) {
-            if (node.neighbors.size() % 2 != 0) {
+            if (node.adjNodes.size() % 2 != 0) {
                 return false;
             }
         }
         return true;
     }
 
-    bool findHamiltonian(int current, int depth, vector<int>& cycle, vector<bool>& visited) {
+    bool findHamiltonianCycle(int node, int depth, vector<int>& cycle, vector<bool>& visited) {
         if (depth == nodes.size()) {
             return cycle.front() == cycle.back();
         }
 
-        for (int neighbor : nodes[current].neighbors) {
-            if (!visited[neighbor]) {
-                visited[neighbor] = true;
-                cycle[depth] = neighbor;
-                if (findHamiltonian(neighbor, depth + 1, cycle, visited)) {
+        for (int adj : nodes[node].adjNodes) {
+            if (!visited[adj]) {
+                visited[adj] = true;
+                cycle[depth] = adj;
+                if (findHamiltonianCycle(adj, depth + 1, cycle, visited)) {
                     return true;
                 }
-                visited[neighbor] = false;
+                visited[adj] = false;
             }
         }
         return false;
@@ -48,15 +48,15 @@ public:
     }
 
     void addEdge(int start, int end) {
-        nodes[start].neighbors.push_back(end);
-        nodes[end].neighbors.push_back(start);
+        nodes[start].adjNodes.push_back(end);
+        nodes[end].adjNodes.push_back(start);
     }
 
-    void displayGraph() const {
+    void showGraph() const {
         for (const auto& node : nodes) {
             cout << "Node " << node.id << ": ";
-            for (int neighbor : node.neighbors) {
-                cout << neighbor << " ";
+            for (int nei : node.adjNodes) {
+                cout << nei << " ";
             }
             cout << endl;
         }
@@ -64,21 +64,21 @@ public:
 
     vector<int> getEulerianCycle() {
         vector<int> cycle;
-        if (!hasEulerian()) return cycle;
+        if (!isEvenDegree()) return cycle;
 
         vector<bool> visited(nodes.size(), false);
         list<int> stack;
         stack.push_back(0);
 
         while (!stack.empty()) {
-            int current = stack.back();
-            if (!nodes[current].neighbors.empty()) {
-                int next = nodes[current].neighbors.front();
+            int cur = stack.back();
+            if (!nodes[cur].adjNodes.empty()) {
+                int next = nodes[cur].adjNodes.front();
                 stack.push_back(next);
-                nodes[current].neighbors.remove(next);
-                nodes[next].neighbors.remove(current);
+                nodes[cur].adjNodes.remove(next);
+                nodes[next].adjNodes.remove(cur);
             } else {
-                cycle.push_back(current);
+                cycle.push_back(cur);
                 stack.pop_back();
             }
         }
@@ -91,13 +91,13 @@ public:
         visited[0] = true;
         cycle[0] = 0;
 
-        if (findHamiltonian(0, 1, cycle, visited)) {
+        if (findHamiltonianCycle(0, 1, cycle, visited)) {
             return cycle;
         }
         return {};
     }
 
-    Graph createSpanningTree() const {
+    Graph getSpanningTree() const {
         Graph spanningTree;
         for (int i = 0; i < nodes.size(); ++i) {
             spanningTree.addNode(i);
@@ -105,18 +105,18 @@ public:
 
         vector<bool> visited(nodes.size(), false);
         visited[0] = true;
-        queue<int> queue;
-        queue.push(0);
+        queue<int> q;
+        q.push(0);
 
-        while (!queue.empty()) {
-            int current = queue.front();
-            queue.pop();
+        while (!q.empty()) {
+            int cur = q.front();
+            q.pop();
 
-            for (int neighbor : nodes[current].neighbors) {
-                if (!visited[neighbor]) {
-                    visited[neighbor] = true;
-                    spanningTree.addEdge(current, neighbor);
-                    queue.push(neighbor);
+            for (int nei : nodes[cur].adjNodes) {
+                if (!visited[nei]) {
+                    visited[nei] = true;
+                    spanningTree.addEdge(cur, nei);
+                    q.push(nei);
                 }
             }
         }
@@ -126,24 +126,24 @@ public:
 
 int main() {
     setlocale(LC_ALL, "RUSSIAN");
-    Graph graph;
+    Graph g;
 
-    graph.addNode(0);
-    graph.addNode(1);
-    graph.addNode(2);
-    graph.addNode(3);
-    graph.addNode(4);
+    g.addNode(0);
+    g.addNode(1);
+    g.addNode(2);
+    g.addNode(3);
+    g.addNode(4);
 
-    graph.addEdge(0, 1);
-    graph.addEdge(1, 2);
-    graph.addEdge(2, 3);
-    graph.addEdge(3, 4);
-    graph.addEdge(4, 0);
+    g.addEdge(0, 1);
+    g.addEdge(1, 2);
+    g.addEdge(2, 3);
+    g.addEdge(3, 4);
+    g.addEdge(4, 0);
 
     cout << "Структура графа:\n";
-    graph.displayGraph();
+    g.showGraph();
 
-    vector<int> eulerCycle = graph.getEulerianCycle();
+    vector<int> eulerCycle = g.getEulerianCycle();
     if (!eulerCycle.empty()) {
         cout << "Эйлеров цикл: ";
         for (int node : eulerCycle) {
@@ -154,7 +154,7 @@ int main() {
         cout << "Эйлеров цикл не найден.\n";
     }
 
-    vector<int> hamiltonianCycle = graph.getHamiltonianCycle();
+    vector<int> hamiltonianCycle = g.getHamiltonianCycle();
     if (!hamiltonianCycle.empty()) {
         cout << "Гамильтонов цикл: ";
         for (int node : hamiltonianCycle) {
@@ -165,9 +165,9 @@ int main() {
         cout << "Гамильтонов цикл не найден.\n";
     }
 
-    Graph spanningTree = graph.createSpanningTree();
+    Graph spanningTree = g.getSpanningTree();
     cout << "Создание структуры дерева:\n";
-    spanningTree.displayGraph();
+    spanningTree.showGraph();
 
     return 0;
 }
