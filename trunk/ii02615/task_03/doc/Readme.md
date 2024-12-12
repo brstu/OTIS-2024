@@ -34,184 +34,184 @@
 #include <vector>
 #include <list>
 #include <queue>
-#include <unordered_set>
 
 using namespace std;
 
-class G {
+class AbC {  // Изменено название класса
 private:
-    struct N {
-        int id;
-        list<int> adjNodes;
+    struct XyZ {  // Изменено название структуры
+        int a;
+        list<int> b;
     };
 
-    vector<N> nodes;
-
-    bool isE() const {
-        for (const auto& node : nodes) {
-            if (node.adjNodes.size() % 2 != 0) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-
-    bool findH(int node, int depth, vector<int>& cycle, vector<bool>& visited) {
-        if (depth == nodes.size()) {
-            return cycle.front() == cycle.back();
-        }
-
-        for (int adj : nodes[node].adjNodes) {
-            if (!visited[adj]) {
-                visited[adj] = true;
-                cycle[depth] = adj;
-                if (findH(adj, depth + 1, cycle, visited)) {
-                    return true;
-                }
-                visited[adj] = false;
-            }
-        }
-        return false;
-    }
+    vector<XyZ> c;
 
 public:
-   
-    void addN(int id) {
-        nodes.push_back({ id, {} });
-    }
+    void dE(int f);
+    void gH(int i, int j);
+    void iJ() const;
+    vector<int> kL();
+    vector<int> mN();
+    AbC oP() const;
 
-  
-    void addE(int start, int end) {
-        nodes[start].adjNodes.push_back(end);
-        nodes[end].adjNodes.push_back(start);
-    }
-
-
-    void showG() const {
-        for (const auto& node : nodes) {
-            cout << "Node " << node.id << ": ";
-            for (int nei : node.adjNodes) {
-                cout << nei << " ";
-            }
-            cout << endl;
-        }
-    }
-
-    vector<int> getE() {
-        vector<int> c;
-        if (!isE()) return c;
-
-        vector<bool> visited(nodes.size(), false);
-        list<int> s;
-        s.push_back(0);
-
-        while (!s.empty()) {
-            int cur = s.back();
-            if (!nodes[cur].adjNodes.empty()) {
-                int next = nodes[cur].adjNodes.front();
-                s.push_back(next);
-                nodes[cur].adjNodes.remove(next);
-                nodes[next].adjNodes.remove(cur);
-            }
-            else {
-                c.push_back(cur);
-                s.pop_back();
-            }
-        }
-        return c;
-    }
-
- 
-    vector<int> getH() {
-        vector<int> c(nodes.size(), -1);
-        vector<bool> v(nodes.size(), false);
-        v[0] = true;
-        c[0] = 0;
-
-        if (findH(0, 1, c, v)) {
-            return c;
-        }
-        return {};
-    }
-
-    G getSpanningTree() const {
-        G sT;
-        for (int i = 0; i < nodes.size(); ++i) {
-            sT.addN(i);
-        }
-
-        vector<bool> v(nodes.size(), false);
-        v[0] = true;
-        queue<int> q;
-        q.push(0);
-
-        while (!q.empty()) {
-            int cur = q.front();
-            q.pop();
-
-            for (int nei : nodes[cur].adjNodes) {
-                if (!v[nei]) {
-                    v[nei] = true;
-                    sT.addE(cur, nei);
-                    q.push(nei);
-                }
-            }
-        }
-        return sT;
-    }
+    bool qR() const;
+    bool sT(int u, int v, vector<int>& w, vector<bool>& x);
 };
+
+void AbC::dE(int f) {
+    c.push_back({ f, {} });
+}
+
+void AbC::gH(int i, int j) {
+    c[i].b.push_back(j);
+    c[j].b.push_back(i);
+}
+
+void AbC::iJ() const {
+    for (const auto& node : c) {
+        cout << "Node " << node.a << ": ";
+        for (int neighbor : node.b) {
+            cout << neighbor << " ";
+        }
+        cout << endl;
+    }
+}
+
+vector<int> AbC::kL() {
+    vector<int> cycle;
+    if (!qR()) return cycle;
+
+    vector<bool> visited(c.size(), false);
+    list<int> stack;
+    stack.push_back(0);
+
+    while (!stack.empty()) {
+        int current = stack.back();
+        if (!c[current].b.empty()) {
+            int next = c[current].b.front();
+            stack.push_back(next);
+            c[current].b.remove(next);
+            c[next].b.remove(current);
+        } else {
+            cycle.push_back(current);
+            stack.pop_back();
+        }
+    }
+    return cycle;
+}
+
+vector<int> AbC::mN() {
+    vector<int> cycle(c.size(), -1);
+    vector<bool> visited(c.size(), false);
+    visited[0] = true;
+    cycle[0] = 0;
+
+    if (sT(0, 1, cycle, visited)) {
+        return cycle;
+    }
+    return {};
+}
+
+AbC AbC::oP() const {
+    AbC tree;
+    for (int i = 0; i < c.size(); ++i) {
+        tree.dE(i);
+    }
+
+    vector<bool> visited(c.size(), false);
+    visited[0] = true;
+    queue<int> q;
+    q.push(0);
+
+    while (!q.empty()) {
+        int current = q.front();
+        q.pop();
+
+        for (int neighbor : c[current].b) {
+            if (!visited[neighbor]) {
+                visited[neighbor] = true;
+                tree.gH(current, neighbor);
+                q.push(neighbor);
+            }
+        }
+    }
+    return tree;
+}
+
+bool AbC::qR() const {
+    for (const auto& node : c) {
+        if (node.b.size() % 2 != 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool AbC::sT(int u, int v, vector<int>& cycle, vector<bool>& visited) {
+    if (v == c.size()) {
+        return cycle.front() == cycle.back();
+    }
+
+    for (int neighbor : c[u].b) {
+        if (!visited[neighbor]) {
+            visited[neighbor] = true;
+            cycle[v] = neighbor;
+            if (sT(neighbor, v + 1, cycle, visited)) {
+                return true;
+            }
+            visited[neighbor] = false;
+        }
+    }
+    return false;
+}
 
 int main() {
     setlocale(LC_ALL, "RUSSIAN");
-    G g;
+    AbC xyz;  // Изменено название объекта класса
 
+    xyz.dE(0);
+    xyz.dE(1);
+    xyz.dE(2);
+    xyz.dE(3);
+    xyz.dE(4);
 
-    g.addN(0);
-    g.addN(1);
-    g.addN(2);
-    g.addN(3);
-    g.addN(4);
-
-
-    g.addE(0, 1);
-    g.addE(1, 2);
-    g.addE(2, 3);
-    g.addE(3, 4);
-    g.addE(4, 0);
+    xyz.gH(0, 1);
+    xyz.gH(1, 2);
+    xyz.gH(2, 3);
+    xyz.gH(3, 4);
+    xyz.gH(4, 0);
 
     cout << "Структура графа:\n";
-    g.showG();
+    xyz.iJ();
 
-    vector<int> eC = g.getE();
-    if (!eC.empty()) {
+    vector<int> eulerCycle = xyz.kL();
+    if (!eulerCycle.empty()) {
         cout << "Эйлеров цикл: ";
-        for (int node : eC) {
+        for (int node : eulerCycle) {
             cout << node << " ";
         }
         cout << endl;
-    }
-    else {
+    } else {
         cout << "Эйлеров цикл не найден.\n";
     }
-    vector<int> hC = g.getH();
-    if (!hC.empty()) {
+
+    vector<int> hamiltonianCycle = xyz.mN();
+    if (!hamiltonianCycle.empty()) {
         cout << "Гамильтонов цикл: ";
-        for (int node : hC) {
+        for (int node : hamiltonianCycle) {
             cout << node << " ";
         }
         cout << endl;
-    }
-    else {
+    } else {
         cout << "Гамильтонов цикл не найден.\n";
     }
-    G sT = g.getSpanningTree();
+
+    AbC spanningTree = xyz.oP();  // Изменено название объекта класса
     cout << "Создание структуры дерева:\n";
-    sT.showG();
+    spanningTree.iJ();
 
     return 0;
 }
-
 
 
 
