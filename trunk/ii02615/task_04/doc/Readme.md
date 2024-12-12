@@ -30,26 +30,29 @@
 
 # Выполнение #
 
-Установив Docker, и установив по руководству проект NIKA, а затем и запустив, я приобрел некоторый опыт работы с этим проектом. 
+Выполнение
+После установки Docker и настройки проекта NIKA по руководству, я получил полезный опыт работы с данным проектом.
 
-Установка:
-```
+Установка
+
+
+
 git clone -c core.longpaths=true -c core.autocrlf=true https://github.com/ostis-apps/nika
 cd nika
 git submodule update --init --recursive
 docker compose pull
-```
-Необходимо дополнительно установить [Docker](https://docs.docker.com/)(c плагином Compose)
+Не забудьте дополнительно установить Docker (с плагином Compose).
 
-Запуск:
-```
+Запуск
+
+
+
 docker compose up --no-build
-```
-Эта команда запуcкает 2 веб-интерфейса:
+Эта команда запускает два веб-интерфейса:
 
-sc-web: ```localhost:8000```
-
-dialogue web UI - ```localhost:3033```
+sc-web: localhost:8000
+dialogue web UI: localhost:3033
+Результат
 
 # Результат #
 
