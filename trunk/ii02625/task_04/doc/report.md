@@ -42,12 +42,12 @@ dialogue web UI - ```localhost:3033```
  Результат 
 
 sc-web - ```localhost:8000```:
-![Результат:](1.png)
+![Результат:](image1.jpeg)
 
 
 dialogue web UI - ```localhost:3033```:
-![Результат:](2.png)
+![Результат:](image2.jpeg)
 
 
 Docker Desktop:
-![Результат:](3.png)
+![Результат:](image3.jpeg)
