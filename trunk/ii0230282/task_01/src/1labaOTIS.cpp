@@ -24,7 +24,7 @@ int main() {
     double y_prev;
     double u = 8;
     double u_prev = u;
-    int steps = 10;
+    int steps = 20;
 
     std::cout << "Линейная модель" << std::endl;
     std::cout << "Время:\tТемпература:" << std::endl;
