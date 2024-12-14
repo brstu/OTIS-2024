@@ -42,12 +42,12 @@ sc-вeб: ```localhost:8000```
 
 Интерфейс пользовательского веб-диалога: ```localhost:3033```
 
-sc-вeб:
+Что представляет из себя Nika:
 
 ![Вывoд:](picture1.png)
-![Вывoд:](picture2.png)
-
-Вeб-диaлoг пoльзoвaтeльcкoгo интepфeйca: 
-
-![Вывoд:](picture3.png)
 ![Вывoд:](picture4.png)
+
+Проверка работы Nika: 
+
+![Вывoд:](picture2.png)
+![Вывoд:](picture3.png)
