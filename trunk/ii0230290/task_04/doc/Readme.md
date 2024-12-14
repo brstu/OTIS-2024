@@ -45,7 +45,6 @@ sc-вeб: ```localhost:8000```
 Что представляет из себя Nika:
 
 ![Вывoд:](picture1.png)
-![Вывoд:](picture4.png)
 
 Проверка работы Nika: 
 
