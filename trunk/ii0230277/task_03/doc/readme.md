@@ -29,6 +29,7 @@
 # Выполнение задания #
 
 Код программы:
+
 ```cpp
 #include <iostream>
 #include <string>
@@ -38,6 +39,7 @@
 #include <limits>
 #include <iomanip>
 #include <algorithm>
+
 using namespace std;
 
 class Node {
@@ -73,10 +75,10 @@ public:
     void addNode(const string& nodeName) {
         if (nodes.find(nodeName) == nodes.end()) {
             nodes[nodeName] = Node(nodeName);
-            cout << "Корень " << nodeName << " добавлен." << endl;
+            cout << "Узел " << nodeName << " добавлен." << endl;
         }
         else {
-            cout << "Корень " << nodeName << " уже существует." << endl;
+            cout << "Узел " << nodeName << " уже существует." << endl;
         }
     }
 
@@ -85,10 +87,10 @@ public:
             edges.erase(remove_if(edges.begin(), edges.end(), [&](Edge& edge) {
                 return edge.from == nodeName || edge.to == nodeName;
                 }), edges.end());
-            cout << "Корень " << nodeName << " удалён." << endl;
+            cout << "Узел " << nodeName << " удалён." << endl;
         }
         else {
-            cout << "Корень " << nodeName << " не существует." << endl;
+            cout << "Узел " << nodeName << " не существует." << endl;
         }
     }
 
@@ -118,10 +120,10 @@ public:
             }
             outFile << ";" << endl;
             for (const auto& edge : edges) {
-                outFile << edge.from << " -> " << edge.to << (isDirected ? " ;" : " ;") << endl;
+                outFile << edge.from << " -> " << edge.to << " ;" << endl;
             }
             outFile.close();
-            cout << "Граф экспортируется в " << filename << endl;
+            cout << "Граф экспортирован в " << filename << endl;
         }
         else {
             cout << "Ошибка при открытии файла для экспорта." << endl;
@@ -141,22 +143,22 @@ public:
 
             getline(inFile, line);
             pos = 0;
-            while ((pos = line.find(',')) != string::npos) {
+            while ((pos = line.find(' ')) != string::npos) {
                 string nodeName = line.substr(0, pos);
                 addNode(nodeName);
                 line.erase(0, pos + 1);
             }
             if (!line.empty()) addNode(line);
 
-            getline(inFile, line);
-            while ((pos = line.find("->")) != string::npos) {
-                string from = line.substr(0, pos);
-                line.erase(0, pos + 2);
-                pos = line.find(',');
-                string to = line.substr(0, pos);
-                addEdge(from, to);
-                if (pos == string::npos) break;
-                line.erase(0, pos + 1);
+            while (getline(inFile, line)) {
+                pos = line.find(" -> ");
+                if (pos != string::npos) {
+                    string from = line.substr(0, pos);
+                    line.erase(0, pos + 4);
+                    pos = line.find(" ;");
+                    string to = line.substr(0, pos);
+                    addEdge(from, to);
+                }
             }
             inFile.close();
             cout << "Граф импортирован из " << filename << endl;
@@ -207,7 +209,7 @@ int main() {
     while (true) {
         displayMenu();
         cin >> choice;
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
         switch (choice) {
         case 1:
@@ -215,13 +217,11 @@ int main() {
             getline(cin, nodeName);
             graph.addNode(nodeName);
             break;
-
         case 2:
             cout << "Введите имя узла для удаления: ";
             getline(cin, nodeName);
             graph.removeNode(nodeName);
             break;
-
         case 3:
             cout << "Введите узел 'от': ";
             getline(cin, fromNode);
@@ -229,7 +229,6 @@ int main() {
             getline(cin, toNode);
             graph.addEdge(fromNode, toNode);
             break;
-
         case 4:
             cout << "Введите узел 'от' для удаления: ";
             getline(cin, fromNode);
@@ -237,31 +236,25 @@ int main() {
             getline(cin, toNode);
             graph.removeEdge(fromNode, toNode);
             break;
-
         case 5:
             graph.displayInfo();
             break;
-
         case 6:
             cout << "Введите имя файла для экспорта: ";
             getline(cin, filename);
             graph.exportGraph(filename);
             break;
-
         case 7:
             cout << "Введите имя файла для импорта: ";
             getline(cin, filename);
             graph.importGraph(filename);
             break;
-
         case 8:
             graph.drawGraph();
             break;
-
         case 9:
             cout << "Выход из программы." << endl;
             return 0;
-
         default:
             cout << "Неверный выбор. Попробуйте еще раз." << endl;
             break;
@@ -269,7 +262,7 @@ int main() {
     }
 
     return 0;
-}   
+}
 ```
 
 Результат программы:
@@ -286,7 +279,7 @@ int main() {
 9. Выйти
 Выберите пункт: 1
 Введите имя узла: 1
-Корень 1 добавлен.
+Узел 1 добавлен.
 
 --- Меню редактора графа ---
 1. Добавить узел
@@ -300,7 +293,7 @@ int main() {
 9. Выйти
 Выберите пункт: 1
 Введите имя узла: 2
-Корень 2 добавлен.
+Узел 2 добавлен.
 
 --- Меню редактора графа ---
 1. Добавить узел
@@ -314,7 +307,7 @@ int main() {
 9. Выйти
 Выберите пункт: 1
 Введите имя узла: 3
-Корень 3 добавлен.
+Узел 3 добавлен.
 
 --- Меню редактора графа ---
 1. Добавить узел
@@ -328,7 +321,7 @@ int main() {
 9. Выйти
 Выберите пункт: 1
 Введите имя узла: 4
-Корень 4 добавлен.
+Узел 4 добавлен.
 
 --- Меню редактора графа ---
 1. Добавить узел
@@ -342,7 +335,7 @@ int main() {
 9. Выйти
 Выберите пункт: 1
 Введите имя узла: 5
-Корень 5 добавлен.
+Узел 5 добавлен.
 
 --- Меню редактора графа ---
 1. Добавить узел
@@ -356,7 +349,7 @@ int main() {
 9. Выйти
 Выберите пункт: 1
 Введите имя узла: 6
-Корень 6 добавлен.
+Узел 6 добавлен.
 
 --- Меню редактора графа ---
 1. Добавить узел
@@ -415,37 +408,8 @@ int main() {
 9. Выйти
 Выберите пункт: 3
 Введите узел 'от': 1
-Введите узел 'до': 6
-Ребро от 1 до 6 добавлено.
-
---- Меню редактора графа ---
-1. Добавить узел
-2. Удалить узел
-3. Добавить ребро
-4. Удалить ребро
-5. Отобразить информацию о графе
-6. Экспорт графа
-7. Импорт графа
-8. Нарисовать граф
-9. Выйти
-Выберите пункт: 4
-Введите узел 'от' для удаления: 4
-Введите узел 'до' для удаления: 6
-Ребро от 4 до 6 удалено.
-
---- Меню редактора графа ---
-1. Добавить узел
-2. Удалить узел
-3. Добавить ребро
-4. Удалить ребро
-5. Отобразить информацию о графе
-6. Экспорт графа
-7. Импорт графа
-8. Нарисовать граф
-9. Выйти
-Выберите пункт: 2
-Введите имя узла для удаления: 5
-Корень 5 удалён.
+Введите узел 'до': 4
+Ребро от 1 до 4 добавлено.
 
 --- Меню редактора графа ---
 1. Добавить узел
@@ -459,8 +423,37 @@ int main() {
 9. Выйти
 Выберите пункт: 5
 Граф: ExampleGraph
-Количество узлов: 5
-Количество рёбер: 3
+Количество узлов: 6
+Количество рёбер: 4
+
+--- Меню редактора графа ---
+1. Добавить узел
+2. Удалить узел
+3. Добавить ребро
+4. Удалить ребро
+5. Отобразить информацию о графе
+6. Экспорт графа
+7. Импорт графа
+8. Нарисовать граф
+9. Выйти
+Выберите пункт: 2
+Введите имя узла для удаления: 5
+Узел 5 удалён.
+
+--- Меню редактора графа ---
+1. Добавить узел
+2. Удалить узел
+3. Добавить ребро
+4. Удалить ребро
+5. Отобразить информацию о графе
+6. Экспорт графа
+7. Импорт графа
+8. Нарисовать граф
+9. Выйти
+Выберите пункт: 4
+Введите узел 'от' для удаления: 1
+Введите узел 'до' для удаления: 4
+Ребро от 1 до 4 удалено.
 
 --- Меню редактора графа ---
 1. Добавить узел
@@ -477,7 +470,7 @@ int main() {
 --- Представление графиков в формате ASCII ---
  1 --> 2
  1 --> 3
- 1 --> 6
+ 4 --> 6
 ----------------------------------
 
 --- Меню редактора графа ---

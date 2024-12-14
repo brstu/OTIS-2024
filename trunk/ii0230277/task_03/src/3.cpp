@@ -6,6 +6,7 @@
 #include <limits>
 #include <iomanip>
 #include <algorithm>
+
 using namespace std;
 
 class Node {
@@ -41,10 +42,10 @@ public:
     void addNode(const string& nodeName) {
         if (nodes.find(nodeName) == nodes.end()) {
             nodes[nodeName] = Node(nodeName);
-            cout << "Корень " << nodeName << " добавлен." << endl;
+            cout << "Узел " << nodeName << " добавлен." << endl;
         }
         else {
-            cout << "Корень " << nodeName << " уже существует." << endl;
+            cout << "Узел " << nodeName << " уже существует." << endl;
         }
     }
 
@@ -53,10 +54,10 @@ public:
             edges.erase(remove_if(edges.begin(), edges.end(), [&](Edge& edge) {
                 return edge.from == nodeName || edge.to == nodeName;
                 }), edges.end());
-            cout << "Корень " << nodeName << " удалён." << endl;
+            cout << "Узел " << nodeName << " удалён." << endl;
         }
         else {
-            cout << "Корень " << nodeName << " не существует." << endl;
+            cout << "Узел " << nodeName << " не существует." << endl;
         }
     }
 
@@ -86,10 +87,10 @@ public:
             }
             outFile << ";" << endl;
             for (const auto& edge : edges) {
-                outFile << edge.from << " -> " << edge.to << (isDirected ? " ;" : " ;") << endl;
+                outFile << edge.from << " -> " << edge.to << " ;" << endl;
             }
             outFile.close();
-            cout << "Граф экспортируется в " << filename << endl;
+            cout << "Граф экспортирован в " << filename << endl;
         }
         else {
             cout << "Ошибка при открытии файла для экспорта." << endl;
@@ -109,22 +110,22 @@ public:
 
             getline(inFile, line);
             pos = 0;
-            while ((pos = line.find(',')) != string::npos) {
+            while ((pos = line.find(' ')) != string::npos) {
                 string nodeName = line.substr(0, pos);
                 addNode(nodeName);
                 line.erase(0, pos + 1);
             }
             if (!line.empty()) addNode(line);
 
-            getline(inFile, line);
-            while ((pos = line.find("->")) != string::npos) {
-                string from = line.substr(0, pos);
-                line.erase(0, pos + 2);
-                pos = line.find(',');
-                string to = line.substr(0, pos);
-                addEdge(from, to);
-                if (pos == string::npos) break;
-                line.erase(0, pos + 1);
+            while (getline(inFile, line)) {
+                pos = line.find(" -> ");
+                if (pos != string::npos) {
+                    string from = line.substr(0, pos);
+                    line.erase(0, pos + 4);
+                    pos = line.find(" ;");
+                    string to = line.substr(0, pos);
+                    addEdge(from, to);
+                }
             }
             inFile.close();
             cout << "Граф импортирован из " << filename << endl;
@@ -175,7 +176,7 @@ int main() {
     while (true) {
         displayMenu();
         cin >> choice;
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
         switch (choice) {
         case 1:
@@ -183,13 +184,11 @@ int main() {
             getline(cin, nodeName);
             graph.addNode(nodeName);
             break;
-
         case 2:
             cout << "Введите имя узла для удаления: ";
             getline(cin, nodeName);
             graph.removeNode(nodeName);
             break;
-
         case 3:
             cout << "Введите узел 'от': ";
             getline(cin, fromNode);
@@ -197,7 +196,6 @@ int main() {
             getline(cin, toNode);
             graph.addEdge(fromNode, toNode);
             break;
-
         case 4:
             cout << "Введите узел 'от' для удаления: ";
             getline(cin, fromNode);
@@ -205,31 +203,25 @@ int main() {
             getline(cin, toNode);
             graph.removeEdge(fromNode, toNode);
             break;
-
         case 5:
             graph.displayInfo();
             break;
-
         case 6:
             cout << "Введите имя файла для экспорта: ";
             getline(cin, filename);
             graph.exportGraph(filename);
             break;
-
         case 7:
             cout << "Введите имя файла для импорта: ";
             getline(cin, filename);
             graph.importGraph(filename);
             break;
-
         case 8:
             graph.drawGraph();
             break;
-
         case 9:
             cout << "Выход из программы." << endl;
             return 0;
-
         default:
             cout << "Неверный выбор. Попробуйте еще раз." << endl;
             break;
