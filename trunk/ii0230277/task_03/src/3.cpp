@@ -5,6 +5,7 @@
 #include <fstream>
 #include <limits>
 #include <iomanip>
+#include <algorithm>
 using namespace std;
 
 class Node {
@@ -62,7 +63,7 @@ public:
     void addEdge(const string& from, const string& to) {
         if (nodes.find(from) != nodes.end() && nodes.find(to) != nodes.end()) {
             edges.emplace_back(from, to, isDirected);
-            cout << "Ребро от " << from << " до " << to << " добавлен." << endl;
+            cout << "Ребро от " << from << " до " << to << " добавлено." << endl;
         }
         else {
             cout << "Одно или оба узла не существует." << endl;
@@ -85,7 +86,7 @@ public:
             }
             outFile << ";" << endl;
             for (const auto& edge : edges) {
-                outFile << edge.from << " -> " << edge.to << (isDirected ? " ;" : " ");
+                outFile << edge.from << " -> " << edge.to << (isDirected ? " ;" : " ;") << endl;
             }
             outFile.close();
             cout << "Граф экспортируется в " << filename << endl;
@@ -174,7 +175,7 @@ int main() {
     while (true) {
         displayMenu();
         cin >> choice;
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
         switch (choice) {
         case 1:
