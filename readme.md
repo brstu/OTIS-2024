@@ -19,7 +19,7 @@
 | 1  | Заседатель Никита    |[ii02509](./trunk/ii02509/)|✅|✅|✅||||||
 | 2  | Гродзинский Алексей  |[ii0230279](./trunk/ii0230279/)|✅|✅||||||
 | 3  | Андреюк Максим       |[ii02503](./truk/ii02503/)|✅|✅|✅||||||
-| 4  | Подгайский Денис     |[ii0230293](./trunk/ii0230293)|✅|✅|||||||
+| 4  | Подгайский Денис     |[ii0230293](./trunk/ii0230293)|✅|✅|✅||||||
 | 5  | Мохорева Татьяна     |[ii0230290](trunk/ii0230290/)|✅|✅|✅||||||
 | 6  |Трошин Иван|[ii02506](trunk/ii02506)|✅|✅|✅|✅|✅|✅|||
 | 7  | Бекназарова Анжелика |[ii0230277](./trunk/ii0230277/)|✅|✅|✅||||||
@@ -35,7 +35,7 @@
 | 17 | Максимчук Елизавета  |[ii02513](./trunk/ii02513/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
 | 18 | Денис Дулько         |[ii230280](./trunk/ii230280/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||
 | 19 | Вячеслав Янушкевич   |[ii230300](./trunk/ii230300/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
-| 20 | Максим Ящук          |[ii02520](./trunk/ii02520/)|✅|✅|||||||
+| 20 | Максим Ящук          |[ii02520](./trunk/ii02520/)|✅|✅|✅|✅|||||
 | 21 | Артем Левай          |[ii230286](./trunk/ii230286/)|:white_check_mark:|:white_check_mark:|||||||||
 | 22 | Владимир Котов       |[ii025022](./trunk/ii0230284) |✅|✅|✅|✅|✅||||
 | 23 | Мархель Анастасия    |[ii00230288](./trunk/ii00230288/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
@@ -50,12 +50,12 @@
 |----|-----------------------------|------------------------------|----|----|----|----|----|----|----|---------|
 |1|Семенов Арсений|[ii02616](./trunk/ii02616/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||
 |2|Павел Яшков||:white_check_mark:|:white_check_mark:|||||||
-|3|Михаил Рулько|[ii02615](./trunk/ii02615/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||
+|3|Михаил Рулько|[ii02615](./trunk/ii02615/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||:white_check_mark:||||
 |4|Валерия Цурукова||||||||||
-|5|Вика Сугак|[ii230205](./trunk/ii230205/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||||
+|5|Вика Сугак|[ii230205](./trunk/ii230205/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||:white_check_mark:||||||
 |6|Даниил Турич|[ii02619](./trunk/ii02619/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||||
 |7|Влад Рудь|[ii02614](./trunk/ii02614/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||
-|8|Денис Шарубнёв|[ii02625](./trunk/ii02625/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||
+|8|Денис Шарубнёв|[ii02625](./trunk/ii02625/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
 |9|Владислав Суховило |[ii02618](./trunk/ii02618/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||:white_check_mark:|:white_check_mark:|||
 |10|Катя Шоева|[ii230326](./trunk/ii230326/)|:white_check_mark:|:white_check_mark:|||||||
 |11|Илья Хомиченко|[ii02621](./trunk/ii02621/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
@@ -74,4 +74,3 @@
 |24|Прокопюк Артем|[ii02612](./trunk/ii02612/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||
 |25|Рубцов Дмитрий|[ii02613](./trunk/ii02613/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||
 |26|Ерошин Егор|[ii00230304](./trunk/ii00230304/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
-
