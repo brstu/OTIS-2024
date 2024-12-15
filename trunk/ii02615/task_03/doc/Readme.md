@@ -37,61 +37,61 @@
 
 using namespace std;
 
-class AbC {  
+class Graph {  
 private:
-    struct XyZ {  
-        int a;
-        list<int> b;
+    struct Node {  
+        int id;
+        list<int> neighbors;
     };
 
-    vector<XyZ> c;
+    vector<Node> nodes;
 
 public:
-    void dE(int f);
-    void gH(int i, int j);
-    void iJ() const;
-    vector<int> kL();
-    vector<int> mN();
-    AbC oP() const;
+    void addNode(int id);
+    void addEdge(int from, int to);
+    void display() const;
+    vector<int> findEulerianCycle();
+    vector<int> findHamiltonianCycle();
+    Graph createSpanningTree() const;
 
-    bool qR() const;
-    bool sT(int u, int v, vector<int>& w, vector<bool>& x);
+    bool isEulerian() const;
+    bool searchHamiltonian(int u, int v, vector<int>& path, vector<bool>& visited);
 };
 
-void AbC::dE(int f) {
-    c.push_back({ f, {} });
+void Graph::addNode(int id) {
+    nodes.push_back({ id, {} });
 }
 
-void AbC::gH(int i, int j) {
-    c[i].b.push_back(j);
-    c[j].b.push_back(i);
+void Graph::addEdge(int from, int to) {
+    nodes[from].neighbors.push_back(to);
+    nodes[to].neighbors.push_back(from);
 }
 
-void AbC::iJ() const {
-    for (const auto& node : c) {
-        cout << "Node " << node.a << ": ";
-        for (int neighbor : node.b) {
+void Graph::display() const {
+    for (const auto& node : nodes) {
+        cout << "Node " << node.id << ": ";
+        for (int neighbor : node.neighbors) {
             cout << neighbor << " ";
         }
         cout << endl;
     }
 }
 
-vector<int> AbC::kL() {
+vector<int> Graph::findEulerianCycle() {
     vector<int> cycle;
-    if (!qR()) return cycle;
+    if (!isEulerian()) return cycle;
 
-    vector<bool> visited(c.size(), false);
+    vector<bool> visited(nodes.size(), false);
     list<int> stack;
     stack.push_back(0);
 
     while (!stack.empty()) {
         int current = stack.back();
-        if (!c[current].b.empty()) {
-            int next = c[current].b.front();
+        if (!nodes[current].neighbors.empty()) {
+            int next = nodes[current].neighbors.front();
             stack.push_back(next);
-            c[current].b.remove(next);
-            c[next].b.remove(current);
+            nodes[current].neighbors.remove(next);
+            nodes[next].neighbors.remove(current);
         } else {
             cycle.push_back(current);
             stack.pop_back();
@@ -100,25 +100,25 @@ vector<int> AbC::kL() {
     return cycle;
 }
 
-vector<int> AbC::mN() {
-    vector<int> cycle(c.size(), -1);
-    vector<bool> visited(c.size(), false);
+vector<int> Graph::findHamiltonianCycle() {
+    vector<int> path(nodes.size(), -1);
+    vector<bool> visited(nodes.size(), false);
     visited[0] = true;
-    cycle[0] = 0;
+    path[0] = 0;
 
-    if (sT(0, 1, cycle, visited)) {
-        return cycle;
+    if (searchHamiltonian(0, 1, path, visited)) {
+        return path;
     }
     return {};
 }
 
-AbC AbC::oP() const {
-    AbC tree;
-    for (int i = 0; i < c.size(); ++i) {
-        tree.dE(i);
+Graph Graph::createSpanningTree() const {
+    Graph tree;
+    for (int i = 0; i < nodes.size(); ++i) {
+        tree.addNode(i);
     }
 
-    vector<bool> visited(c.size(), false);
+    vector<bool> visited(nodes.size(), false);
     visited[0] = true;
     queue<int> q;
     q.push(0);
@@ -127,10 +127,10 @@ AbC AbC::oP() const {
         int current = q.front();
         q.pop();
 
-        for (int neighbor : c[current].b) {
+        for (int neighbor : nodes[current].neighbors) {
             if (!visited[neighbor]) {
                 visited[neighbor] = true;
-                tree.gH(current, neighbor);
+                tree.addEdge(current, neighbor);
                 q.push(neighbor);
             }
         }
@@ -138,25 +138,25 @@ AbC AbC::oP() const {
     return tree;
 }
 
-bool AbC::qR() const {
-    for (const auto& node : c) {
-        if (node.b.size() % 2 != 0) {
+bool Graph::isEulerian() const {
+    for (const auto& node : nodes) {
+        if (node.neighbors.size() % 2 != 0) {
             return false;
         }
     }
     return true;
 }
 
-bool AbC::sT(int u, int v, vector<int>& cycle, vector<bool>& visited) {
-    if (v == c.size()) {
-        return cycle.front() == cycle.back();
+bool Graph::searchHamiltonian(int u, int v, vector<int>& path, vector<bool>& visited) {
+    if (v == nodes.size()) {
+        return path.front() == path.back();
     }
 
-    for (int neighbor : c[u].b) {
+    for (int neighbor : nodes[u].neighbors) {
         if (!visited[neighbor]) {
             visited[neighbor] = true;
-            cycle[v] = neighbor;
-            if (sT(neighbor, v + 1, cycle, visited)) {
+            path[v] = neighbor;
+            if (searchHamiltonian(neighbor, v + 1, path, visited)) {
                 return true;
             }
             visited[neighbor] = false;
@@ -167,24 +167,24 @@ bool AbC::sT(int u, int v, vector<int>& cycle, vector<bool>& visited) {
 
 int main() {
     setlocale(LC_ALL, "RUSSIAN");
-    AbC xyz;  // Изменено название объекта класса
+    Graph graph;  // Изменено название объекта класса
 
-    xyz.dE(0);
-    xyz.dE(1);
-    xyz.dE(2);
-    xyz.dE(3);
-    xyz.dE(4);
+    graph.addNode(0);
+    graph.addNode(1);
+    graph.addNode(2);
+    graph.addNode(3);
+    graph.addNode(4);
 
-    xyz.gH(0, 1);
-    xyz.gH(1, 2);
-    xyz.gH(2, 3);
-    xyz.gH(3, 4);
-    xyz.gH(4, 0);
+    graph.addEdge(0, 1);
+    graph.addEdge(1, 2);
+    graph.addEdge(2, 3);
+    graph.addEdge(3, 4);
+    graph.addEdge(4, 0);
 
     cout << "Структура графа:\n";
-    xyz.iJ();
+    graph.display();
 
-    vector<int> eulerCycle = xyz.kL();
+    vector<int> eulerCycle = graph.findEulerianCycle();
     if (!eulerCycle.empty()) {
         cout << "Эйлеров цикл: ";
         for (int node : eulerCycle) {
@@ -195,7 +195,7 @@ int main() {
         cout << "Эйлеров цикл не найден.\n";
     }
 
-    vector<int> hamiltonianCycle = xyz.mN();
+    vector<int> hamiltonianCycle = graph.findHamiltonianCycle();
     if (!hamiltonianCycle.empty()) {
         cout << "Гамильтонов цикл: ";
         for (int node : hamiltonianCycle) {
@@ -206,9 +206,9 @@ int main() {
         cout << "Гамильтонов цикл не найден.\n";
     }
 
-    AbC spanningTree = xyz.oP();  // Изменено название объекта класса
+    Graph spanningTree = graph.createSpanningTree();  // Изменено название объекта класса
     cout << "Создание структуры дерева:\n";
-    spanningTree.iJ();
+    spanningTree.display();
 
     return 0;
 }
