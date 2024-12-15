@@ -5,9 +5,9 @@
 
 using namespace std;
 
-class AbC {  // Изменено название класса
+class AbC {  
 private:
-    struct XyZ {  // Изменено название структуры
+    struct XyZ {  
         int a;
         list<int> b;
     };
