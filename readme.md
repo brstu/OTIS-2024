@@ -25,23 +25,13 @@
 | 7  | Бекназарова Анжелика |[ii0230277](./trunk/ii0230277/)|✅|✅|✅||||||
 | 8  |Елец Юлия |[ii02508](trunk/ii02508)|✅|✅|✅|✅|✅||||
 | 9  | Сидорчук Артём       ||||||||||
-<<<<<<< HEAD
-| 10 | Кулик Яна            ||||||||||
-| 11 | Борис Жук            ||||||||||
-| 12 | Милевский Артем      ||||||||||
-| 13 | Глеб Горбат          |[ii230278](trunk/ii230278)|✅|✅|✅||||||
-| 14 | Евгений Скачков      |[ii230297](./trunk/ii230297/)|:white_check_mark:|:white_check_mark:||||||||
-| 15 | Бажежа Анита         |[ii230276](./trunk/ii230276/)|✅|✅|✅||||||
-| 16 | Пальчастый Ярослав   |[ii02518](./trunk/ii02518/)|:white_check_mark:|:white_check_mark:|✅|||||||
-=======
 | 10 | Кулик Яна            |[ii0230285](./trunk/ii0230285/)|✅|✅|✅||||||
 | 11 | Борис Жук            |[ii0230282](./trunk/ii0230282)|✅|✅|✅||||||
 | 12 | Милевский Артем      |[ii230289](trunk/ii230289)|✅|✅|✅||||||
 | 13 | Глеб Горбат          |[ii0230278](./trunk/ii0230278/)|✅|✅|✅|✅|✅||||
 | 14 | Евгений Скачков      | [ii0230297](./trunk/ii0230297/)   |:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||
-| 15 | Бажежа Анита         |[ii230276](./trunk/ii230276/)|✅|✅|✅||✅||||
+| 15 | Бажежа Анита         |[ii0230276](./trunk/ii0230276/)|✅|✅|✅|✅|✅||||
 | 16 | Пальчастый Ярослав   |[ii02518](./trunk/ii02518/)|:white_check_mark:|:white_check_mark:|✅|✅|✅|||||
->>>>>>> origin/main
 | 17 | Максимчук Елизавета  |[ii02513](./trunk/ii02513/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
 | 18 | Денис Дулько         |[ii230280](./trunk/ii230280/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||
 | 19 | Вячеслав Янушкевич   |[ii230300](./trunk/ii230300/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
