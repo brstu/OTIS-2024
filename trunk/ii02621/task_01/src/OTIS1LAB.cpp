@@ -1,31 +1,29 @@
 ﻿#include <iostream>
 #include <cmath>
 
-using namespace std;
-
-void linearModelSimulation(double paramA, double paramB, double initialTemp, double initialSignal, int steps) {
+void simulateLinearModel(double paramA, double paramB, double initialTemp, double initialSignal, int steps) {
     double currentTemp = initialTemp;
     double controlSignal = initialSignal;
 
-    cout << "Линейная модель:\n";
+    std::cout << "Линейная модель:\n";
     for (int timeStep = 0; timeStep < steps; ++timeStep) {
         double newTemp = paramA * currentTemp + paramB * controlSignal;
-        cout << "Шаг времени " << timeStep << ": Температура = " << newTemp << endl;
+        std::cout << "Шаг времени " << timeStep << ": Температура = " << newTemp << std::endl;
         currentTemp = newTemp;
     }
 }
 
-void nonlinearModelSimulation(double paramA, double paramB, double paramC, double paramD, double initialTemp, double initialSignal, int steps) {
+void simulateNonlinearModel(double paramA, double paramB, double paramC, double paramD, double initialTemp, double initialSignal, int steps) {
     double previousTemp = initialTemp;
     double currentTemp = initialTemp;
     double controlSignal = initialSignal;
 
-    cout << "\nНелинейная модель:\n";
+    std::cout << "\nНелинейная модель:\n";
     for (int timeStep = 0; timeStep < steps; ++timeStep) {
         double newTemp = paramA * currentTemp - paramB * previousTemp * previousTemp + paramC * controlSignal + paramD * sin(controlSignal);
-        cout << "Шаг времени " << timeStep << ": Температура = " << newTemp << endl;
-        currentTemp = newTemp;
+        std::cout << "Шаг времени " << timeStep << ": Температура = " << newTemp << std::endl;
         previousTemp = currentTemp;
+        currentTemp = newTemp;
     }
 }
 
@@ -36,29 +34,29 @@ int main() {
     double initialTemp, initialSignal;
     int steps;
 
-    cout << "Введите значение параметра a: ";
-    cin >> paramA;
+    std::cout << "Введите значение параметра a: ";
+    std::cin >> paramA;
 
-    cout << "Введите значение параметра b: ";
-    cin >> paramB;
+    std::cout << "Введите значение параметра b: ";
+    std::cin >> paramB;
 
-    cout << "Введите значение параметра c (для нелинейной модели): ";
-    cin >> paramC;
+    std::cout << "Введите значение параметра c (для нелинейной модели): ";
+    std::cin >> paramC;
 
-    cout << "Введите значение параметра d (для нелинейной модели): ";
-    cin >> paramD;
+    std::cout << "Введите значение параметра d (для нелинейной модели): ";
+    std::cin >> paramD;
 
-    cout << "Введите начальное значение температуры y0: ";
-    cin >> initialTemp;
+    std::cout << "Введите начальное значение температуры y0: ";
+    std::cin >> initialTemp;
 
-    cout << "Введите начальное значение управляющего сигнала u0: ";
-    cin >> initialSignal;
+    std::cout << "Введите начальное значение управляющего сигнала u0: ";
+    std::cin >> initialSignal;
 
-    cout << "Введите количество шагов моделирования: ";
-    cin >> steps;
+    std::cout << "Введите количество шагов моделирования: ";
+    std::cin >> steps;
 
-    linearModelSimulation(paramA, paramB, initialTemp, initialSignal, steps);
-    nonlinearModelSimulation(paramA, paramB, paramC, paramD, initialTemp, initialSignal, steps);
+    simulateLinearModel(paramA, paramB, initialTemp, initialSignal, steps);
+    simulateNonlinearModel(paramA, paramB, paramC, paramD, initialTemp, initialSignal, steps);
 
     return 0;
 }
