@@ -10,7 +10,7 @@
 <p align="right">Выполнил:</p>
 <p align="right">Студент 2 курса</p>
 <p align="right">Группы ИИ-26</p>
-<p align="right">Хомиченко И. А.</p>
+<p align="right">Цурукова В.А.</p>
 <p align="right">Проверила:</p>
 <p align="right">Ситковец Я. С.</p>
 <br><br><br><br><br>
@@ -42,73 +42,174 @@ Task is to write program (**С++**), which simulates this object temperature.
 # Выполнение задания #
 
 Код программы:
-```#include <iostream>
+```C++
+#include <iostream>
 #include <cmath>
 
-using namespace std;
+struct ModelingObject
+{
+    const double a = 0.05;
+    const double b = 1.41;
+    const double c = 1.15;
+    const double d = 0.2;
+    const double u = 0.2;
+};
 
-void linearModelSimulation(double paramA, double paramB, double initialTemp, double initialSignal, int steps) {
-    double currentTemp = initialTemp;
-    double controlSignal = initialSignal;
-
-    cout << "Линейная модель:\n";
-    for (int timeStep = 0; timeStep < steps; ++timeStep) {
-        double newTemp = paramA * currentTemp + paramB * controlSignal;
-        cout << "Шаг времени " << timeStep << ": Температура = " << newTemp << endl;
-        currentTemp = newTemp;
-    }
+double linearFunction(const ModelingObject& model, double y_t)
+{
+    return model.a * y_t + model.b * model.u;
 }
 
-void nonlinearModelSimulation(double paramA, double paramB, double paramC, double paramD, double initialTemp, double initialSignal, int steps) {
-    double previousTemp = initialTemp;
-    double currentTemp = initialTemp;
-    double controlSignal = initialSignal;
-
-    cout << "\nНелинейная модель:\n";
-    for (int timeStep = 0; timeStep < steps; ++timeStep) {
-        double newTemp = paramA * currentTemp - paramB * previousTemp * previousTemp + paramC * controlSignal + paramD * sin(controlSignal);
-        cout << "Шаг времени " << timeStep << ": Температура = " << newTemp << endl;
-        currentTemp = newTemp;
-        previousTemp = currentTemp;
-    }
+double nonlinearFunction(const ModelingObject& model, double y_t, double y_t_mines)
+{
+    return model.a * y_t - model.b * y_t_mines * y_t_mines + model.c * model.u + model.d * sin(model.u);
 }
 
-int main() {
-    setlocale(LC_ALL, "Russian");
+int main()
+{
+    ModelingObject model;
 
-    double paramA, paramB, paramC, paramD;
-    double initialTemp, initialSignal;
-    int steps;
+    double val1_t = 0.1;
+    double val2_t = 0.1;
+    double val3_t_mines = 0.1;
 
-    cout << "Введите значение параметра a: ";
-    cin >> paramA;
+    int iterations;
+    std::cout << "Enter the number of iterations: ";
+    std::cin >> iterations;
 
-    cout << "Введите значение параметра b: ";
-    cin >> paramB;
+    std::cout << "Linear model:" << std::endl;
 
-    cout << "Введите значение параметра c (для нелинейной модели): ";
-    cin >> paramC;
+    for (int i = 0; i < iterations; i++)
+    {
+        val1_t = linearFunction(model, val1_t);
+        std::cout << i + 1 << "; " << val1_t << std::endl;
+    }
 
-    cout << "Введите значение параметра d (для нелинейной модели): ";
-    cin >> paramD;
+    std::cout << std::endl;
 
-    cout << "Введите начальное значение температуры y0: ";
-    cin >> initialTemp;
+    std::cout << "Nonlinear model:" << std::endl;
 
-    cout << "Введите начальное значение управляющего сигнала u0: ";
-    cin >> initialSignal;
+    for (int i = 0; i < iterations; i++)
+    {
+        double temp = val2_t;
+        val2_t = nonlinearFunction(model, val2_t, val3_t_mines);
+        val3_t_mines = temp;
+        std::cout << i + 1 << "; " << val2_t << std::endl;
+    }
+#include <iostream>
+#include <cmath>
 
-    cout << "Введите количество шагов моделирования: ";
-    cin >> steps;
+struct ModelingObject
+{
+    const double a = 0.05;
+    const double b = 1.41;
+    const double c = 1.15;
+    const double d = 0.2;
+    const double u = 0.2;
+};
 
-    linearModelSimulation(paramA, paramB, initialTemp, initialSignal, steps);
-    nonlinearModelSimulation(paramA, paramB, paramC, paramD, initialTemp, initialSignal, steps);
+double linearFunction(const ModelingObject& model, double y_t)
+{
+    return model.a * y_t + model.b * model.u;
+}
+
+double nonlinearFunction(const ModelingObject& model, double y_t, double y_t_mines)
+{
+    return model.a * y_t - model.b * y_t_mines * y_t_mines + model.c * model.u + model.d * sin(model.u);
+}
+
+int main()
+{
+    ModelingObject model;
+
+    double val1_t = 0.1;
+    double val2_t = 0.1;
+    double val3_t_mines = 0.1;
+
+    int iterations;
+    std::cout << "Enter the number of iterations: ";
+    std::cin >> iterations;
+
+    std::cout << "Linear model:" << std::endl;
+
+    for (int i = 0; i < iterations; i++)
+    {
+        val1_t = linearFunction(model, val1_t);
+        std::cout << i + 1 << "; " << val1_t << std::endl;
+    }
+
+    std::cout << std::endl;
+
+    std::cout << "Nonlinear model:" << std::endl;
+
+    for (int i = 0; i < iterations; i++)
+    {
+        double temp = val2_t;
+        val2_t = nonlinearFunction(model, val2_t, val3_t_mines);
+        val3_t_mines = temp;
+        std::cout << i + 1 << "; " << val2_t << std::endl;
+    }
+
+    return 0;
+}#include <iostream>
+#include <cmath>
+
+struct ModelingObject
+{
+    const double a = 0.05;
+    const double b = 1.41;
+    const double c = 1.15;
+    const double d = 0.2;
+    const double u = 0.2;
+};
+
+double linearFunction(const ModelingObject& model, double y_t)
+{
+    return model.a * y_t + model.b * model.u;
+}
+
+double nonlinearFunction(const ModelingObject& model, double y_t, double y_t_mines)
+{
+    return model.a * y_t - model.b * y_t_mines * y_t_mines + model.c * model.u + model.d * sin(model.u);
+}
+
+int main()
+{
+    ModelingObject model;
+
+    double val1_t = 0.1;
+    double val2_t = 0.1;
+    double val3_t_mines = 0.1;
+
+    int iterations;
+    std::cout << "Enter the number of iterations: ";
+    std::cin >> iterations;
+
+    std::cout << "Linear model:" << std::endl;
+
+    for (int i = 0; i < iterations; i++)
+    {
+        val1_t = linearFunction(model, val1_t);
+        std::cout << i + 1 << "; " << val1_t << std::endl;
+    }
+
+    std::cout << std::endl;
+
+    std::cout << "Nonlinear model:" << std::endl;
+
+    for (int i = 0; i < iterations; i++)
+    {
+        double temp = val2_t;
+        val2_t = nonlinearFunction(model, val2_t, val3_t_mines);
+        val3_t_mines = temp;
+        std::cout << i + 1 << "; " << val2_t << std::endl;
+    }
 
     return 0;
 }
-```     
+    return 0;
+}```     
 ```
-AT ALL
 Введите значение параметра a: 1
 Введите значение параметра b: 0.03
 Введите значение параметра c (для нелинейной модели): 0.5
