@@ -1,56 +1,59 @@
 ﻿#include <iostream>
 #include <cmath>
 
-struct ModelingObject
-{
-    const double a = 0.05;
-    const double b = 1.41;
-    const double c = 1.15;
-    const double d = 0.2;
-    const double u = 0.2;
+class SimulationModel {
+public:
+    SimulationModel(double a, double b, double c, double d, double u)
+        : a_(a), b_(b), c_(c), d_(d), u_(u) {
+    }
+
+    double computeLinear(double currentValue) const {
+        return a_ * currentValue + b_ * u_;
+    }
+
+    double computeNonlinear(double currentValue, double previousValue) const {
+        return a_ * currentValue - b_ * std::pow(previousValue, 2) + c_ * u_ + d_ * std::sin(u_);
+    }
+
+private:
+    const double a_;
+    const double b_;
+    const double c_;
+    const double d_;
+    const double u_;
 };
 
-double linearFunction(const ModelingObject& model, double y_t)
-{
-    return model.a * y_t + model.b * model.u;
+void runSimulation(const SimulationModel& model, int iterations, double initialLinear, double initialNonlinear) {
+    std::cout << "Linear model:" << std::endl;
+    double linearValue = initialLinear;
+    for (int i = 1; i <= iterations; ++i) {
+        linearValue = model.computeLinear(linearValue);
+        std::cout << i << "; " << linearValue << std::endl;
+    }
+
+    std::cout << "\nNonlinear model:" << std::endl;
+    double nonlinearCurrent = initialNonlinear;
+    double nonlinearPrevious = initialNonlinear;
+    for (int i = 1; i <= iterations; ++i) {
+        double temp = nonlinearCurrent;
+        nonlinearCurrent = model.computeNonlinear(nonlinearCurrent, nonlinearPrevious);
+        nonlinearPrevious = temp;
+        std::cout << i << "; " << nonlinearCurrent << std::endl;
+    }
 }
 
-double nonlinearFunction(const ModelingObject& model, double y_t, double y_t_mines)
-{
-    return model.a * y_t - model.b * y_t_mines * y_t_mines + model.c * model.u + model.d * sin(model.u);
-}
+int main() {
+    double a = 0.05, b = 1.41, c = 1.15, d = 0.2, u = 0.2;
+    SimulationModel model(a, b, c, d, u);
 
-int main()
-{
-    ModelingObject model;
-
-    double val1_t = 0.1;
-    double val2_t = 0.1;
-    double val3_t_mines = 0.1;
-
+    double initialLinear = 0.1;
+    double initialNonlinear = 0.1;
     int iterations;
+
     std::cout << "Enter the number of iterations: ";
     std::cin >> iterations;
 
-    std::cout << "Linear model:" << std::endl;
-
-    for (int i = 0; i < iterations; i++)
-    {
-        val1_t = linearFunction(model, val1_t);
-        std::cout << i + 1 << "; " << val1_t << std::endl;
-    }
-
-    std::cout << std::endl;
-
-    std::cout << "Nonlinear model:" << std::endl;
-
-    for (int i = 0; i < iterations; i++)
-    {
-        double temp = val2_t;
-        val2_t = nonlinearFunction(model, val2_t, val3_t_mines);
-        val3_t_mines = temp;
-        std::cout << i + 1 << "; " << val2_t << std::endl;
-    }
+    runSimulation(model, iterations, initialLinear, initialNonlinear);
 
     return 0;
 }

@@ -1,4 +1,11 @@
-cmake_minimum_required (VERSION 3.0)
+cmake_minimum_required(VERSION 3.10)
 
-project (lab_01_ii02621)
-add_executable ( ${PROJECT_NAME} OTIS1LAB.cpp)
+# Название проекта
+project(ModelingSimulation)
+
+# Установка стандарта C++
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+
+# Добавление исполняемого файла с именем main
+add_executable(main main.cpp)

@@ -42,73 +42,73 @@ Task is to write program (**С++**), which simulates this object temperature.
 # Выполнение задания #
 
 Код программы:
-```C++
-#include <iostream>
-#include <cmath> 
+```#include <iostream>
+#include <cmath>
+
 using namespace std;
 
-// Линейная модель: y(t+1) = a * y(t) + b * u(t)
-void simulateLinearModel(double A, double B, double y0, double u0, int steps) {
-    double y = y0; 
-    double u = u0; 
+void linearModelSimulation(double paramA, double paramB, double initialTemp, double initialSignal, int steps) {
+    double currentTemp = initialTemp;
+    double controlSignal = initialSignal;
 
     cout << "Линейная модель:\n";
-    for (int t = 0; t < steps; ++t) {
-        double y_next = A * y + B * u;
-        cout << "Шаг времени " << t << ": Температура = " << y_next << endl;
-        y = y_next; 
+    for (int timeStep = 0; timeStep < steps; ++timeStep) {
+        double newTemp = paramA * currentTemp + paramB * controlSignal;
+        cout << "Шаг времени " << timeStep << ": Температура = " << newTemp << endl;
+        currentTemp = newTemp;
     }
 }
 
-// Нелинейная модель: y(t+1) = A * y(t) - B * y^2(t-1) + C * u(t) + D * sin(u(t))
-void simulateNonlinearModel(double A, double B, double C, double D, double y0, double u0, int steps) {
-    double y_prev = y0; 
-    double y = y0;
-    double u = u0; 
+void nonlinearModelSimulation(double paramA, double paramB, double paramC, double paramD, double initialTemp, double initialSignal, int steps) {
+    double previousTemp = initialTemp;
+    double currentTemp = initialTemp;
+    double controlSignal = initialSignal;
 
     cout << "\nНелинейная модель:\n";
-    for (int t = 0; t < steps; ++t) {
-        double y_next = A * y - B * y_prev * y_prev + C * u + D * sin(u);
-        cout << "Шаг времени " << t << ": Температура = " << y_next << endl;
-        y_prev = y; 
-        y = y_next; 
+    for (int timeStep = 0; timeStep < steps; ++timeStep) {
+        double newTemp = paramA * currentTemp - paramB * previousTemp * previousTemp + paramC * controlSignal + paramD * sin(controlSignal);
+        cout << "Шаг времени " << timeStep << ": Температура = " << newTemp << endl;
+        currentTemp = newTemp;
+        previousTemp = currentTemp;
     }
 }
 
 int main() {
     setlocale(LC_ALL, "Russian");
-    
-    double A, B, C, D;
-    double i_temperature, i_input;
+
+    double paramA, paramB, paramC, paramD;
+    double initialTemp, initialSignal;
     int steps;
 
-  
     cout << "Введите значение параметра a: ";
-    cin >> A;
+    cin >> paramA;
 
     cout << "Введите значение параметра b: ";
-    cin >> B;
+    cin >> paramB;
 
     cout << "Введите значение параметра c (для нелинейной модели): ";
-    cin >> C;
+    cin >> paramC;
 
     cout << "Введите значение параметра d (для нелинейной модели): ";
-    cin >> D;
+    cin >> paramD;
 
     cout << "Введите начальное значение температуры y0: ";
-    cin >> i_temperature;
+    cin >> initialTemp;
 
     cout << "Введите начальное значение управляющего сигнала u0: ";
-    cin >> i_input;
+    cin >> initialSignal;
+
     cout << "Введите количество шагов моделирования: ";
     cin >> steps;
-    simulateLinearModel(A, B, i_temperature, i_input, steps);
-    simulateNonlinearModel(A, B, C, D, i_temperature, i_input, steps);
+
+    linearModelSimulation(paramA, paramB, initialTemp, initialSignal, steps);
+    nonlinearModelSimulation(paramA, paramB, paramC, paramD, initialTemp, initialSignal, steps);
 
     return 0;
 }
 ```     
 ```
+AT ALL
 Введите значение параметра a: 1
 Введите значение параметра b: 0.03
 Введите значение параметра c (для нелинейной модели): 0.5

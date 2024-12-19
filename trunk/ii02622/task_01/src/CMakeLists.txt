@@ -1,11 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required (VERSION 3.0)
 
-# Название проекта
-project(ModelingSimulation)
-
-# Установка стандарта C++
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED True)
-
-# Добавление исполняемого файла с именем main
-add_executable(main main.cpp)
+project (lab_01_ii02622)
+add_executable ( ${PROJECT_NAME} otis 1 laba.cpp)
