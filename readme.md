@@ -60,7 +60,7 @@
 |10|Катя Шоева|[ii230326](./trunk/ii230326/)|:white_check_mark:|:white_check_mark:|||||||
 |11|Илья Хомиченко|[ii02621](./trunk/ii02621/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
 |12|Настя Черноиван|[ii230324](./trunk/ii230324/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||
-|13|Алексей Хитренко||||||||||
+|13|Алексей Хитренко|[ii02620](./trunk/ii02620/)|||:white_check_mark:||||||
 |14|Вирко Егор|[ii002601](./trunk/ii002601/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||
 |15|Данилюк Тимофей|[ii02602](./trunk/ii02602/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||:white_check_mark:|||||
 |16|Заруцкий Владислав |[ii02604](./trunk/ii02604/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
