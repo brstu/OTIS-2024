@@ -20,9 +20,9 @@
 | 2  | Гродзинский Алексей  |[ii0230279](./trunk/ii0230279/)|✅|✅||||||
 | 3  | Андреюк Максим       |[ii02503](./truk/ii02503/)|✅|✅|✅||||||
 | 4  | Подгайский Денис     |[ii0230293](./trunk/ii0230293)|✅|✅|✅||||||
-| 5  | Мохорева Татьяна     |[ii0230290](trunk/ii0230290/)|✅|✅|✅||||||
+| 5  | Мохорева Татьяна     |[ii0230290](trunk/ii0230290/)|✅|✅|✅|✅|✅||||
 | 6  |Трошин Иван|[ii02506](trunk/ii02506)|✅|✅|✅|✅|✅|✅|||
-| 7  | Бекназарова Анжелика |[ii0230277](./trunk/ii0230277/)|✅|✅|✅||||||
+| 7  | Бекназарова Анжелика |[ii0230277](./trunk/ii0230277/)|✅|✅|✅|✅|✅||||
 | 8  |Елец Юлия |[ii02508](trunk/ii02508)|✅|✅|✅|✅|✅||||
 | 9  | Сидорчук Артём       ||||||||||
 | 10 | Кулик Яна            |[ii0230285](./trunk/ii0230285/)|✅|✅|✅||||||
@@ -70,7 +70,8 @@
 |20|Кушнеревич Евгений|[ii02608](./trunk/ii02608/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
 |21|Пасевич Ксения|[ii230311](./trunk/ii230311/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||
 |22|Петручик Дмитрий|[ii02610](./trunk/ii02610/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||
-|23|Пилипук Максим|[ii02611](./trunk/ii02611/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||:white_check_mark:||||
+|23|Пилипук Максим|[ii02611](./trunk/ii02611/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||
 |24|Прокопюк Артем|[ii02612](./trunk/ii02612/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||
 |25|Рубцов Дмитрий|[ii02613](./trunk/ii02613/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||
 |26|Ерошин Егор|[ii00230304](./trunk/ii00230304/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
+
