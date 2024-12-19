@@ -15,7 +15,7 @@ double rpex(double u_prev) {
 
 int main() {
     setlocale(LC_ALL, "Russian");
-
+    
     int n = 9; 
     double y_0 = 10; 
     double u_0 = 10; 
@@ -25,13 +25,11 @@ int main() {
     
     for (int t = 0; t < n; ++t) {
         // Линейная модель
-
         y_linear[t + 1] = _alfa * y_linear[t] + _beta * u_0;
 
         // Нелинейная модель
         double u_prev = (t > 0) ? u_0 : 0.0; 
         y_nonlinear[t + 1] = _alfa * y_nonlinear[t] - _beta * pow(y_nonlinear[t], 2) + _gamma * u_0 + _delta * rpex(u_prev);
-
     }
 
     
