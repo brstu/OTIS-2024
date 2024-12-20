@@ -1,7 +1,0 @@
-{
-    "cmake.sourceDirectory": "D:/Рабочая/OTIS-2024/trunk/ii02626/lab_01/src",
-    "files.associations": {
-        "iostream": "cpp",
-        "iosfwd": "cpp"
-    }
-}
