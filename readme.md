@@ -17,7 +17,7 @@
 | №  | ФИО                  | Directory name              | #0 | #1 | #2 | #3 | #4 | #5 | #6 | Рейтинг |
 |----|----------------------|-----------------------------|----|----|----|----|----|----|----|---------|
 | 1  | Заседатель Никита    |[ii02509](./trunk/ii02509/)|✅|✅|✅|✅|✅||||
-| 2  | Гродзинский Алексей  |[ii0230279](./trunk/ii0230279/)|✅|✅||||||
+| 2  | Гродзинский Алексей  |[ii0230279](./trunk/ii0230279/)|✅|✅|✅||✅|||
 | 3  | Андреюк Максим       |[ii02503](./truk/ii02503/)|✅|✅|✅||||||
 | 4  | Подгайский Денис     |[ii0230293](./trunk/ii0230293)|✅|✅|✅||||||
 | 5  | Мохорева Татьяна     |[ii0230290](trunk/ii0230290/)|✅|✅|✅|✅|✅||||
@@ -33,7 +33,7 @@
 | 15 | Бажежа Анита         |[ii0230276](./trunk/ii0230276/)|✅|✅|✅|✅|✅||||
 | 16 | Пальчастый Ярослав   |[ii02518](./trunk/ii02518/)|:white_check_mark:|:white_check_mark:|✅|✅|✅|||||
 | 17 | Максимчук Елизавета  |[ii02513](./trunk/ii02513/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
-| 18 | Денис Дулько         |[ii230280](./trunk/ii230280/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||
+| 18 | Денис Дулько         |[ii0230280](./trunk/ii0230280/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||
 | 19 | Вячеслав Янушкевич   |[ii230300](./trunk/ii230300/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
 | 20 | Максим Ящук          |[ii02520](./trunk/ii02520/)|✅|✅|✅|✅|✅||||
 | 21 | Артем Левай          |[ii0230286](./trunk/ii0230286/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||
