@@ -3,44 +3,57 @@
 
 using namespace std;
 
-double coeffA = 0.5;
-double coeffB = 0.3;
-double coeffC = 0.5;
-double coeffD = 0.6;
+const double a = 1.0,
+b = 0.5,
+c = 0.1,
+d = 0.9,
+u = 1.5;
 
-double CalculateLinear(double input, double output) {
-    return coeffA * output + coeffB * input;
+void Line(double& y0)
+{
+    y0 = a * y0 + b * u;
+    cout << "|" << y0 << endl;
 }
 
-double CalculateNonLinear(double currentOutput, double currentInput, double previousOutput, double previousInput) {
-    return coeffA * currentOutput - coeffB * pow(previousOutput, 2) + coeffC * currentInput - coeffD * sin(previousInput);
-}
-
-int main() {
-    setlocale(LC_ALL,"ru");
-    double currentOutput = 15;
-    double nextOutput = currentOutput;
-    double previousOutput;
-    double currentInput = 5;
-    double previousInput;
-
-    previousInput = currentInput;
-
-    int totalSteps = 10;
-
-    cout << "Результаты линейной модели: " << endl;
-    for (int step = 0; step < totalSteps; step++) {
-        previousOutput = nextOutput;
-        nextOutput = CalculateLinear(nextOutput, currentInput);
-        cout << step + 1 << ": " << nextOutput << endl;
+void nonLine(double& y00, double& y01, bool& firstIteration)
+{
+    if (firstIteration) {
+        y01 = y00;
+        y00 = a * y00 + c * u + d * sin(u);
+        firstIteration = false;
+        cout << "|" << y00 << endl;
     }
-    cout << endl;
+    else {
+        double NewT = 0; 
+        NewT = a * y00 - b * pow(y01, 2) + c * u + d * sin(u);
+        y01 = y00; 
+        y00 = NewT; // Set the new value for the current temperature
+        cout << "|" << y00 << endl;
+    }
+}
 
-    cout << "Результаты нелинейной модели: " << endl;
-    for (int step = 0; step < totalSteps; step++) {
-        previousOutput = nextOutput;
-        nextOutput = CalculateNonLinear(nextOutput, currentInput, previousInput, previousOutput);
-        cout << step + 1 << ": " << nextOutput << endl;
+int main()
+{
+    setlocale(LC_ALL, "rus");
+    double intT = 0,
+        LinT = 0,
+        nonlinT = 0,
+        prenonlinT = 0;
+    bool firstIteration = true;
+
+    cout << "Enter the initial temperature: ";
+    cin >> intT;
+    LinT = intT;
+    nonlinT = intT;
+
+    const int N = 10;
+    cout << "Linear model:" << endl;
+    for (int i = 0; i < N; i++) {
+        Line(LinT);
+    }
+    cout << "Nonlinear model:" << endl;
+    for (int i = 0; i < N; i++) {
+        nonLine(nonlinT, prenonlinT, firstIteration);
     }
 
     return 0;
