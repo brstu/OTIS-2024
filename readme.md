@@ -35,7 +35,7 @@
 | 17 | Максимчук Елизавета  |[ii02513](./trunk/ii02513/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
 | 18 | Денис Дулько         |[ii230280](./trunk/ii230280/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||
 | 19 | Вячеслав Янушкевич   |[ii230300](./trunk/ii230300/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
-| 20 | Максим Ящук          |[ii02520](./trunk/ii02520/)|✅|✅|✅|✅|||||
+| 20 | Максим Ящук          |[ii02520](./trunk/ii02520/)|✅|✅|✅|✅|✅||||
 | 21 | Артем Левай          |[ii230286](./trunk/ii230286/)|:white_check_mark:|:white_check_mark:|||||||||
 | 22 | Владимир Котов       |[ii025022](./trunk/ii0230284) |✅|✅|✅|✅|✅||||
 | 23 | Мархель Анастасия    |[ii00230288](./trunk/ii00230288/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||
@@ -59,7 +59,7 @@
 |9|Владислав Суховило |[ii02618](./trunk/ii02618/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||:white_check_mark:|:white_check_mark:|||
 |10|Катя Шоева|[ii230326](./trunk/ii230326/)|:white_check_mark:|:white_check_mark:|||||||
 |11|Илья Хомиченко|[ii02621](./trunk/ii02621/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
-|12|Настя Черноиван|[ii230324](./trunk/ii230324/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||
+|12|Настя Черноиван|[ii230324](./trunk/ii230324/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||
 |13|Алексей Хитренко||||||||||
 |14|Вирко Егор|[ii002601](./trunk/ii002601/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||
 |15|Данилюк Тимофей|[ii02602](./trunk/ii02602/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||:white_check_mark:|||||
