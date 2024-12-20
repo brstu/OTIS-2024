@@ -1,60 +1,49 @@
-#include <iostream>
-#include <cmath>
+#include <stdio.h>
+#include <math.h>
 
-using namespace std;
+const double a = 0.1;
+const double b = 0.3;
+const double c = 0.05;
+const double d = 0.75;
 
-const double a = 1.0,
-b = 0.5,
-c = 0.1,
-d = 0.9,
-u = 1.5;
+const double a0 = 15.5;
+const double u0 = 21;
 
-void Line(double& y0)
-{
-    y0 = a * y0 + b * u;
-    cout << "|" << y0 << endl;
+const double y00 = 1.9248;
+const double y01 = 3.2139;
+
+
+double u(unsigned int t) {
+	return a0 * t + u0;
 }
 
-void nonLine(double& y00, double& y01, bool& firstIteration)
-{
-    if (firstIteration) {
-        y01 = y00;
-        y00 = a * y00 + c * u + d * sin(u);
-        firstIteration = false;
-        cout << "|" << y00 << endl;
-    }
-    else {
-        double NewT = 0; 
-        NewT = a * y00 - b * pow(y01, 2) + c * u + d * sin(u);
-        y01 = y00; 
-        y00 = NewT; // Set the new value for the current temperature
-        cout << "|" << y00 << endl;
-    }
+
+double LinM(unsigned int t) {
+	if (t < 1)
+		return y00;
+
+	return a * LinM(t - 1) + b * u(t - 1);
 }
 
-int main()
-{
-    setlocale(LC_ALL, "rus");
-    double intT = 0,
-        LinT = 0,
-        nonlinT = 0,
-        prenonlinT = 0;
-    bool firstIteration = true;
+double nonlinM(unsigned int t) {
+	if (t < 1)
+		return y00;
 
-    cout << "Enter the initial temperature: ";
-    cin >> intT;
-    LinT = intT;
-    nonlinT = intT;
+	if (t < 2)
+		return y01;
 
-    const int N = 10;
-    cout << "Linear model:" << endl;
-    for (int i = 0; i < N; i++) {
-        Line(LinT);
-    }
-    cout << "Nonlinear model:" << endl;
-    for (int i = 0; i < N; i++) {
-        nonLine(nonlinT, prenonlinT, firstIteration);
-    }
+	return a * nonlinM(t - 1) - b * pow(nonlinM(t - 2), 2) + c * u(t - 1) + d * sin(u(t - 2));
+}
 
-    return 0;
+int main() {
+
+	printf("Lin model\n");
+	for (int t = 1; t < 11; t++)
+		printf("%d\t%.4f\n", t, LinM(t));
+
+	printf("Nonlin model\n");
+	for (int t = 1; t < 11; t++)
+		printf("%d\t%.4f\n", t, nonlinM(t));
+
+	return 0;
 }
