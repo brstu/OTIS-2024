@@ -36,7 +36,7 @@ private:
                 if (findHamiltonianCycle(neighbor, depth + 1, cycle, visited)) {
                     return true;
                 }
-                visited[neighbor] = false;
+                visited[neighbor] = false; // backtrack
             }
         }
         return false;
@@ -128,12 +128,12 @@ int main() {
     setlocale(LC_ALL, "RUSSIAN");
     Graph graph;
 
-    graph.addNode(0);
-    graph.addNode(1);
-    graph.addNode(2);
-    graph.addNode(3);
-    graph.addNode(4);
+    // Adding nodes
+    for (int i = 0; i < 5; ++i) {
+        graph.addNode(i);
+    }
 
+    // Adding edges
     graph.addEdge(0, 1);
     graph.addEdge(1, 2);
     graph.addEdge(2, 3);
