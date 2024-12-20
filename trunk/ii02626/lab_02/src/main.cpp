@@ -29,7 +29,7 @@ int main() {
     std::vector<double> y = {yS, K * yS + c * u0 + d * sin(u0) };
     std::vector<double> e = {de(y[0]), de(y[1])};
 
-    printf_s("%10s%10s%10s\n", "y", "u", "e");
+    printf("%10s%10s%10s\n", "y", "u", "e");
 
     for (; e.back() > .001; ) {
         printf_s("%10.5f %10.5f %10.5f\n", y.back(), u.back(), e.back());
