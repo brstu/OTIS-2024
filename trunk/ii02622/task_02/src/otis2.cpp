@@ -1,74 +1,78 @@
 ﻿#include <iostream>
-#include <cmath>
 #include <vector>
-#include <iomanip>
-#include <locale>
+#include <cmath>
+#include <iomanip>  // Для форматирования вывода
+using namespace std;
 
-// Константы модели
-constexpr double kAlpha = 0.9;
-constexpr double kBeta = 0.3;
-constexpr double kGamma = 0.4;
-constexpr double kDelta = 0.1;
+// Коэффициенты системы
+double coeff_a, coeff_b, coeff_c, coeff_d;
+// Параметры системы
+double gain, time_const_0, time_delay, time_const, desired_output;
+// Параметры регулятора
+double reg_0, reg_1, reg_2;
 
-// Параметры системы управления
-constexpr double kCoeffK = 0.9;
-constexpr double kTime0 = 0.5;
-constexpr double kTimeC = 1.0;
-constexpr double kTimeD = 0.5;
-constexpr double kTargetOutput = 20.0;
+void simulate_system() {
+    const double initial_output = 2.0;  // Начальное значение выхода
+    double control_signal = 1.0;        // Управляющий сигнал
+    vector<double> output = { initial_output };  // Вектор выходных значений
+    vector<double> error = { desired_output - initial_output };  // Вектор ошибок
+    vector<double> control_history = { control_signal };  // История управляющего сигнала
 
-// Вычисленные параметры регулятора
-constexpr double kParam1 = kCoeffK * (1.0 + (kTimeD / kTime0));
-constexpr double kParam2 = -kCoeffK * (1.0 + 2.0 * (kTimeD / kTime0) - (kTime0 / kTimeC));
-constexpr double kParam3 = kCoeffK * (kTimeD / kTime0);
+    // Цикл продолжается, пока ошибка не станет меньше 0.01
+    while (fabs(error.back()) > 0.01) {
+        // Вычисление новой ошибки
+        error.push_back(desired_output - output.back());
 
-void SimulateControlSystem() {
-    // Начальные условия
-    constexpr int kInitialValue = 2;
-    std::vector<double> systemOutputs = {kInitialValue, kInitialValue};
-    std::vector<double> errors = {kTargetOutput - kInitialValue, kTargetOutput - kInitialValue};
-    double controlSignal = 1.0;
-    std::vector<double> controlSignals = {controlSignal, controlSignal};
+        // Вычисление нового управляющего сигнала
+        control_signal = control_history.back()
+            + reg_0 * error.back()
+            + reg_1 * (error.size() > 1 ? error[error.size() - 2] : 0)
+            + reg_2 * (error.size() > 2 ? error[error.size() - 3] : 0);
 
-    // Цикл моделирования
-    while (std::fabs(kTargetOutput - systemOutputs.back()) > 0.01) {
-        double currentError = kTargetOutput - systemOutputs.back();
-        errors.push_back(currentError);
+        // Обновление выходного значения системы
+        double new_output = coeff_a * output.back()
+            - coeff_b * (output.size() > 1 ? output[output.size() - 2] : 0)
+            + coeff_c * control_signal
+            + coeff_d * sin(control_history.back());
 
-        // Проверяем длину ошибок, добавляем нули при необходимости
-        while (errors.size() < 3) {
-            errors.insert(errors.begin(), 0.0);
-        }
-
-        // Рассчитываем новый контрольный сигнал
-        controlSignal += kParam1 * errors.back() + kParam2 * errors[errors.size() - 2] + kParam3 * errors[errors.size() - 3];
-        controlSignals.push_back(controlSignal);
-
-        // Вычисляем следующий выход системы
-        double nextOutput = kAlpha * systemOutputs.back() - kBeta * systemOutputs[systemOutputs.size() - 2] + kGamma * controlSignal + kDelta * std::sin(controlSignal);
-        systemOutputs.push_back(nextOutput);
+        output.push_back(new_output);  // Добавляем новое значение в вектор выходов
+        control_history.push_back(control_signal);  // Сохраняем управляющий сигнал
     }
 
-    // Вывод данных
-    std::cout << std::setw(12) << "Step"
-              << std::setw(12) << "Output"
-              << std::setw(12) << "Error"
-              << std::setw(12) << "Control" << std::endl;
-
-    for (size_t i = 0; i < systemOutputs.size(); ++i) {
-        double error = (i < errors.size()) ? errors[i] : 0.0;
-        double control = (i < controlSignals.size()) ? controlSignals[i] : 0.0;
-        std::cout << std::setw(12) << i + 1
-                  << std::setw(12) << systemOutputs[i]
-                  << std::setw(12) << error
-                  << std::setw(12) << control << std::endl;
+    // Вывод результатов
+    cout << fixed << setprecision(4);  // Форматирование вывода с 4 знаками после запятой
+    cout << "Step\tOutput\tError\tControl Signal\n";
+    for (size_t i = 0; i < output.size(); ++i) {
+        cout << i + 1 << "\t"
+            << output[i] << "\t"
+            << error[i] << "\t"
+            << control_history[i] << endl;
     }
 }
 
 int main() {
-    // Установка локали для поддержки русского текста
-    std::locale::global(std::locale(""));
+    // Ввод параметров системы
+    setlocale(LC_ALL, "RU");
+    cout << "Введите коэффициенты системы:\n";
+    cout << "coeff_a: "; cin >> coeff_a;
+    cout << "coeff_b: "; cin >> coeff_b;
+    cout << "coeff_c: "; cin >> coeff_c;
+    cout << "coeff_d: "; cin >> coeff_d;
 
-    SimulateControlSystem();
+    cout << "\nВведите параметры системы:\n";
+    cout << "gain: "; cin >> gain;
+    cout << "time_const_0: "; cin >> time_const_0;
+    cout << "time_delay: "; cin >> time_delay;
+    cout << "time_const: "; cin >> time_const;
+    cout << "desired_output (желаемое значение выхода): "; cin >> desired_output;
+
+    // Расчет параметров регулятора
+    reg_0 = gain * (1 + (time_delay / time_const_0));
+    reg_1 = -gain * (1 + 2 * (time_delay / time_const_0) - (time_const_0 / time_const));
+    reg_2 = gain * (time_delay / time_const_0);
+
+    // Запуск симуляции системы
+    simulate_system();
+
     return 0;
 }
