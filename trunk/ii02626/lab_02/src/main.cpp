@@ -32,7 +32,7 @@ int main() {
     printf("%10s%10s%10s\n", "y", "u", "e");
 
     for (; e.back() > .001; ) {
-        printf_s("%10.5f %10.5f %10.5f\n", y.back(), u.back(), e.back());
+        printf("%10.5f %10.5f %10.5f\n", y.back(), u.back(), e.back());
 
         e.push_back(de(y.back()));
         double u_0 = u.back() + q0 * e.back() + q1 * e[e.size() - 2] + q2 * e[e.size() - 3];
