@@ -49,7 +49,7 @@
 | №  | ФИО                         | Directory name               | #0 | #1 | #2 | #3 | #4 | #5 | #6 | Рейтинг |
 |----|-----------------------------|------------------------------|----|----|----|----|----|----|----|---------|
 |1|Семенов Арсений|[ii02616](./trunk/ii02616/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||
-|2|Павел Яшков|[ii02626](./trunk/ii02626/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||
+|2|Павел Яшков|[ii02626](./trunk/ii02626/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
 |3|Михаил Рулько|[ii02615](./trunk/ii02615/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||:white_check_mark:||||
 |4|Валерия Цурукова||||||||||
 |5|Вика Сугак|[ii230205](./trunk/ii230205/)|:white_check_mark:|:white_check_mark:|:white_check_mark:||:white_check_mark:||||||
