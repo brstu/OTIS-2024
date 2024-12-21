@@ -76,3 +76,4 @@
 |26|Ерошин Егор|[ii00230304](./trunk/ii00230304/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
 
 
+
