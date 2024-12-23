@@ -24,7 +24,7 @@
 | 6  |Трошин Иван|[ii02506](trunk/ii02506)|✅|✅|✅|✅|✅|✅|||
 | 7  | Бекназарова Анжелика |[ii0230277](./trunk/ii0230277/)|✅|✅|✅|✅|✅||||
 | 8  |Елец Юлия |[ii02508](trunk/ii02508)|✅|✅|✅|✅|✅|✅|||
-| 9  | Сидорчук Артём       ||||||||||
+| 9  | Сидорчук Артём       |||✅|✅|||||без GitHub|
 | 10 | Кулик Яна            |[ii0230285](./trunk/ii0230285/)|✅|✅|✅|✅|✅||||
 | 11 | Борис Жук            |[ii0230282](./trunk/ii0230282)|✅|✅|✅|✅|✅||||
 | 12 | Милевский Артем      |[ii0230289](trunk/ii0230289)|✅|✅|✅|✅|✅||||
@@ -51,7 +51,7 @@
 |1|Семенов Арсений|[ii02616](./trunk/ii02616/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||
 |2|Павел Яшков|[ii02626](./trunk/ii02626/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||
 |3|Михаил Рулько|[ii02615](./trunk/ii02615/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||
-|4|Валерия Цурукова|[ii02622](./trunk/ii02622/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|||||
+|4|Валерия Цурукова|[ii02622](./trunk/ii02622/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||
 |5|Вика Сугак|[ii230205](./trunk/ii230205/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||
 |6|Даниил Турич|[ii02619](./trunk/ii02619/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||
 |7|Влад Рудь|[ii02614](./trunk/ii02614/)|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:|:white_check_mark:||||||
